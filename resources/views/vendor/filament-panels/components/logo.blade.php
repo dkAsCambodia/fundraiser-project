@@ -1,0 +1,1 @@
+<img src="{{ asset('/admin_panel/logo.png') }}" alt="Logo" style="height: 4rem">
