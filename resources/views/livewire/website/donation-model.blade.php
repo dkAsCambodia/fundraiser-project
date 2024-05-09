@@ -441,7 +441,7 @@
                                             </path>
                                             <path d="m.75 7.5h16.5"></path>
                                         </g>
-                                    </svg></span> Credit/debit card</button>
+                                    </svg></span> Credit card</button>
                             <button type="button" tabindex="5" class="oulineButton btn-paypal">
                                 <div class="d-flex align-items-center justify-content-center"><svg height="22"
                                         preserveAspectRatio="xMinYMin meet" viewBox="0 0 101 32" width="69"
@@ -760,7 +760,7 @@
                         <!-- Step5-->
                         <div class="step5 personal_information">
                             <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
-                                        class="bi bi-chevron-left"></i></a> Personal Information </div>
+                                        class="bi bi-chevron-left"></i></a> Enter your details </div>
                             <div class="step5content">
                                 <?php if (!empty(auth()->user()->name)) {
                                     $parts = explode(' ', auth()->user()->name);
