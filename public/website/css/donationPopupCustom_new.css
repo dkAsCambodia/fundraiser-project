@@ -65,7 +65,7 @@ border-radius: 8px;  transition: 0.25s ease-out; margin:-1px 0; }
 .paymentsmethod{ width:33.3%; padding:0 10px 0 0; margin-bottom:10px; }
 .inputSet_custom label { display:block; font-family: "IBM Plex Sans", sans-serif; cursor: pointer;  position: relative; color:#333; }
 .inputSet_custom label input {  opacity: 0;  position: absolute; }
-.inputSet_custom label input[type="radio"]:checked ~ span.check1 {  color: #2e66cf;   border-color: #2e66cf;    background-color: #dbffa7; box-shadow: inset 0 0 0 1px #2e66cf; transition: all 0.5s; }
+.inputSet_custom label input[type="radio"]:checked ~ span.check1 {  color: #2e66cf;   border-color: #2e66cf;    background-color: #ebf1fc; box-shadow: inset 0 0 0 1px #2e66cf; transition: all 0.5s; }
 .inputSet_custom label.payments_label span.check1 { border: 1px solid #c7cdd6; height: 42px;  display: block;  width: 100%;  border-radius: 8px;  font-size: 16px;
     font-weight: 500;  color: #222832; text-align:center; line-height:42px; }
 .inputSet_custom label.payments_label span.check1:hover { background:#f7f7f8; }
@@ -197,12 +197,12 @@ height: 100%;  position: absolute; right: 0px; width: 0; background:#fff; transi
 .slidepopup {z-index: 6; width:100%; transition: all 0.2s; }
 .open-model { overflow: hidden; }
 
-.step8content .items1 {   padding: 15px 0;  }
-.step8content .items1:nth-child(odd) {    background: #f2f2f2;   margin: 0px -25px 5px -25px;   padding: 15px 25px; }
+.step8content .items1 { margin: 0px -25px 0px -20px; padding: 10px 25px; align-items: center; overflow: hidden; }
+.step8content .items1:nth-child(odd) {    background: #f2f2f2; }
     .oulineButton.closepopup {     height: 40px; }
 .step8content .hhflex {display: flex;   align-items: self-start;   justify-content: space-between;}
-.step8content .items1 img{ width:45px; margin-right:10px; }
-.step8content .items1 figure { margin: 0px; float:left; }
+.step8content .items1 img{ width: 40px;  height: 40px; border-radius: 5px; }
+.step8content .items1 figure { margin-right: 10px; float:left; }
 .step8content .column { overflow: hidden; padding-right: 10px; }
 .step8content h5 { font-size: 14px; }
 .step8content .items1.Total {    background: #dfdfdf;  padding: 10px 25px;  border: none;  margin: -1px -25px;
