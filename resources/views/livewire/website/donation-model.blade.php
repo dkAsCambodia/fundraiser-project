@@ -314,7 +314,7 @@
                                 </svg>
                             </div>
 
-                            <button type="button" class="nextButton continue2" tabindex="5" class="oulineButton">
+                            <button type="button" class="continue2 oulineButton" tabindex="5">
                                 <span class="btn__text">Keep my <span
                                         class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once-time' : 'monthly' }}</span>
                                     <span class="currency-symbol">$</span><span
@@ -875,7 +875,7 @@
                             </div>
                             <div class="bottom_price">
                                 <button type="button" class="nextButton continue6">Continue</button>
-                                <button type="button" class="nextButton continue6 oulineButton">Skip to the next
+                                <button type="button" class="continue6 oulineButton">Skip to the next
                                     step</button>
                             </div>
                         </div>
