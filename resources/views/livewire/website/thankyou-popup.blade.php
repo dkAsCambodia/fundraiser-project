@@ -93,19 +93,19 @@
                                 </div><br/>
                                 <div class="items1 Total">
                                     <strong>Total</strong>
-                                    <strong><span class="currency-symbol">{{ $donatedCurrencySymbol }}</span><span class="Final_amount">{{ $causeDetails->default_amount }}</span></strong>
+                                    <strong><span class="currency-symbol">{{ $donatedCurrencySymbol }}</span><span class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span></strong>
                                 </div>
                             </div>
                             <div class="bottom_price">
                                 <form action="{{route(base64_decode($donatedGatewayName))}}" method="post">
                                     @csrf
-                                    <input type="hidden" class="Final_amount" name="amount" value="{{ $causeDetails->default_amount }}" />
+                                    <input type="hidden" class="Final_amount" name="amount" value="{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
                                     <input type="hidden" class="Final_currency" name="currency" value="{{ base64_decode($donatedCurrency) }}" />
                                     <input type="hidden" class="Final_currencySymbol" name="currencySymbol" value="{{ $donatedCurrencySymbol }}" />
                                     <input type="hidden" name="account_id" value="{{ $causeDetails->account_id }}" />
                                     <input type="hidden" name="cause_detail_id" value="{{ $causeDetails->id }}" />
                                     <input type="hidden" class="frequency" name="frequency" value="{{ !empty($causeDetails->default_frequency) ? $causeDetails->default_frequency : 'once' }}" />
-                                    <button type="submit" class="nextButton">Pay Now &nbsp;<span class="currency-symbol">{{ $donatedCurrencySymbol }}</span><span class="Final_amount">{{ $causeDetails->default_amount }}</span></button>
+                                    <button type="submit" class="nextButton">Pay Now &nbsp;<span class="currency-symbol">{{ $donatedCurrencySymbol }}</span><span class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span></button>
                                 </form>
                                 <form action="{{route('declineOffer')}}" method="post">
                                     @csrf

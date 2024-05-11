@@ -231,7 +231,7 @@
         </div>
     </section>
     <!-- Donation Details End -->
-    <div class="popup_Box" id="checkoutpopup" style="display:{{ $modalStatus ? 'block' : 'none' }};">>
+    <div class="popup_Box" id="checkoutpopup" style="display:{{ $modalStatus ? 'block' : 'none' }};">
         @include('livewire/website/thankyou-popup')
     </div>
      {{-- Disable_Browser_Back_JavaScript START --}}

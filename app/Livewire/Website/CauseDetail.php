@@ -5,6 +5,7 @@ namespace App\Livewire\Website;
 use App\Models\CauseDetail as ModelsCauseDetail;
 use App\Models\PaymentDetail;
 use App\Models\TransactionDetail;
+use App\Models\Country;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -30,7 +31,7 @@ class CauseDetail extends Component
         'getSimilarRecord.selected' => '',
         'getSimilarRecord.default_amount' => '',
     ];
-    public $causeDetails;
+    public $causeDetails, $currencies;
     public $getSimilarRecord;
     public $customDonation;
     public $totalAmount = 0;
@@ -95,6 +96,7 @@ class CauseDetail extends Component
         });
 
         $this->getSimilarRecord = $getSimilarRecordData->toArray();
+        $this->currencies = Country::where( 'status', '1')->get();
     }
     public function checkountNow()
     {
