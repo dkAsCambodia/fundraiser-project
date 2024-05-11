@@ -17,6 +17,8 @@ use App\Livewire\Website\Contact;
 use App\Livewire\Website\Donation;
 use App\Livewire\Website\Volunteer;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Stevebauman\Location\Facades\Location;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,4 +106,11 @@ Route::get('/upsellPaypal/upsellSuccess', [PaypalPaymentController::class, 'upse
 
 
 
-
+Route::get('/location', function (Request $request) {
+    // return $request->ip();
+    $ip= request()->ip();
+    $position = Location::get('103.146.44.34');
+    echo "<pre>";
+    print_r($position);
+   
+})->name('location');
