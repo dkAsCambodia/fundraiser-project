@@ -111,7 +111,7 @@
                         <!-- Tabl Content here-->
                         <div class="group-price-control">
                             <input type="text" class="textbox Final_amount"
-                                value="{{ $causeDetails->default_amount }}" />
+                                value="{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
                             <select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)">
                                 @forelse ($currencies as $row)
                                 <option value="{{$row->curency_code ?? ''}}" data-symbol="{{$row->currency_symbol ?? ''}}" {{ Session::get('sessLocation')?->curency_code == $row->curency_code ? 'selected' : '' }} >{{$row->curency_code ?? ''}} · {{$row->currency_name ?? ''}}</option>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="row mt-5" style="text-align:right;">
                             <p><b>Total Amount: </b><span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                    class="Final_amount">{{ $causeDetails->default_amount }}</span>
+                                    class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
                             </p>
                             <!-- <p><b>Total Campaigns: </b>1</p> -->
                         </div>
