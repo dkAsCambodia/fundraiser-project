@@ -81,9 +81,9 @@
                                     <div class="paymentsmethod">
                                         <label class="payments_label">
                                             <input type="radio" name="triptype"
-                                                value="{{ $causeDetails->suggested_amounts[$keyVal] }}">
+                                                value="{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="check1"><span
-                                                    class="currency-symbol">$</span>{{ $causeDetails->suggested_amounts[$keyVal] }}<span>
+                                                    class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>
                                         </label>
                                     </div>
                                 @endforeach
@@ -100,9 +100,9 @@
                                     <div class="paymentsmethod">
                                         <label class="payments_label">
                                             <input type="radio" name="triptype"
-                                                value="{{ $causeDetails->suggested_amounts[$keyVal] }}">
+                                                value="{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="check1"><span
-                                                    class="currency-symbol">$</span>{{ $causeDetails->suggested_amounts[$keyVal] }}<span>
+                                                    class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>
                                         </label>
                                     </div>
                                 @endforeach
@@ -113,36 +113,11 @@
                             <input type="text" class="textbox Final_amount"
                                 value="{{ $causeDetails->default_amount }}" />
                             <select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)">
-                                <option value="USD" data-symbol="&#36;" selected>USD · United States Dollars</option>
-                                <option value="AUD" data-symbol="&#36;">AUD · Australian Dollar</option>
-                                <option value="KHR" data-symbol="៛">KHR · Cambodian Riel</option>
-                                <option value="THB" data-symbol="&#xE3F;">THB · Thai Baht</option>
-                                <option value="INR" data-symbol="&#8377;">INR · Indian Rupee</option>
-                                <option value="MYR" data-symbol="RM">MYR · Malaysian Ringgit</option>
-                                <option value="BRL" data-symbol="R$">BRL · Brazilian Real</option>
-                                <option value="CAD" data-symbol="&#36;">CAD · Canadian Dollar</option>
-                                <option value="PHP" data-symbol="&#8369;">PHP · Philippine Peso</option>
-                                <option value="IDR" data-symbol="Rp">IDR · Indonesian Rupiah</option>
-                                <option value="CHF" data-symbol="CHF">CHF · Swiss Franc</option>
-                                <option value="CNY" data-symbol="&yen;">CNY · Chinese Yuan</option>
-                                <option value="CZK" data-symbol="Kč">CZK · Czech Koruna</option>
-                                <option value="DKK" data-symbol="kr">DKK · Danish Krone</option>
-                                <option value="EUR" data-symbol="&euro;">EUR · Euro</option>
-                                <option value="GBP" data-symbol="&#163;">GBP · British Pound</option>
-                                <option value="HKD" data-symbol="&#36;">HKD · Hong Kong Dollar</option>
-                                <option value="HUF" data-symbol="Ft">HUF · Hungarian Forint</option>
-                                <option value="ILS" data-symbol="&#8362;">ILS · Israeli Shekel</option>
-                                <option value="JPY" data-symbol="&yen;">JPY · Japanese Yen</option>
-                                <option value="KRW" data-symbol="&#8361;">KRW · South Korean Won</option>
-                                <option value="MXN" data-symbol="&#36;">MXN · Mexican Peso</option>
-                                <option value="NOK" data-symbol="kr">NOK · Norwegian Krone</option>
-                                <option value="NZD" data-symbol="&#36;">NZD · New Zealand Dollar</option>
-                                <option value="PLN" data-symbol="zł">PLN · Polish Zloty</option>
-                                <option value="RUB" data-symbol="&#8381;">RUB · Russian Ruble</option>
-                                <option value="SEK" data-symbol="kr">SEK · Swedish Krona</option>
-                                <option value="SGD" data-symbol="&#36;">SGD · Singapore Dollar</option>
-                                <option value="TRY" data-symbol="&#8378;">TRY · Turkish Lira</option>
-                                <option value="ZAR" data-symbol="&#82;">ZAR · South African Rand</option>
+                                @forelse ($currencies as $row)
+                                <option value="{{$row->curency_code ?? ''}}" data-symbol="{{$row->currency_symbol ?? ''}}" {{ Session::get('sessLocation')?->curency_code == $row->curency_code ? 'selected' : '' }} >{{$row->curency_code ?? ''}} · {{$row->currency_name ?? ''}}</option>
+                                @empty
+                                <option value="USD" data-symbol="&#36;" {{ Session::get('sessLocation')?->curency_code == 'USD' ? 'selected' : '' }}>USD · United States Dollars</option>
+                                @endforelse
                             </select>
                         </div>
                         <div class="inputSet">
@@ -157,12 +132,11 @@
                                         <p>Once you've donated, you'll be able to write a personalized message and
                                             send a card.</p>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-5" style="text-align:right;">
-                            <p><b>Total Amount: </b><span class="currency-symbol">$</span><span
+                            <p><b>Total Amount: </b><span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                     class="Final_amount">{{ $causeDetails->default_amount }}</span>
                             </p>
                             <!-- <p><b>Total Campaigns: </b>1</p> -->
@@ -188,7 +162,7 @@
                             <p>Will you consider becoming one of our valued <span
                                     class="planName">{{ $causeDetails->default_frequency == 'once' ? 'once' : 'monthly' }}</span>
                                 supporters by converting your
-                                <strong><span class="currency-symbol">$</span><span
+                                <strong><span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                         class="Final_amount">{{ $causeDetails->default_amount }}</span></strong>
                                 contribution
                                 into a <span
@@ -203,7 +177,7 @@
                         <div class="bottom_price">
                             <div class="gift-div">
                                 <button type="button" class="redButton nextButton continue2"
-                                    tabindex="5">Donate&nbsp;<span class="currency-symbol">$</span><span
+                                    tabindex="5">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                         class="Final_amount">{{ $causeDetails->default_amount }}</span>/<span
                                         class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once time' : 'month' }}</span></button>
                                 <svg class="gift-icon" aria-hidden="true" fill="none" height="73"
@@ -317,7 +291,7 @@
                             <button type="button" class="continue2 oulineButton" tabindex="5">
                                 <span class="btn__text">Keep my <span
                                         class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once-time' : 'monthly' }}</span>
-                                    <span class="currency-symbol">$</span><span
+                                    <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                         class="Final_amount">{{ $causeDetails->default_amount }}</span> gift</span> <i
                                     class="fa-solid fa-heart btn__icon"></i> </button>
                         </div>
@@ -329,9 +303,9 @@
                         <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
                                     class="bi bi-chevron-left"></i></a> Payment option </div>
                         <div class="step3content">
-                            <p><span class="currency-symbol">$</span><span
+                            <p><span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                     class="Final_amount">{{ $causeDetails->default_amount }}</span> <small><span
-                                        class="Final_currency">USD</span>/<span
+                                        class="Final_currency">{{Session::get('sessLocation')?->curency_code ?? 'USD'}}</span>/<span
                                         class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once-time' : 'monthly' }}</small>
                             </p>
                         </div>
@@ -626,9 +600,9 @@
                                 </g>
                             </svg>
                             <p>We can only accept USD when using paypal. Your <strong><span
-                                        class="currency-symbol">$</span><span
+                                        class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                         class="Final_amount">{{ $causeDetails->default_amount }}</span></strong> <span
-                                    class="Final_currency">USD</span> Donation Converts to
+                                    class="Final_currency">{{Session::get('sessLocation')?->curency_code ?? 'USD'}}</span> Donation Converts to
                                 USD United State Doller</p>
                         </div>
                         <div class="bottom_price">
@@ -636,9 +610,9 @@
                                 @csrf
                                 <input type="hidden" class="Final_amount" name="amount"
                                     value="{{ $causeDetails->default_amount }}" />
-                                <input type="hidden" class="Final_currency" name="currency" value="USD" />
+                                <input type="hidden" class="Final_currency" name="currency" value="{{Session::get('sessLocation')?->curency_code ?? 'USD'}}" />
                                 <input type="hidden" class="Final_currencySymbol" name="currencySymbol"
-                                    value="$" />
+                                    value="{{Session::get('sessLocation')?->currency_symbol ?? '$'}}" />
                                 <input type="hidden" name="account_id" value="{{ $causeDetails->account_id }}" />
                                 <input type="hidden" name="cause_detail_id" value="{{ $causeDetails->id }}" />
                                 <input type="hidden" class="frequency" name="frequency"
@@ -723,9 +697,9 @@
                                 </p>
                                 <input type="hidden" class="Final_amount" name="amount"
                                     value="{{ $causeDetails->default_amount }}" />
-                                <input type="hidden" class="Final_currency" name="currency" value="USD" />
+                                <input type="hidden" class="Final_currency" name="currency" value="{{Session::get('sessLocation')?->curency_code ?? 'USD'}}" />
                                 <input type="hidden" class="Final_currencySymbol" name="currencySymbol"
-                                    value="$" />
+                                    value="{{Session::get('sessLocation')?->currency_symbol ?? '$'}}" />
                                 <input type="hidden" name="description" value="Donate with Stripe Pay" />
                                 <input type="hidden" name="account_id" value="{{ $causeDetails->account_id }}" />
                                 <input type="hidden" name="cause_detail_id" value="{{ $causeDetails->id }}" />
@@ -826,7 +800,7 @@
                             <div class="bottom_price">
                                 <button type="button" class="personal-btn nextButton1">
                                     <span class="progress-animation"></span>
-                                        <span class="btntext">Donate&nbsp;<span class="currency-symbol">$</span><span
+                                        <span class="btntext">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                         class="Final_amount">{{ $causeDetails->default_amount }}</span>/<span
                                         class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once time' : 'month' }}</span></span>
                                         <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
