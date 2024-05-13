@@ -163,7 +163,7 @@
                                     class="planName">{{ $causeDetails->default_frequency == 'once' ? 'once' : 'monthly' }}</span>
                                 supporters by converting your
                                 <strong><span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ $causeDetails->default_amount }}</span></strong>
+                                        class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span></strong>
                                 contribution
                                 into a <span
                                     class="planName">{{ $causeDetails->default_frequency == 'once' ? 'once' : 'monthly' }}</span>
@@ -178,7 +178,7 @@
                             <div class="gift-div">
                                 <button type="button" class="redButton nextButton continue2"
                                     tabindex="5">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ $causeDetails->default_amount }}</span>/<span
+                                        class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
                                         class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once time' : 'month' }}</span></button>
                                 <svg class="gift-icon" aria-hidden="true" fill="none" height="73"
                                     viewBox="0 0 72 73" width="72" xmlns="http://www.w3.org/2000/svg"
@@ -292,7 +292,7 @@
                                 <span class="btn__text">Keep my <span
                                         class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once-time' : 'monthly' }}</span>
                                     <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ $causeDetails->default_amount }}</span> gift</span> <i
+                                        class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span> gift</span> <i
                                     class="fa-solid fa-heart btn__icon"></i> </button>
                         </div>
                     </div>
@@ -304,7 +304,7 @@
                                     class="bi bi-chevron-left"></i></a> Payment option </div>
                         <div class="step3content">
                             <p><span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                    class="Final_amount">{{ $causeDetails->default_amount }}</span> <small><span
+                                    class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span> <small><span
                                         class="Final_currency">{{Session::get('sessLocation')?->curency_code ?? 'USD'}}</span>/<span
                                         class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once-time' : 'monthly' }}</small>
                             </p>
@@ -601,7 +601,7 @@
                             </svg>
                             <p>We can only accept USD when using paypal. Your <strong><span
                                         class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ $causeDetails->default_amount }}</span></strong> <span
+                                        class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span></strong> <span
                                     class="Final_currency">{{Session::get('sessLocation')?->curency_code ?? 'USD'}}</span> Donation Converts to
                                 USD United State Doller</p>
                         </div>
@@ -609,7 +609,7 @@
                             <form action="{{ route('paypal.checkout') }}" method="post">
                                 @csrf
                                 <input type="hidden" class="Final_amount" name="amount"
-                                    value="{{ $causeDetails->default_amount }}" />
+                                    value="{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
                                 <input type="hidden" class="Final_currency" name="currency" value="{{Session::get('sessLocation')?->curency_code ?? 'USD'}}" />
                                 <input type="hidden" class="Final_currencySymbol" name="currencySymbol"
                                     value="{{Session::get('sessLocation')?->currency_symbol ?? '$'}}" />
@@ -696,7 +696,7 @@
                                 <p class="card-warning text text-danger" style="display:none">Invalid card details!
                                 </p>
                                 <input type="hidden" class="Final_amount" name="amount"
-                                    value="{{ $causeDetails->default_amount }}" />
+                                    value="{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
                                 <input type="hidden" class="Final_currency" name="currency" value="{{Session::get('sessLocation')?->curency_code ?? 'USD'}}" />
                                 <input type="hidden" class="Final_currencySymbol" name="currencySymbol"
                                     value="{{Session::get('sessLocation')?->currency_symbol ?? '$'}}" />
@@ -757,7 +757,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="tel" name="mobile_country_code" class="tel" id="mobile-number"
-                                        placeholder="Contact number" readonly value="{{ auth()->user() ? userInfor()?->mobile_country_code ?? '' : '' }}">
+                                        placeholder="Contact number" readonly value="{{ auth()->user() ? userInfor()?->mobile_country_code ?? '' : Session::get('sessLocation')?->mobile_country_code }}">
                                     <input type="text" placeholder="Phone number (optional)"
                                         class="form-control textbox phone_number" name="mobile"
                                         value="{{ auth()->user() ? userInfor()?->mobile ?? '' : '' }}" />
@@ -801,7 +801,7 @@
                                 <button type="button" class="personal-btn nextButton1">
                                     <span class="progress-animation"></span>
                                         <span class="btntext">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ $causeDetails->default_amount }}</span>/<span
+                                        class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
                                         class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once time' : 'month' }}</span></span>
                                         <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
@@ -894,753 +894,11 @@
                                 </div>
                                 <div class="form-group">
                                     <select class="form-select selectbox2 select2full" name="country">
-                                        <option value="AFG"
-                                            @auth {{ userInfor()?->country == 'AFG' ? 'selected' : '' }} @endauth>
-                                            Afghanistan</option>
-                                        <option value="ALB"
-                                            @auth {{ userInfor()?->country == 'ALB' ? 'selected' : '' }} @endauth>Albania
-                                        </option>
-                                        <option value="DZA"
-                                            @auth {{ userInfor()?->country == 'DZA' ? 'selected' : '' }} @endauth>Algeria
-                                        </option>
-                                        <option value="ASM"
-                                            @auth {{ userInfor()?->country == 'ASM' ? 'selected' : '' }} @endauth>
-                                            American Samoa</option>
-                                        <option value="AND"
-                                            @auth {{ userInfor()?->country == 'AND' ? 'selected' : '' }} @endauth>Andorra
-                                        </option>
-                                        <option value="AGO"
-                                            @auth {{ userInfor()?->country == 'AGO' ? 'selected' : '' }} @endauth>Angola
-                                        </option>
-                                        <option value="AIA"
-                                            @auth {{ userInfor()?->country == 'AIA' ? 'selected' : '' }} @endauth>
-                                            Anguilla</option>
-                                        <option value="ATA"
-                                            @auth {{ userInfor()?->country == 'ATA' ? 'selected' : '' }} @endauth>
-                                            Antarctica</option>
-                                        <option value="ATG"
-                                            @auth {{ userInfor()?->country == 'ATG' ? 'selected' : '' }} @endauth>
-                                            Antigua and Barbuda</option>
-                                        <option value="ARG"
-                                            @auth {{ userInfor()?->country == 'ARG' ? 'selected' : '' }} @endauth>
-                                            Argentina</option>
-                                        <option value="ARM"
-                                            @auth {{ userInfor()?->country == 'ARM' ? 'selected' : '' }} @endauth>
-                                            Armenia</option>
-                                        <option value="ABW"
-                                            @auth {{ userInfor()?->country == 'ABW' ? 'selected' : '' }} @endauth>Aruba
-                                        </option>
-                                        <option value="AUS"
-                                            @auth {{ userInfor()?->country == 'AUS' ? 'selected' : '' }} @endauth>
-                                            Australia</option>
-                                        <option value="AUT"
-                                            @auth {{ userInfor()?->country == 'AUT' ? 'selected' : '' }} @endauth>
-                                            Austria</option>
-                                        <option value="AZE"
-                                            @auth {{ userInfor()?->country == 'AZE' ? 'selected' : '' }} @endauth>
-                                            Azerbaijan</option>
-                                        <option value="BHS"
-                                            @auth {{ userInfor()?->country == 'BHS' ? 'selected' : '' }} @endauth>
-                                            Bahamas</option>
-                                        <option value="BHR"
-                                            @auth {{ userInfor()?->country == 'BHR' ? 'selected' : '' }} @endauth>
-                                            Bahrain</option>
-                                        <option value="BGD"
-                                            @auth {{ userInfor()?->country == 'BGD' ? 'selected' : '' }} @endauth>
-                                            Bangladesh</option>
-                                        <option value="BRB"
-                                            @auth {{ userInfor()?->country == 'BRB' ? 'selected' : '' }} @endauth>
-                                            Barbados</option>
-                                        <option value="BLR"
-                                            @auth {{ userInfor()?->country == 'BLR' ? 'selected' : '' }} @endauth>
-                                            Belarus</option>
-                                        <option value="BEL"
-                                            @auth {{ userInfor()?->country == 'BEL' ? 'selected' : '' }} @endauth>
-                                            Belgium</option>
-                                        <option value="BLZ"
-                                            @auth {{ userInfor()?->country == 'BLZ' ? 'selected' : '' }} @endauth>Belize
-                                        </option>
-                                        <option value="BEN"
-                                            @auth {{ userInfor()?->country == 'BEN' ? 'selected' : '' }} @endauth>Benin
-                                        </option>
-                                        <option value="BMU"
-                                            @auth {{ userInfor()?->country == 'BMU' ? 'selected' : '' }} @endauth>
-                                            Bermuda</option>
-                                        <option value="BTN"
-                                            @auth {{ userInfor()?->country == 'BTN' ? 'selected' : '' }} @endauth>Bhutan
-                                        </option>
-                                        <option value="BOL"
-                                            @auth {{ userInfor()?->country == 'BOL' ? 'selected' : '' }} @endauth>
-                                            Bolivia</option>
-                                        <option value="BES"
-                                            @auth {{ userInfor()?->country == 'BES' ? 'selected' : '' }} @endauth>
-                                            Bonaire, Sint Eustatius and Saba</option>
-                                        <option value="BIH"
-                                            @auth {{ userInfor()?->country == 'BIH' ? 'selected' : '' }} @endauth>Bosnia
-                                            and Herzegovina</option>
-                                        <option value="BWA"
-                                            @auth {{ userInfor()?->country == 'BWA' ? 'selected' : '' }} @endauth>
-                                            Botswana</option>
-                                        <option value="BVT"
-                                            @auth {{ userInfor()?->country == 'BVT' ? 'selected' : '' }} @endauth>Bouvet
-                                            Island</option>
-                                        <option value="BRA"
-                                            @auth {{ userInfor()?->country == 'BRA' ? 'selected' : '' }} @endauth>Brazil
-                                        </option>
-                                        <option value="IOT"
-                                            @auth {{ userInfor()?->country == 'IOT' ? 'selected' : '' }} @endauth>
-                                            British Indian Ocean Territory</option>
-                                        <option value="BRN"
-                                            @auth {{ userInfor()?->country == 'BRN' ? 'selected' : '' }} @endauth>Brunei
-                                        </option>
-                                        <option value="BGR"
-                                            @auth {{ userInfor()?->country == 'BGR' ? 'selected' : '' }} @endauth>
-                                            Bulgaria</option>
-                                        <option value="BFA"
-                                            @auth {{ userInfor()?->country == 'BFA' ? 'selected' : '' }} @endauth>
-                                            Burkina Faso</option>
-                                        <option value="BDI"
-                                            @auth {{ userInfor()?->country == 'BDI' ? 'selected' : '' }} @endauth>
-                                            Burundi</option>
-                                        <option value="CPV"
-                                            @auth {{ userInfor()?->country == 'CPV' ? 'selected' : '' }} @endauth>Cabo
-                                            Verde</option>
-                                        <option value="KHR"
-                                            @auth {{ userInfor()?->country == 'KHR' ? 'selected' : '' }} @else selected @endauth>
-                                            Cambodia</option>
-                                        <option value="CMR"
-                                            @auth {{ userInfor()?->country == 'CMR' ? 'selected' : '' }} @endauth>
-                                            Cameroon</option>
-                                        <option value="CAN"
-                                            @auth {{ userInfor()?->country == 'CAN' ? 'selected' : '' }} @endauth>Canada
-                                        </option>
-                                        <option value="CYM"
-                                            @auth {{ userInfor()?->country == 'CYM' ? 'selected' : '' }} @endauth>Cayman
-                                            Islands</option>
-                                        <option value="CAF"
-                                            @auth {{ userInfor()?->country == 'CAF' ? 'selected' : '' }} @endauth>
-                                            Central African Republic</option>
-                                        <option value="TCD"
-                                            @auth {{ userInfor()?->country == 'TCD' ? 'selected' : '' }} @endauth>Chad
-                                        </option>
-                                        <option value="CHL"
-                                            @auth {{ userInfor()?->country == 'CHL' ? 'selected' : '' }} @endauth>Chile
-                                        </option>
-                                        <option value="CHN"
-                                            @auth {{ userInfor()?->country == 'CHN' ? 'selected' : '' }} @endauth>China
-                                        </option>
-                                        <option value="CXR"
-                                            @auth {{ userInfor()?->country == 'CXR' ? 'selected' : '' }} @endauth>
-                                            Christmas Island</option>
-                                        <option value="CCK"
-                                            @auth {{ userInfor()?->country == 'CCK' ? 'selected' : '' }} @endauth>Cocos
-                                            (Keeling) Islands</option>
-                                        <option value="COL"
-                                            @auth {{ userInfor()?->country == 'COL' ? 'selected' : '' }} @endauth>
-                                            Colombia</option>
-                                        <option value="COM"
-                                            @auth {{ userInfor()?->country == 'COM' ? 'selected' : '' }} @endauth>
-                                            Comoros</option>
-                                        <option value="COK"
-                                            @auth {{ userInfor()?->country == 'COK' ? 'selected' : '' }} @endauth>Cook
-                                            Islands</option>
-                                        <option value="CRI"
-                                            @auth {{ userInfor()?->country == 'CRI' ? 'selected' : '' }} @endauth>Costa
-                                            Rica</option>
-                                        <option value="HRV"
-                                            @auth {{ userInfor()?->country == 'HRV' ? 'selected' : '' }} @endauth>
-                                            Croatia</option>
-                                        <option value="CUB"
-                                            @auth {{ userInfor()?->country == 'CUB' ? 'selected' : '' }} @endauth>Cuba
-                                        </option>
-                                        <option value="CUW"
-                                            @auth {{ userInfor()?->country == 'CUW' ? 'selected' : '' }} @endauth>
-                                            Curaçao</option>
-                                        <option value="CYP"
-                                            @auth {{ userInfor()?->country == 'CYP' ? 'selected' : '' }} @endauth>
-                                            Cyprus</option>
-                                        <option value="CZE"
-                                            @auth {{ userInfor()?->country == 'CZE' ? 'selected' : '' }} @endauth>Czech
-                                            Republic</option>
-                                        <option value="CIV"
-                                            @auth {{ userInfor()?->country == 'CIV' ? 'selected' : '' }} @endauth>Côte
-                                            d'Ivoire</option>
-                                        <option value="COD"
-                                            @auth {{ userInfor()?->country == 'COD' ? 'selected' : '' }} @endauth>
-                                            Democratic Republic of the Congo</option>
-                                        <option value="DNK"
-                                            @auth {{ userInfor()?->country == 'DNK' ? 'selected' : '' }} @endauth>
-                                            Denmark</option>
-                                        <option value="DJI"
-                                            @auth {{ userInfor()?->country == 'DJI' ? 'selected' : '' }} @endauth>
-                                            Djibouti</option>
-                                        <option value="DMA"
-                                            @auth {{ userInfor()?->country == 'DMA' ? 'selected' : '' }} @endauth>
-                                            Dominica</option>
-                                        <option value="DOM"
-                                            @auth {{ userInfor()?->country == 'DOM' ? 'selected' : '' }} @endauth>
-                                            Dominican Republic</option>
-                                        <option value="ECU"
-                                            @auth {{ userInfor()?->country == 'ECU' ? 'selected' : '' }} @endauth>
-                                            Ecuador</option>
-                                        <option value="EGY"
-                                            @auth {{ userInfor()?->country == 'EGY' ? 'selected' : '' }} @endauth>Egypt
-                                        </option>
-                                        <option value="SLV"
-                                            @auth {{ userInfor()?->country == 'SLV' ? 'selected' : '' }} @endauth>El
-                                            Salvador</option>
-                                        <option value="GNQ"
-                                            @auth {{ userInfor()?->country == 'GNQ' ? 'selected' : '' }} @endauth>
-                                            Equatorial Guinea</option>
-                                        <option value="ERI"
-                                            @auth {{ userInfor()?->country == 'ERI' ? 'selected' : '' }} @endauth>
-                                            Eritrea</option>
-                                        <option value="EST"
-                                            @auth {{ userInfor()?->country == 'EST' ? 'selected' : '' }} @endauth>
-                                            Estonia</option>
-                                        <option value="SWZ"
-                                            @auth {{ userInfor()?->country == 'SWZ' ? 'selected' : '' }} @endauth>
-                                            Eswatini</option>
-                                        <option value="ETH"
-                                            @auth {{ userInfor()?->country == 'ETH' ? 'selected' : '' }} @endauth>
-                                            Ethiopia</option>
-                                        <option value="FLK"
-                                            @auth {{ userInfor()?->country == 'FLK' ? 'selected' : '' }} @endauth>
-                                            Falkland Islands</option>
-                                        <option value="FRO"
-                                            @auth {{ userInfor()?->country == 'FRO' ? 'selected' : '' }} @endauth>Faroe
-                                            Islands</option>
-                                        <option value="FJI"
-                                            @auth {{ userInfor()?->country == 'FJI' ? 'selected' : '' }} @endauth>Fiji
-                                        </option>
-                                        <option value="FIN"
-                                            @auth {{ userInfor()?->country == 'FIN' ? 'selected' : '' }} @endauth>
-                                            Finland</option>
-                                        <option value="FRA"
-                                            @auth {{ userInfor()?->country == 'FRA' ? 'selected' : '' }} @endauth>
-                                            France</option>
-                                        <option value="GUF"
-                                            @auth {{ userInfor()?->country == 'GUF' ? 'selected' : '' }} @endauth>
-                                            French Guiana</option>
-                                        <option value="PYF"
-                                            @auth {{ userInfor()?->country == 'PYF' ? 'selected' : '' }} @endauth>
-                                            French Polynesia</option>
-                                        <option value="ATF"
-                                            @auth {{ userInfor()?->country == 'ATF' ? 'selected' : '' }} @endauth>
-                                            French Southern Territories</option>
-                                        <option value="GAB"
-                                            @auth {{ userInfor()?->country == 'GAB' ? 'selected' : '' }} @endauth>Gabon
-                                        </option>
-                                        <option value="GMB"
-                                            @auth {{ userInfor()?->country == 'GMB' ? 'selected' : '' }} @endauth>
-                                            Gambia</option>
-                                        <option value="GEO"
-                                            @auth {{ userInfor()?->country == 'GEO' ? 'selected' : '' }} @endauth>
-                                            Georgia</option>
-                                        <option value="DEU"
-                                            @auth {{ userInfor()?->country == 'DEU' ? 'selected' : '' }} @endauth>
-                                            Germany</option>
-                                        <option value="GHA"
-                                            @auth {{ userInfor()?->country == 'GHA' ? 'selected' : '' }} @endauth>Ghana
-                                        </option>
-                                        <option value="GIB"
-                                            @auth {{ userInfor()?->country == 'GIB' ? 'selected' : '' }} @endauth>
-                                            Gibraltar</option>
-                                        <option value="GRC"
-                                            @auth {{ userInfor()?->country == 'GRC' ? 'selected' : '' }} @endauth>
-                                            Greece</option>
-                                        <option value="GRL"
-                                            @auth {{ userInfor()?->country == 'GRL' ? 'selected' : '' }} @endauth>
-                                            Greenland</option>
-                                        <option value="GRD"
-                                            @auth {{ userInfor()?->country == 'GRD' ? 'selected' : '' }} @endauth>
-                                            Grenada</option>
-                                        <option value="GLP"
-                                            @auth {{ userInfor()?->country == 'GLP' ? 'selected' : '' }} @endauth>
-                                            Guadeloupe</option>
-                                        <option value="GUM"
-                                            @auth {{ userInfor()?->country == 'GUM' ? 'selected' : '' }} @endauth>Guam
-                                        </option>
-                                        <option value="GTM"
-                                            @auth {{ userInfor()?->country == 'GTM' ? 'selected' : '' }} @endauth>
-                                            Guatemala</option>
-                                        <option value="GGY"
-                                            @auth {{ userInfor()?->country == 'GGY' ? 'selected' : '' }} @endauth>
-                                            Guernsey</option>
-                                        <option value="GIN"
-                                            @auth {{ userInfor()?->country == 'GIN' ? 'selected' : '' }} @endauth>
-                                            Guinea</option>
-                                        <option value="GNB"
-                                            @auth {{ userInfor()?->country == 'GNB' ? 'selected' : '' }} @endauth>
-                                            Guinea-Bissau</option>
-                                        <option value="GUY"
-                                            @auth {{ userInfor()?->country == 'GUY' ? 'selected' : '' }} @endauth>
-                                            Guyana</option>
-                                        <option value="HTI"
-                                            @auth {{ userInfor()?->country == 'HTI' ? 'selected' : '' }} @endauth>Haiti
-                                        </option>
-                                        <option value="HMD"
-                                            @auth {{ userInfor()?->country == 'HMD' ? 'selected' : '' }} @endauth>Heard
-                                            Island and McDonald Islands</option>
-                                        <option value="HND"
-                                            @auth {{ userInfor()?->country == 'HND' ? 'selected' : '' }} @endauth>
-                                            Honduras</option>
-                                        <option value="HKG"
-                                            @auth {{ userInfor()?->country == 'HKG' ? 'selected' : '' }} @endauth>Hong
-                                            Kong</option>
-                                        <option value="HUN"
-                                            @auth {{ userInfor()?->country == 'HUN' ? 'selected' : '' }} @endauth>
-                                            Hungary</option>
-                                        <option value="ISL"
-                                            @auth {{ userInfor()?->country == 'ISL' ? 'selected' : '' }} @endauth>
-                                            Iceland</option>
-                                        <option value="IND"
-                                            @auth {{ userInfor()?->country == 'IND' ? 'selected' : '' }} @endauth>
-                                            India</option>
-                                        <option value="IDN"
-                                            @auth {{ userInfor()?->country == 'IDN' ? 'selected' : '' }} @endauth>
-                                            Indonesia</option>
-                                        <option value="IRN"
-                                            @auth {{ userInfor()?->country == 'IRN' ? 'selected' : '' }} @endauth>Iran
-                                        </option>
-                                        <option value="IRQ"
-                                            @auth {{ userInfor()?->country == 'IRQ' ? 'selected' : '' }} @endauth>Iraq
-                                        </option>
-                                        <option value="IRL"
-                                            @auth {{ userInfor()?->country == 'IRL' ? 'selected' : '' }} @endauth>
-                                            Ireland</option>
-                                        <option value="IMN"
-                                            @auth {{ userInfor()?->country == 'IMN' ? 'selected' : '' }} @endauth>Isle
-                                            of Man</option>
-                                        <option value="ISR"
-                                            @auth {{ userInfor()?->country == 'ISR' ? 'selected' : '' }} @endauth>
-                                            Israel</option>
-                                        <option value="ITA"
-                                            @auth {{ userInfor()?->country == 'ITA' ? 'selected' : '' }} @endauth>
-                                            Italy</option>
-                                        <option value="JAM"
-                                            @auth {{ userInfor()?->country == 'JAM' ? 'selected' : '' }} @endauth>
-                                            Jamaica</option>
-                                        <option value="JPN"
-                                            @auth {{ userInfor()?->country == 'JPN' ? 'selected' : '' }} @endauth>
-                                            Japan</option>
-                                        <option value="JEY"
-                                            @auth {{ userInfor()?->country == 'JEY' ? 'selected' : '' }} @endauth>
-                                            Jersey</option>
-                                        <option value="JOR"
-                                            @auth {{ userInfor()?->country == 'JOR' ? 'selected' : '' }} @endauth>
-                                            Jordan</option>
-                                        <option value="KAZ"
-                                            @auth {{ userInfor()?->country == 'KAZ' ? 'selected' : '' }} @endauth>
-                                            Kazakhstan</option>
-                                        <option value="KEN"
-                                            @auth {{ userInfor()?->country == 'KEN' ? 'selected' : '' }} @endauth>
-                                            Kenya</option>
-                                        <option value="KIR"
-                                            @auth {{ userInfor()?->country == 'KIR' ? 'selected' : '' }} @endauth>
-                                            Kiribati</option>
-                                        <option value="XKX"
-                                            @auth {{ userInfor()?->country == 'XKX' ? 'selected' : '' }} @endauth>
-                                            Kosovo</option>
-                                        <option value="KWT"
-                                            @auth {{ userInfor()?->country == 'KWT' ? 'selected' : '' }} @endauth>
-                                            Kuwait</option>
-                                        <option value="KGZ"
-                                            @auth {{ userInfor()?->country == 'KGZ' ? 'selected' : '' }} @endauth>
-                                            Kyrgyzstan</option>
-                                        <option value="LAO"
-                                            @auth {{ userInfor()?->country == 'LAO' ? 'selected' : '' }} @endauth>Laos
-                                        </option>
-                                        <option value="LVA"
-                                            @auth {{ userInfor()?->country == 'LVA' ? 'selected' : '' }} @endauth>
-                                            Latvia</option>
-                                        <option value="LBN"
-                                            @auth {{ userInfor()?->country == 'LBN' ? 'selected' : '' }} @endauth>
-                                            Lebanon</option>
-                                        <option value="LSO"
-                                            @auth {{ userInfor()?->country == 'LSO' ? 'selected' : '' }} @endauth>
-                                            Lesotho</option>
-                                        <option value="LBR"
-                                            @auth {{ userInfor()?->country == 'LBR' ? 'selected' : '' }} @endauth>
-                                            Liberia</option>
-                                        <option value="LBY"
-                                            @auth {{ userInfor()?->country == 'LBY' ? 'selected' : '' }} @endauth>
-                                            Libya</option>
-                                        <option value="LIE"
-                                            @auth {{ userInfor()?->country == 'LIE' ? 'selected' : '' }} @endauth>
-                                            Liechtenstein</option>
-                                        <option value="LTU"
-                                            @auth {{ userInfor()?->country == 'LTU' ? 'selected' : '' }} @endauth>
-                                            Lithuania</option>
-                                        <option value="LUX"
-                                            @auth {{ userInfor()?->country == 'LUX' ? 'selected' : '' }} @endauth>
-                                            Luxembourg</option>
-                                        <option value="MAC"
-                                            @auth {{ userInfor()?->country == 'MAC' ? 'selected' : '' }} @endauth>
-                                            Macau</option>
-                                        <option value="MDG"
-                                            @auth {{ userInfor()?->country == 'MDG' ? 'selected' : '' }} @endauth>
-                                            Madagascar</option>
-                                        <option value="MWI"
-                                            @auth {{ userInfor()?->country == 'MWI' ? 'selected' : '' }} @endauth>
-                                            Malawi</option>
-                                        <option value="MYS"
-                                            @auth {{ userInfor()?->country == 'MYS' ? 'selected' : '' }} @endauth>
-                                            Malaysia</option>
-                                        <option value="MDV"
-                                            @auth {{ userInfor()?->country == 'MDV' ? 'selected' : '' }} @endauth>
-                                            Maldives</option>
-                                        <option value="MLI"
-                                            @auth {{ userInfor()?->country == 'MLI' ? 'selected' : '' }} @endauth>Mali
-                                        </option>
-                                        <option value="MLT"
-                                            @auth {{ userInfor()?->country == 'MLT' ? 'selected' : '' }} @endauth>
-                                            Malta</option>
-                                        <option value="MHL"
-                                            @auth {{ userInfor()?->country == 'MHL' ? 'selected' : '' }} @endauth>
-                                            Marshall Islands</option>
-                                        <option value="MTQ"
-                                            @auth {{ userInfor()?->country == 'MTQ' ? 'selected' : '' }} @endauth>
-                                            Martinique</option>
-                                        <option value="MRT"
-                                            @auth {{ userInfor()?->country == 'MRT' ? 'selected' : '' }} @endauth>
-                                            Mauritania</option>
-                                        <option value="MUS"
-                                            @auth {{ userInfor()?->country == 'MUS' ? 'selected' : '' }} @endauth>
-                                            Mauritius</option>
-                                        <option value="MYT"
-                                            @auth {{ userInfor()?->country == 'MYT' ? 'selected' : '' }} @endauth>
-                                            Mayotte</option>
-                                        <option value="MEX"
-                                            @auth {{ userInfor()?->country == 'MEX' ? 'selected' : '' }} @endauth>
-                                            Mexico</option>
-                                        <option value="FSM"
-                                            @auth {{ userInfor()?->country == 'FSM' ? 'selected' : '' }} @endauth>
-                                            Micronesia</option>
-                                        <option value="MDA"
-                                            @auth {{ userInfor()?->country == 'MDA' ? 'selected' : '' }} @endauth>
-                                            Moldova</option>
-                                        <option value="MCO"
-                                            @auth {{ userInfor()?->country == 'MCO' ? 'selected' : '' }} @endauth>
-                                            Monaco</option>
-                                        <option value="MNG"
-                                            @auth {{ userInfor()?->country == 'MNG' ? 'selected' : '' }} @endauth>
-                                            Mongolia</option>
-                                        <option value="MNE"
-                                            @auth {{ userInfor()?->country == 'MNE' ? 'selected' : '' }} @endauth>
-                                            Montenegro</option>
-                                        <option value="MSR"
-                                            @auth {{ userInfor()?->country == 'MSR' ? 'selected' : '' }} @endauth>
-                                            Montserrat</option>
-                                        <option value="MAR"
-                                            @auth {{ userInfor()?->country == 'MAR' ? 'selected' : '' }} @endauth>
-                                            Morocco</option>
-                                        <option value="MOZ"
-                                            @auth {{ userInfor()?->country == 'MOZ' ? 'selected' : '' }} @endauth>
-                                            Mozambique</option>
-                                        <option value="MMR"
-                                            @auth {{ userInfor()?->country == 'MMR' ? 'selected' : '' }} @endauth>
-                                            Myanmar</option>
-                                        <option value="NAM"
-                                            @auth {{ userInfor()?->country == 'NAM' ? 'selected' : '' }} @endauth>
-                                            Namibia</option>
-                                        <option value="NRU"
-                                            @auth {{ userInfor()?->country == 'NRU' ? 'selected' : '' }} @endauth>
-                                            Nauru</option>
-                                        <option value="NPL"
-                                            @auth {{ userInfor()?->country == 'NPL' ? 'selected' : '' }} @endauth>
-                                            Nepal</option>
-                                        <option value="NLD"
-                                            @auth {{ userInfor()?->country == 'NLD' ? 'selected' : '' }} @endauth>
-                                            Netherlands</option>
-                                        <option value="NCL"
-                                            @auth {{ userInfor()?->country == 'NCL' ? 'selected' : '' }} @endauth>New
-                                            Caledonia</option>
-                                        <option value="NZL"
-                                            @auth {{ userInfor()?->country == 'NZL' ? 'selected' : '' }} @endauth>New
-                                            Zealand</option>
-                                        <option value="NIC"
-                                            @auth {{ userInfor()?->country == 'NIC' ? 'selected' : '' }} @endauth>
-                                            Nicaragua</option>
-                                        <option value="NER"
-                                            @auth {{ userInfor()?->country == 'NER' ? 'selected' : '' }} @endauth>
-                                            Niger</option>
-                                        <option value="NGA"
-                                            @auth {{ userInfor()?->country == 'NGA' ? 'selected' : '' }} @endauth>
-                                            Nigeria</option>
-                                        <option value="NIU"
-                                            @auth {{ userInfor()?->country == 'NIU' ? 'selected' : '' }} @endauth>Niue
-                                        </option>
-                                        <option value="NFK"
-                                            @auth {{ userInfor()?->country == 'NFK' ? 'selected' : '' }} @endauth>
-                                            Norfolk Island</option>
-                                        <option value="PRK"
-                                            @auth {{ userInfor()?->country == 'PRK' ? 'selected' : '' }} @endauth>
-                                            North Korea</option>
-                                        <option value="MKD"
-                                            @auth {{ userInfor()?->country == 'MKD' ? 'selected' : '' }} @endauth>
-                                            North Macedonia</option>
-                                        <option value="MNP"
-                                            @auth {{ userInfor()?->country == 'MNP' ? 'selected' : '' }} @endauth>
-                                            Northern Mariana Islands</option>
-                                        <option value="NOR"
-                                            @auth {{ userInfor()?->country == 'NOR' ? 'selected' : '' }} @endauth>
-                                            Norway</option>
-                                        <option value="OMN"
-                                            @auth {{ userInfor()?->country == 'OMN' ? 'selected' : '' }} @endauth>Oman
-                                        </option>
-                                        <option value="PAK"
-                                            @auth {{ userInfor()?->country == 'PAK' ? 'selected' : '' }} @endauth>
-                                            Pakistan</option>
-                                        <option value="PLW"
-                                            @auth {{ userInfor()?->country == 'PLW' ? 'selected' : '' }} @endauth>
-                                            Palau</option>
-                                        <option value="PSE"
-                                            @auth {{ userInfor()?->country == 'PSE' ? 'selected' : '' }} @endauth>
-                                            Palestine</option>
-                                        <option value="PAN"
-                                            @auth {{ userInfor()?->country == 'PAN' ? 'selected' : '' }} @endauth>
-                                            Panama</option>
-                                        <option value="PNG"
-                                            @auth {{ userInfor()?->country == 'PNG' ? 'selected' : '' }} @endauth>
-                                            Papua New Guinea</option>
-                                        <option value="PRY"
-                                            @auth {{ userInfor()?->country == 'PRY' ? 'selected' : '' }} @endauth>
-                                            Paraguay</option>
-                                        <option value="PER"
-                                            @auth {{ userInfor()?->country == 'PER' ? 'selected' : '' }} @endauth>Peru
-                                        </option>
-                                        <option value="PHL"
-                                            @auth {{ userInfor()?->country == 'PHL' ? 'selected' : '' }} @endauth>
-                                            Philippines</option>
-                                        <option value="PCN"
-                                            @auth {{ userInfor()?->country == 'PCN' ? 'selected' : '' }} @endauth>
-                                            Pitcairn Islands</option>
-                                        <option value="POL"
-                                            @auth {{ userInfor()?->country == 'POL' ? 'selected' : '' }} @endauth>
-                                            Poland</option>
-                                        <option value="PRT"
-                                            @auth {{ userInfor()?->country == 'PRT' ? 'selected' : '' }} @endauth>
-                                            Portugal</option>
-                                        <option value="PRI"
-                                            @auth {{ userInfor()?->country == 'PRI' ? 'selected' : '' }} @endauth>
-                                            Puerto Rico</option>
-                                        <option value="QAT"
-                                            @auth {{ userInfor()?->country == 'QAT' ? 'selected' : '' }} @endauth>
-                                            Qatar</option>
-                                        <option value="COG"
-                                            @auth {{ userInfor()?->country == 'COG' ? 'selected' : '' }} @endauth>
-                                            Republic of the Congo</option>
-                                        <option value="ROU"
-                                            @auth {{ userInfor()?->country == 'ROU' ? 'selected' : '' }} @endauth>
-                                            Romania</option>
-                                        <option value="RUS"
-                                            @auth {{ userInfor()?->country == 'RUS' ? 'selected' : '' }} @endauth>
-                                            Russia</option>
-                                        <option value="RWA"
-                                            @auth {{ userInfor()?->country == 'RWA' ? 'selected' : '' }} @endauth>
-                                            Rwanda</option>
-                                        <option value="REU"
-                                            @auth {{ userInfor()?->country == 'REU' ? 'selected' : '' }} @endauth>
-                                            Réunion</option>
-                                        <option value="BLM"
-                                            @auth {{ userInfor()?->country == 'BLM' ? 'selected' : '' }} @endauth>
-                                            Saint Barthélemy</option>
-                                        <option value="SHN"
-                                            @auth {{ userInfor()?->country == 'SHN' ? 'selected' : '' }} @endauth>
-                                            Saint Helena, Ascension and Tristan da Cunha</option>
-                                        <option value="KNA"
-                                            @auth {{ userInfor()?->country == 'KNA' ? 'selected' : '' }} @endauth>
-                                            Saint Kitts and Nevis</option>
-                                        <option value="LCA"
-                                            @auth {{ userInfor()?->country == 'LCA' ? 'selected' : '' }} @endauth>
-                                            Saint Lucia</option>
-                                        <option value="MAF"
-                                            @auth {{ userInfor()?->country == 'MAF' ? 'selected' : '' }} @endauth>
-                                            Saint Martin</option>
-                                        <option value="SPM"
-                                            @auth {{ userInfor()?->country == 'SPM' ? 'selected' : '' }} @endauth>
-                                            Saint Pierre and Miquelon</option>
-                                        <option value="VCT"
-                                            @auth {{ userInfor()?->country == 'VCT' ? 'selected' : '' }} @endauth>
-                                            Saint Vincent and the Grenadines</option>
-                                        <option value="WSM"
-                                            @auth {{ userInfor()?->country == 'WSM' ? 'selected' : '' }} @endauth>
-                                            Samoa</option>
-                                        <option value="SMR"
-                                            @auth {{ userInfor()?->country == 'SMR' ? 'selected' : '' }} @endauth>San
-                                            Marino</option>
-                                        <option value="STP"
-                                            @auth {{ userInfor()?->country == 'STP' ? 'selected' : '' }} @endauth>Sao
-                                            Tome and Principe</option>
-                                        <option value="SAU"
-                                            @auth {{ userInfor()?->country == 'SAU' ? 'selected' : '' }} @endauth>
-                                            Saudi Arabia</option>
-                                        <option value="SEN"
-                                            @auth {{ userInfor()?->country == 'SEN' ? 'selected' : '' }} @endauth>
-                                            Senegal</option>
-                                        <option value="SRB"
-                                            @auth {{ userInfor()?->country == 'SRB' ? 'selected' : '' }} @endauth>
-                                            Serbia</option>
-                                        <option value="SYC"
-                                            @auth {{ userInfor()?->country == 'SYC' ? 'selected' : '' }} @endauth>
-                                            Seychelles</option>
-                                        <option value="SLE"
-                                            @auth {{ userInfor()?->country == 'SLE' ? 'selected' : '' }} @endauth>
-                                            Sierra Leone</option>
-                                        <option value="SGP"
-                                            @auth {{ userInfor()?->country == 'SGP' ? 'selected' : '' }} @endauth>
-                                            Singapore</option>
-                                        <option value="SXM"
-                                            @auth {{ userInfor()?->country == 'SXM' ? 'selected' : '' }} @endauth>Sint
-                                            Maarten</option>
-                                        <option value="SVK"
-                                            @auth {{ userInfor()?->country == 'SVK' ? 'selected' : '' }} @endauth>
-                                            Slovakia</option>
-                                        <option value="SVN"
-                                            @auth {{ userInfor()?->country == 'SVN' ? 'selected' : '' }} @endauth>
-                                            Slovenia</option>
-                                        <option value="SLB"
-                                            @auth {{ userInfor()?->country == 'SLB' ? 'selected' : '' }} @endauth>
-                                            Solomon Islands</option>
-                                        <option value="SOM"
-                                            @auth {{ userInfor()?->country == 'SOM' ? 'selected' : '' }} @endauth>
-                                            Somalia</option>
-                                        <option value="ZAF"
-                                            @auth {{ userInfor()?->country == 'ZAF' ? 'selected' : '' }} @endauth>
-                                            South Africa</option>
-                                        <option value="SGS"
-                                            @auth {{ userInfor()?->country == 'SGS' ? 'selected' : '' }} @endauth>
-                                            South Georgia and the South Sandwich Islands</option>
-                                        <option value="KOR"
-                                            @auth {{ userInfor()?->country == 'KOR' ? 'selected' : '' }} @endauth>
-                                            South Korea</option>
-                                        <option value="SSD"
-                                            @auth {{ userInfor()?->country == 'SSD' ? 'selected' : '' }} @endauth>
-                                            South Sudan</option>
-                                        <option value="ESP"
-                                            @auth {{ userInfor()?->country == 'ESP' ? 'selected' : '' }} @endauth>
-                                            Spain</option>
-                                        <option value="LKA"
-                                            @auth {{ userInfor()?->country == 'LKA' ? 'selected' : '' }} @endauth>Sri
-                                            Lanka</option>
-                                        <option value="SDN"
-                                            @auth {{ userInfor()?->country == 'SDN' ? 'selected' : '' }} @endauth>
-                                            Sudan</option>
-                                        <option value="SUR"
-                                            @auth {{ userInfor()?->country == 'SUR' ? 'selected' : '' }} @endauth>
-                                            Suriname</option>
-                                        <option value="SJM"
-                                            @auth {{ userInfor()?->country == 'SJM' ? 'selected' : '' }} @endauth>
-                                            Svalbard and Jan Mayen</option>
-                                        <option value="SWE"
-                                            @auth {{ userInfor()?->country == 'SWE' ? 'selected' : '' }} @endauth>
-                                            Sweden</option>
-                                        <option value="CHE"
-                                            @auth {{ userInfor()?->country == 'CHE' ? 'selected' : '' }} @endauth>
-                                            Switzerland</option>
-                                        <option value="SYR"
-                                            @auth {{ userInfor()?->country == 'SYR' ? 'selected' : '' }} @endauth>
-                                            Syria</option>
-                                        <option value="ST"
-                                            @auth {{ userInfor()?->country == 'ST' ? 'selected' : '' }} @endauth>São
-                                            Tomé and Príncipe</option>
-                                        <option value="TWN"
-                                            @auth {{ userInfor()?->country == 'TWN' ? 'selected' : '' }} @endauth>
-                                            Taiwan</option>
-                                        <option value="TJK"
-                                            @auth {{ userInfor()?->country == 'TJK' ? 'selected' : '' }} @endauth>
-                                            Tajikistan</option>
-                                        <option value="TZA"
-                                            @auth {{ userInfor()?->country == 'TZA' ? 'selected' : '' }} @endauth>
-                                            Tanzania</option>
-                                        <option value="THA"
-                                            @auth {{ userInfor()?->country == 'THA' ? 'selected' : '' }} @endauth>
-                                            Thailand</option>
-                                        <option value="TLS"
-                                            @auth {{ userInfor()?->country == 'TLS' ? 'selected' : '' }} @endauth>
-                                            Timor-Leste</option>
-                                        <option value="TGO"
-                                            @auth {{ userInfor()?->country == 'TGO' ? 'selected' : '' }} @endauth>Togo
-                                        </option>
-                                        <option value="TKL"
-                                            @auth {{ userInfor()?->country == 'TKL' ? 'selected' : '' }} @endauth>
-                                            Tokelau</option>
-                                        <option value="TON"
-                                            @auth {{ userInfor()?->country == 'TON' ? 'selected' : '' }} @endauth>
-                                            Tonga</option>
-                                        <option value="TTO"
-                                            @auth {{ userInfor()?->country == 'TTO' ? 'selected' : '' }} @endauth>
-                                            Trinidad and Tobago</option>
-                                        <option value="TUN"
-                                            @auth {{ userInfor()?->country == 'TUN' ? 'selected' : '' }} @endauth>
-                                            Tunisia</option>
-                                        <option value="TUR"
-                                            @auth {{ userInfor()?->country == 'TUR' ? 'selected' : '' }} @endauth>
-                                            Turkey</option>
-                                        <option value="TKM"
-                                            @auth {{ userInfor()?->country == 'TKM' ? 'selected' : '' }} @endauth>
-                                            Turkmenistan</option>
-                                        <option value="TCA"
-                                            @auth {{ userInfor()?->country == 'TCA' ? 'selected' : '' }} @endauth>
-                                            Turks and Caicos Islands</option>
-                                        <option value="TUV"
-                                            @auth {{ userInfor()?->country == 'TUV' ? 'selected' : '' }} @endauth>
-                                            Tuvalu</option>
-                                        <option value="UMI"
-                                            @auth {{ userInfor()?->country == 'UMI' ? 'selected' : '' }} @endauth>U.S.
-                                            Minor Outlying Islands</option>
-                                        <option value="VIR"
-                                            @auth {{ userInfor()?->country == 'VIR' ? 'selected' : '' }} @endauth>U.S.
-                                            Virgin Islands</option>
-                                        <option value="UGA"
-                                            @auth {{ userInfor()?->country == 'UGA' ? 'selected' : '' }} @endauth>
-                                            Uganda</option>
-                                        <option value="UKR"
-                                            @auth {{ userInfor()?->country == 'UKR' ? 'selected' : '' }} @endauth>
-                                            Ukraine</option>
-                                        <option value="ARE"
-                                            @auth {{ userInfor()?->country == 'ARE' ? 'selected' : '' }} @endauth>
-                                            United Arab Emirates</option>
-                                        <option value="GBR"
-                                            @auth {{ userInfor()?->country == 'GBR' ? 'selected' : '' }} @endauth>
-                                            United Kingdom</option>
-                                        <option value="USA"
-                                            @auth {{ userInfor()?->country == 'USA' ? 'selected' : '' }} @endauth>
-                                            United States</option>
-                                        <option value="URY"
-                                            @auth {{ userInfor()?->country == 'URY' ? 'selected' : '' }} @endauth>
-                                            Uruguay</option>
-                                        <option value="UZB"
-                                            @auth {{ userInfor()?->country == 'UZB' ? 'selected' : '' }} @endauth>
-                                            Uzbekistan</option>
-                                        <option value="VUT"
-                                            @auth {{ userInfor()?->country == 'VUT' ? 'selected' : '' }} @endauth>
-                                            Vanuatu</option>
-                                        <option value="VAT"
-                                            @auth {{ userInfor()?->country == 'VAT' ? 'selected' : '' }} @endauth>
-                                            Vatican City</option>
-                                        <option value="VEN"
-                                            @auth {{ userInfor()?->country == 'VEN' ? 'selected' : '' }} @endauth>
-                                            Venezuela</option>
-                                        <option value="VNM"
-                                            @auth {{ userInfor()?->country == 'VNM' ? 'selected' : '' }} @endauth>
-                                            Vietnam</option>
-                                        <option value="WLF"
-                                            @auth {{ userInfor()?->country == 'WLF' ? 'selected' : '' }} @endauth>
-                                            Wallis and Futuna</option>
-                                        <option value="ESH"
-                                            @auth {{ userInfor()?->country == 'ESH' ? 'selected' : '' }} @endauth>
-                                            Western Sahara</option>
-                                        <option value="YEM"
-                                            @auth {{ userInfor()?->country == 'YEM' ? 'selected' : '' }} @endauth>
-                                            Yemen</option>
-                                        <option value="ZMB"
-                                            @auth {{ userInfor()?->country == 'ZMB' ? 'selected' : '' }} @endauth>
-                                            Zambia</option>
-                                        <option value="ZWE"
-                                            @auth {{ userInfor()?->country == 'ZWE' ? 'selected' : '' }} @endauth>
-                                            Zimbabwe</option>
+                                         @forelse ($currencies as $row)
+                                        <option value="{{$row->country_code ?? ''}}" @auth {{ userInfor()?->country == $row->country_code ? 'selected' : '' }} @endauth {{ Session::get('sessLocation')?->country_code == $row->country_code ? 'selected' : '' }}>{{ucfirst($row->country_name) ?? ''}}</option>
+                                        @empty
+                                        <option value="" >Country not found!</option>
+                                        @endforelse
                                     </select>
                                 </div>
                             </div>
