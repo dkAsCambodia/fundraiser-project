@@ -31,7 +31,7 @@ class CauseDetail extends Component
         'getSimilarRecord.selected' => '',
         'getSimilarRecord.default_amount' => '',
     ];
-    public $causeDetails, $currencies;
+    public $causeDetails, $currencies, $countries;
     public $getSimilarRecord;
     public $customDonation;
     public $totalAmount = 0;
@@ -96,7 +96,9 @@ class CauseDetail extends Component
         });
 
         $this->getSimilarRecord = $getSimilarRecordData->toArray();
-        $this->currencies = Country::where( 'status', '1')->get();
+        
+        $this->currencies = Country::where( 'status', '1')->orderBy('curency_code', 'ASC')->get();
+        $this->countries = Country::where( 'status', '1')->orderBy('country_name', 'ASC')->get();
     }
     public function checkountNow()
     {

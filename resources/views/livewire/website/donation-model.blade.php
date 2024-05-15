@@ -894,7 +894,7 @@
                                 </div>
                                 <div class="form-group">
                                     <select class="form-select selectbox2 select2full" name="country">
-                                         @forelse ($currencies as $row)
+                                         @forelse ($countries as $row)
                                         <option value="{{$row->country_code ?? ''}}" @auth {{ userInfor()?->country == $row->country_code ? 'selected' : '' }} @endauth {{ Session::get('sessLocation')?->country_code == $row->country_code ? 'selected' : '' }}>{{ucfirst($row->country_name) ?? ''}}</option>
                                         @empty
                                         <option value="" >Country not found!</option>
