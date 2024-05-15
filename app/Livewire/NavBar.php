@@ -16,11 +16,10 @@ class NavBar extends Component
     {
         $SESSLOCAATION= Session::get('sessLocation');
         if(empty($SESSLOCAATION)){
-                // $ip= request()->ip();
-                $ip= '103.146.44.34';
+                $ip= request()->ip()=='127.0.0.1' ? '103.146.44.34' : request()->ip();
+                // dd($ip);
                 $IpLocation = Location::get($ip);
                 $Query = Country::where(['curency_code' => $IpLocation->currencyCode, 'status'=> '1'])->first();
-                // dd($Query->curency_code);
                 Session::put('sessLocation', $Query);
         }
         

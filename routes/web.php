@@ -107,9 +107,7 @@ Route::get('/upsellPaypal/upsellSuccess', [PaypalPaymentController::class, 'upse
 
 
 Route::get('/location', function (Request $request) {
-    // return $request->ip();
-    // $ip= request()->ip();
-    $ip= '103.146.44.34';
+    $ip= request()->ip()=='127.0.0.1' ? '103.146.44.34' : request()->ip();
     $position = Location::get($ip);
     echo "<pre>";
     echo "ip=".$ip;
