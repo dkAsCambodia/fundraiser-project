@@ -92,8 +92,7 @@
                                                 <label class="payments_label">
                                                     <input type="radio" name="triptype"
                                                         value="{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
-                                                    <span class="check1"><span
-                                                            class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>
+                                                    <span class="check1"><span class="currency-symbol">{{ $donatedCurrencySymbol }}</span>{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>
                                                 </label>
                                             </div>
                                         @endforeach
