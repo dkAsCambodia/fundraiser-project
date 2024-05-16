@@ -24,6 +24,12 @@ class ThankyouPage extends Component
     public $totalAmount = 0;
     public $totalCampaign = 0;
     public $mainId, $mainPageId;
+    public $suggestedAmountKey = [
+        'three',
+        'two',
+        'one',
+    ];
+
     public function updated()
     {
         $this->totalAmount = 0;

@@ -83,8 +83,24 @@
                                         <a href="#" class="dicline">Decline This offer</a>
                                     </div> --}}
                                 {{-- </div> --}}
-                                <br/><br/><br/><br/><br/>
-                                 <!-- Tabl Content here-->
+                                <br/><br/>
+                                <!-- Tabl Content here-->
+                                    <div class="tab1Content">
+                                    <div class="radioholder inputSet_custom">
+                                        @foreach ($suggestedAmountKey as $keyVal)
+                                            <div class="paymentsmethod">
+                                                <label class="payments_label">
+                                                    <input type="radio" name="triptype"
+                                                        value="{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                                    <span class="check1"><span
+                                                            class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <!-- Tabl Content here-->
+                                <br/><br/><br/>
                                 <div class="group-price-control">
                                     <input type="number" class="textbox Final_amount" value="" placeholder="Enter amount"/>
                                     <select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)" readonly>
