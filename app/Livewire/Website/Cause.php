@@ -6,6 +6,7 @@ use App\Models\CauseCategory;
 use App\Models\CauseDetail;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class Cause extends Component
 {
@@ -22,6 +23,8 @@ class Cause extends Component
         //     return App::abort(403);
         // }
 
+        $CurrentDate = Carbon::now()->toDateString();
+        
         $categoryQuery = CauseCategory::where('status', 1);
 
         $this->causeCategory = $categoryQuery->get();
@@ -32,7 +35,7 @@ class Cause extends Component
 
         $this->categoryId = $categoryQuery->first()?->id;
 
-        $query = CauseDetail::where('status', 1);
+        $query = CauseDetail::where('status', 1)->whereDate('end_date', '>=',  $CurrentDate);
 
         $query->when($this->categoryId, function ($query) {
             $query->where('cause_category_id', $this->categoryId);

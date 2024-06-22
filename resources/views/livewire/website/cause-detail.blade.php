@@ -79,6 +79,9 @@
     @php
         $raisedValue = raisedValue($causeDetails->id);
         $getFillPercentage = getFillPercentage($causeDetails->goal, $raisedValue);
+        $currency = Session::get('sessLocation');
+        $goal_amount = currency($causeDetails->goal);
+        $raised_amount = currency($raisedValue);
     @endphp
     <section class="donation pt-130 pb-100">
         <div class="container">
@@ -134,16 +137,16 @@
                                 <div class="featureBlock__eqn">
                                     <div class="featureBlock__eqn__block">
                                         <span class="featureBlock__eqn__title">our goal</span>
-                                        <span class="featureBlock__eqn__price">${{ $causeDetails->goal }}</span>
+                                        <span class="featureBlock__eqn__price">{{Session::get('sessLocation')?->currency_symbol ?? '$'}} {{ $goal_amount }}</span>
                                     </div>
                                     <div class="featureBlock__eqn__block text-center">
                                         <span class="featureBlock__eqn__title">Raised</span>
-                                        <span class="featureBlock__eqn__price">${{ $raisedValue }}</span>
+                                        <span class="featureBlock__eqn__price">{{Session::get('sessLocation')?->currency_symbol ?? '$'}} {{ floor($raised_amount) }}</span>
                                     </div>
                                     <div class="featureBlock__eqn__block text-end">
                                         <span class="featureBlock__eqn__title">to go</span>
                                         <span
-                                            class="featureBlock__eqn__price">${{ $causeDetails->goal - $raisedValue }}</span>
+                                            class="featureBlock__eqn__price">{{Session::get('sessLocation')?->currency_symbol ?? '$'}} {{ floor($goal_amount) - floor($raised_amount) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -155,8 +158,8 @@
                                     <div class="payments">
                                         <div class="paymentsCustoms">
                                             <div class="paymentsInput">
-                                                <input class="paymentsCustoms__field" type="number"
-                                                    wire:model.live="customDonation" placeholder="Custom Donation">
+                                                <input class="paymentsCustoms__field" type="number" value="{{ currency($causeDetails->default_amount) }}"
+                                                 placeholder="Custom Donation">
                                             </div>
                                             <div class="paymentsAmountChoice">
                                                 @foreach ($causeDetails->suggested_amounts as $key => $suggestedAmounts)
@@ -165,7 +168,7 @@
                                                             type="radio" wire:model.live="customDonation"
                                                             value="{{ $suggestedAmounts }}">
                                                         <label class="paymentsAmountChoice__label"
-                                                            for="pay{{ $key }}">${{ $suggestedAmounts }}</label>
+                                                            for="pay{{ $key }}">{{Session::get('sessLocation')?->currency_symbol ?? '$'}} {{ currency($suggestedAmounts) }}</label>
                                                     </div>
                                                 @endforeach
                                             </div>

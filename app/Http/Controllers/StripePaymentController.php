@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
+use App\Models\PaymentDetail;
 use App\Models\CauseDetail as ModelsCauseDetail;
 use App\Models\User;
 use App\Models\Upsell;
@@ -13,6 +15,8 @@ use URL;
 
 class StripePaymentController extends Controller
 {
+    public $totalAmount = 0;
+    public $totalCampaign = 0;
 
      public function stripeCheckoutProcess(Request $request)
     {
@@ -67,6 +71,30 @@ class StripePaymentController extends Controller
                     'status' => $payment_status,
                 ]);
                 // Code for Inser data into DB END
+
+                //Payment details create
+                $transactionId = generateUniqueCode('TR');
+                $totalCampaign = 1;
+                
+                $paymentDetail = PaymentDetail::create([
+                    'user_id' => $userId,
+                    'total_amount' => $request->amount,
+                    'total_campaign' => $this->totalCampaign,
+                    'transaction_id' => $transactionId,
+                    'status' => 'success',
+                ]);
+
+                 //Transcation details create
+                 TransactionDetail::create([
+                    'user_id' => $userId,
+                    'account_id' => $request->account_id,
+                    'cause_detail_id' => $request->cause_detail_id,
+                    'amount' => $request->amount,
+                    'transaction_id' =>  $data->id,
+                    'payment_details_id' => $paymentDetail->id,
+                    'status' => $payment_status,
+                ]);
+
                 // Update the user's information START
 
                 User::where('id', $userId)
@@ -189,6 +217,29 @@ class StripePaymentController extends Controller
                     // 'exp_month' => $exp_month,
                     // 'exp_year' => $exp_year,
                     'future_payment_custId' => $data->customer,
+                    'status' => $payment_status,
+                ]);
+
+                //Payment details create
+                $transactionId = generateUniqueCode('TR');
+                $totalCampaign = 1;
+                
+                $paymentDetail = PaymentDetail::create([
+                    'user_id' => $transactionData->user_id,
+                    'total_amount' => $request->amount,
+                    'total_campaign' => $this->totalCampaign,
+                    'transaction_id' => $transactionId,
+                    'status' => 'success',
+                ]);
+
+                //Transcation details create
+                TransactionDetail::create([
+                    'user_id' => $transactionData->user_id,
+                    'account_id' => $request->account_id,
+                    'cause_detail_id' => $request->cause_detail_id,
+                    'amount' => $request->amount,
+                    'transaction_id' =>  $data->id,
+                    'payment_details_id' => $paymentDetail->id,
                     'status' => $payment_status,
                 ]);
                 // Code for Inser data into DB END
