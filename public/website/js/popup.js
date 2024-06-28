@@ -47,18 +47,24 @@ $(".continue1").click(function(){
 });
 
 $(".continue2").click(function(){
-	$(".step3").addClass("slidepopup");
+	$(".step5").addClass("slidepopup");
 });
+
+//$(".continue2").click(function(){
+	//$(".step3").addClass("slidepopup");
+//});
 
 $(".continue3").click(function(){
 	$(".step4").addClass("slidepopup");
 });
 
 $(".continue4").click(function(){
-	$(".step5").addClass("slidepopup");
-});
-$(".continue5").click(function(){
 	$(".step6").addClass("slidepopup");
+});
+
+$(".continue5").click(function(){
+	$(".step5").removeClass("slidepopup");
+	$(".step3").addClass("slidepopup");
 });
 
 $(".continue6").click(function(){

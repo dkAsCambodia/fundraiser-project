@@ -100,7 +100,7 @@ border-radius: 8px;  transition: 0.25s ease-out; margin:-1px 0; }
 .btn-google-pay {  color: #fff;   background: #000;}
 .btn-paypal {  background: #eee;  border: 1px solid rgba(0, 0, 0, .2);}*/
 
-
+.continue6, .continue7{overflow:hidden;  display: flex; align-items: center;  justify-content: center;}
 .nextButton, .redButton, .oulineButton, .btn-google-pay,.nextButton1{ overflow:hidden;  display: flex; align-items: center;  justify-content: center;  height: 48px; width: 100%;
     font-size: 16px; font-weight: 600;  cursor: pointer;  color: #fff;  z-index: 2;  position: relative; background: #2e66cf;   border: none;  border-radius: 8px;  margin-top: 10px; }
 .redButton{  background:#da2243;   }

@@ -849,8 +849,9 @@
                             </div>
                             <div class="bottom_price">
                                 <button type="button" class="nextButton continue6">Continue</button>
-                                <button type="button" class="continue6 oulineButton">Skip to the next
-                                    step</button>
+                                <!--<button type="button" class="continue6 oulineButton">Skip to the next
+                                    step</button>-->
+                                <a href="javascript:void(0);" class="continue6">Skip to the next step</a>
                             </div>
                         </div>
                         <!-- Step6-->
@@ -910,7 +911,7 @@
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
                                     </button>
                                  <!-- <button type="submit" class="oulineButton">Skip to the next step</button> -->
-                                 <a href="javascript:void(0);" class="oulineButton">Skip to the next step</a>
+                                 <a href="javascript:void(0);" class="continue7">Skip to the next step</a>
                             </div>
                         </div>
                         <!-- Step7-->

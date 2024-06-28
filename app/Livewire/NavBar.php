@@ -16,7 +16,7 @@ class NavBar extends Component
     {
         $SESSLOCAATION= Session::get('sessLocation');
         if(empty($SESSLOCAATION)){
-                $ip= request()->ip()=='127.0.0.1' ? '103.246.195.106' : request()->ip();
+                $ip= request()->ip()=='127.0.0.1' ? '130.58.218.30' : request()->ip();
                 // dd($ip);   India IP Address : 103.246.195.106 for testing 103.146.44.34
                 $IpLocation = Location::get($ip);
                 $Query = Country::where(['curency_code' => $IpLocation->currencyCode, 'status'=> '1'])->first();

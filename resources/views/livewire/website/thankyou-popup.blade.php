@@ -101,7 +101,7 @@
                                 <!-- Tabl Content here-->
                                 <br/><br/><br/>
                                 <div class="group-price-control">
-                                    <input type="number" class="textbox Final_amount" value="" placeholder="Enter amount"/>
+                                    <input type="number" class="textbox Final_amount" value="{{ $causeDetails->default_amount }}" placeholder="Enter amount"/>
                                     <select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)" readonly>
                                             <option value="{{ base64_decode($donatedCurrency) }}">{{ base64_decode($donatedCurrency) }}</option>
                                     </select>
