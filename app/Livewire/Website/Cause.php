@@ -35,7 +35,7 @@ class Cause extends Component
 
         $this->categoryId = $categoryQuery->first()?->id;
 
-        $query = CauseDetail::where('status', 1)->whereDate('end_date', '>=',  $CurrentDate);
+        $query = CauseDetail::where('status', 1);//->whereDate('end_date', '>=',  $CurrentDate);
 
         $query->when($this->categoryId, function ($query) {
             $query->where('cause_category_id', $this->categoryId);
