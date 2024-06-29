@@ -109,6 +109,7 @@ border-radius: 8px;  transition: 0.25s ease-out; margin:-1px 0; }
 .nextButton:hover { background: #2e66cf;}
 .redButton:hover { background: #c61333;}
 .oulineButton {   color: #333;  z-index: 2;	position: relative; background: #fff;   border: 1px solid #ccc;  border-radius: 8px;  margin-top: 10px;}
+.oulineButtonskip {   color: #333;  z-index: 2;	position: relative; background: #fff; margin-top: 10px;}
 .oulineButton:hover { border-color:#8791a1; }
 .btn-google-pay {  color: #fff;   background: #000;}
 .btn-paypal {  background: #eee;  border: 1px solid rgba(0, 0, 0, .2);}

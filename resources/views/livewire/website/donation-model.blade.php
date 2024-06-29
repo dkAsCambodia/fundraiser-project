@@ -7,6 +7,7 @@
 <script>
     $(document).ready(function() {
         $('[data-toggle="popover"]').popover();
+        $('.clicktab1').trigger('click');//$('.qololbl').trigger('click'); 
     });
     jQuery(function($) {
         $('[data-numeric]').payment('restrictNumeric');
@@ -18,10 +19,12 @@
         // alert(tabval);
         if (tabval == '1') {
             $(".planName").text('once');
-            $(".planShortName").text('one time');
+            $(".planShortNameonce").text('one-time');
+            $(".planShortNamemonth").text('monthly');
             $(".frequency").val('once');
         } else {
-            $(".planShortName").text('month');
+            $(".planShortNamemonth").text('one-time');
+            $(".planShortNameonce").text('monthly');
             $(".planName").text('monthly');
             $(".frequency").val('monthly');
         }
@@ -179,7 +182,7 @@
                                 <button type="button" class="redButton nextButton continue2"
                                     tabindex="5">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                         class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
-                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once time' : 'month' }}</span></button>
+                                        class="planShortNameonce">{{ $causeDetails->default_frequency == 'once' ? 'one time' : 'month' }}</span></button>
                                 <svg class="gift-icon" aria-hidden="true" fill="none" height="73"
                                     viewBox="0 0 72 73" width="72" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" data-qa="gift-box-icon">
@@ -290,7 +293,7 @@
 
                             <button type="button" class="continue2 oulineButton" tabindex="5">
                                 <span class="btn__text">Keep my <span
-                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once-time' : 'monthly' }}</span>
+                                        class="planShortNamemonth">{{ $causeDetails->default_frequency == 'once' ? 'one-time' : 'monthly' }}</span>
                                     <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                         class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span> gift</span> <i
                                     class="fa-solid fa-heart btn__icon"></i> </button>
@@ -306,7 +309,7 @@
                             <p><span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                     class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span> <small><span
                                         class="Final_currency">{{Session::get('sessLocation')?->curency_code ?? 'USD'}}</span>/<span
-                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once-time' : 'monthly' }}</small>
+                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'one-time' : 'monthly' }}</small>
                             </p>
                         </div>
                         <div class="fee-checkbox fee-checkbox-checked"> <span class="fee-checkbox-bg"></span>
@@ -802,7 +805,7 @@
                                     <span class="progress-animation"></span>
                                         <span class="btntext">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                         class="Final_amount">{{ floor(currency($causeDetails->default_amount)) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
-                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once time' : 'month' }}</span></span>
+                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'one-time' : 'month' }}</span></span>
                                         <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
                                 </button>
@@ -849,9 +852,9 @@
                             </div>
                             <div class="bottom_price">
                                 <button type="button" class="nextButton continue6">Continue</button>
-                                <!--<button type="button" class="continue6 oulineButton">Skip to the next
-                                    step</button>-->
-                                <a href="javascript:void(0);" class="continue6">Skip to the next step</a>
+                                <button type="button" class="continue6 oulineButtonskip">Skip to the next
+                                    step</button>
+                                <!-- <a href="javascript:void(0);" class="continue6">Skip to the next step</a> -->
                             </div>
                         </div>
                         <!-- Step6-->
@@ -910,8 +913,8 @@
                                         <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
                                     </button>
-                                 <!-- <button type="submit" class="oulineButton">Skip to the next step</button> -->
-                                 <a href="javascript:void(0);" class="continue7">Skip to the next step</a>
+                                 <button type="submit" class="oulineButtonskip">Skip to the next step</button>
+                                 <!-- <a href="javascript:void(0);" class="continue7">Skip to the next step</a> -->
                             </div>
                         </div>
                         <!-- Step7-->
