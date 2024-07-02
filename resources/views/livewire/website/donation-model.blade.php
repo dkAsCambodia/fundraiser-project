@@ -43,8 +43,8 @@
             <div class="holder">
                 <div class="donation_left">
                     <div class="main_img">
-                        <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
-                            alt="image" />
+                        <figure><img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
+                            alt="image" /></figure>
                     </div>
                     <div class="detail"> <img class="adminLogo"
                             src="{{ !empty($causeDetails->logo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->logo : 'https://ucarecdn.com/bf291e65-c36b-4f7e-a66e-37b1018b3ace/-/resize/x50/-/format/auto/' }}"
@@ -148,7 +148,7 @@
                             <div class="design">Designate to
                                 <select class="designselect2">
                                     <option>where needed most</option>
-                                    <option>Yemen</option>
+                                    <option>{{ $causeDetails->designations }}</option>
                                 </select>
                             </div>
                             <button type="button" class="nextButton continue1">Donate</button>
