@@ -54,8 +54,8 @@
                 </div>
                 <div class="donation_right">
                     <div class="step1">
-                        <div class="header_inner">  </div>
-                            <div class="step8content">
+                        <div class="header_inner"> Your gift is not complete </div>
+                            <div class="step8content">Would you like to support this cause too
                                 {{-- <div class="thanksMsg1">
                                     <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
