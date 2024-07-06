@@ -3,6 +3,7 @@
         $('.paymentsmethod').click(function(event) {
             event.stopPropagation(); // Stop event propagation
             $('.paymentsmethod').removeClass('active');
+            alert($('input[type=radio]').val());
             $(this).addClass('active');
             $(this).find('input[type=radio]').prop('checked', true);
             var radioValue = $(this).find('input[name="triptype"]').val();

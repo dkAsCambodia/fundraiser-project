@@ -43,6 +43,9 @@ $(".clickcheckdedicate").click(function() {
 
 //
 $(".continue1").click(function(){
+	if($(".continue1").text() == "Donate monthly")
+		$(".step5").addClass("slidepopup");
+	else
 	$(".step2").addClass("slidepopup");
 });
 
@@ -92,6 +95,14 @@ $(".other_payment").click(function(){
 
 $(".backslide").click(function(){
 	$(this).parent().parent().removeClass("slidepopup");
+});
+
+$(".planShortNameonce").click(function(){
+	$(".planShortName").text('');
+});
+
+$(".planShortNamemonth").click(function(){
+	$(".planShortName").text('/month');
 });
 
 });

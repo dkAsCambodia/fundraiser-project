@@ -19,14 +19,18 @@
         // alert(tabval);
         if (tabval == '1') {
             $(".planName").text('once');
-            $(".planShortNameonce").text('one-time');
-            $(".planShortNamemonth").text('monthly');
+            //$(".planShortName").text('month');
+            //$(".planShortNameonce").text('one-time');
+            $(".planShortNamemonth").text('month');
             $(".frequency").val('once');
+            $(".continue1").text('Donate');
         } else {
-            $(".planShortNamemonth").text('one-time');
-            $(".planShortNameonce").text('monthly');
+            //$(".planShortNamemonth").text('one-time');
+            $(".planShortNameonce").text('one-time');
             $(".planName").text('monthly');
             $(".frequency").val('monthly');
+            $(".continue1").text('Donate monthly');
+            $(".planShortName").text('/month');
         }
         const div = document.getElementById('tutpoint')
         const cloneDiv = div.cloneNode(true);
@@ -84,7 +88,7 @@
                                     <div class="paymentsmethod">
                                         <label class="payments_label">
                                             <input type="radio" name="triptype"
-                                                value="{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                                value="{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="check1"><span
                                                     class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>
                                         </label>
@@ -103,7 +107,7 @@
                                     <div class="paymentsmethod">
                                         <label class="payments_label">
                                             <input type="radio" name="triptype"
-                                                value="{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                                value="{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="check1"><span
                                                     class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>
                                         </label>
@@ -182,7 +186,7 @@
                                 <button type="button" class="redButton nextButton continue2"
                                     tabindex="5">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                         class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
-                                        class="planShortNameonce">{{ $causeDetails->default_frequency == 'once' ? 'one time' : 'month' }}</span></button>
+                                        class="planShortNamemonth">{{ $causeDetails->default_frequency == 'once' ? 'one time' : 'month' }}</span></button>
                                 <svg class="gift-icon" aria-hidden="true" fill="none" height="73"
                                     viewBox="0 0 72 73" width="72" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" data-qa="gift-box-icon">
@@ -293,10 +297,10 @@
 
                             <button type="button" class="continue2 oulineButton" tabindex="5">
                                 <span class="btn__text">Keep my <span
-                                        class="planShortNamemonth">{{ $causeDetails->default_frequency == 'once' ? 'one-time' : 'monthly' }}</span>
+                                        class="planShortNameonce">{{ $causeDetails->default_frequency == 'once' ? 'one-time' : 'monthly' }}</span>
                                     <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span> gift</span> <i
-                                    class="fa-solid fa-heart btn__icon"></i> </button>
+                                        class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span> gift</span> <!--<i
+                                    class="fa-solid fa-heart btn__icon"></i>--></button>
                         </div>
                     </div>
                     <!-- Step2-->
@@ -304,12 +308,12 @@
                     <!-- Step3-->
                     <div class="step3 payment_option">
                         <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
-                                    class="bi bi-chevron-left"></i></a> Payment option </div>
+                                    class="bi bi-chevron-left"></i></a> You donate </div>
                         <div class="step3content">
                             <p><span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                     class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span> <small><span
-                                        class="Final_currency">{{Session::get('sessLocation')?->curency_code ?? 'USD'}}</span>/<span
-                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'one-time' : 'monthly' }}</small>
+                                        class="Final_currency">{{Session::get('sessLocation')?->curency_code ?? 'USD'}}</span><span
+                                        class="planShortName"></small>
                             </p>
                         </div>
                         <div class="fee-checkbox fee-checkbox-checked"> <span class="fee-checkbox-bg"></span>
@@ -711,7 +715,7 @@
 
                             </div>
                             <div class="bottom_price">
-                                <button type="submit" class="card-btn nextButton1">
+                                <!--<button type="submit" class="card-btn nextButton1">
                                         <span class="progress-animation"></span>
                                         <span class="btntext"><span class="flex-shrink-0 me-2"
                                             aria-hidden="true"><svg fill="none" height="24" viewBox="0 0 18 18"
@@ -726,7 +730,16 @@
                                             </svg></span>Continue</span>
                                         <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
-                                    </button>
+                                    </button> -->
+                                    <!--<button type="button" class="personal-btn nextButton1">-->
+                                <button type="submit" class="card-btn nextButton1">
+                                    <span class="progress-animation"></span>
+                                        <span class="btntext">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
+                                        class="Final_amount">{{ floor(currency($causeDetails->default_amount)) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span><span
+                                        class="planShortName"></span></span>
+                                        <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
+                                        <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
+                                </button>
                                 <button type="button" class="card-success-btn nextButton continue4"
                                     style="display: none"><i class="fa fa-check" aria-hidden="true"></i>
                                     Next</button>
@@ -801,14 +814,31 @@
                                 </div>
                             </div>
                             <div class="bottom_price">
-                                <button type="button" class="personal-btn nextButton1">
+                               <!-- <button type="button" class="personal-btn nextButton1">
                                     <span class="progress-animation"></span>
                                         <span class="btntext">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                         class="Final_amount">{{ floor(currency($causeDetails->default_amount)) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
                                         class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'one-time' : 'month' }}</span></span>
                                         <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
-                                </button>
+                                </button> -->
+                                <!--<button type="submit" class="card-btn nextButton1">-->
+                                   <button type="button" class="personal-btn nextButton1">
+                                        <span class="progress-animation"></span>
+                                        <span class="btntext"><span class="flex-shrink-0 me-2"
+                                            aria-hidden="true"><svg fill="none" height="24" viewBox="0 0 18 18"
+                                                width="24" xmlns="http://www.w3.org/2000/svg" class="d-block">
+                                               <!-- <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="1.5">
+                                                    <path
+                                                        d="m15.75 3h-13.5c-.82843 0-1.5.67157-1.5 1.5v9c0 .8284.67157 1.5 1.5 1.5h13.5c.8284 0 1.5-.6716 1.5-1.5v-9c0-.82843-.6716-1.5-1.5-1.5z">
+                                                    </path>
+                                                    <path d="m.75 7.5h16.5"></path>
+                                                </g> -->
+                                            </svg></span>Continue</span>
+                                        <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
+                                        <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
+                                    </button>
                                 <button type="button" class="personal-success-btn nextButton continue5"
                                     style="display: none"><i class="fa fa-check" aria-hidden="true"></i>
                                     Continue</button>
