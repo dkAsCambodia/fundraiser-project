@@ -102,9 +102,16 @@
                                 <br/><br/><br/>
                                 <div class="group-price-control">
                                     <input type="number" class="textbox Final_amount" value="{{ $causeDetails->default_amount }}" placeholder="Enter amount"/>
-                                    <select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)" readonly>
+                                    <!--<select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)" readonly>
                                             <option value="{{ base64_decode($donatedCurrency) }}">{{ base64_decode($donatedCurrency) }}</option>
-                                    </select>
+                                    </select> -->
+                                    <select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)">
+                                @forelse ($currencies as $row)
+                                <option value="{{$row->curency_code ?? ''}}" data-symbol="{{$row->currency_symbol ?? ''}}" {{ Session::get('sessLocation')?->curency_code == $row->curency_code ? 'selected' : '' }} >{{$row->curency_code ?? ''}} · {{$row->currency_name ?? ''}}</option>
+                                @empty
+                                <option value="USD" data-symbol="&#36;" {{ Session::get('sessLocation')?->curency_code == 'USD' ? 'selected' : '' }}>USD · United States Dollars</option>
+                                @endforelse
+                            </select>
                                 </div><br/>
                                 <div class="items1 Total">
                                     <strong>Total</strong>

@@ -4,6 +4,7 @@ use Livewire\Component;
 use App\Models\CauseDetail as ModelsCauseDetail;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
+use App\Models\Country;
 
 class ThankyouPage extends Component
 {
@@ -13,6 +14,7 @@ class ThankyouPage extends Component
         'getSimilarRecord.selected' => '',
         'getSimilarRecord.default_amount' => '',
     ];
+    public $currencies;
     public $donatedAmount;
     public $donatedCurrencySymbol;
     public $donatedCurrency;
@@ -80,6 +82,7 @@ class ThankyouPage extends Component
         });
 
         $this->getSimilarRecord = $getSimilarRecordData->toArray();
+        $this->currencies = Country::where( 'status', '1')->get();
     }
 
     public function openCam($selectedData, $id)
