@@ -10,11 +10,19 @@
        
     });
 
-    $(".nextButton").click(function(e) {
-    e.preventDefault(); // Prevent the page from submitting on click.
-    $(this).attr('disabled', true); // Disable this input.
-    $(this).parent("form").submit(); // Submit the form it is in.
-});
+    //$(".nextButton").click(function(e) {
+    //e.preventDefault(); // Prevent the page from submitting on click.
+    //$(this).attr('disabled', true); // Disable this input.
+    //$(this).parent("form").submit(); // Submit the form it is in.
+//});
+
+
+        $(document).ready(function(){
+            $('.submit-form').on('submit', function() {
+                $('.nextButton').prop('disabled', true);
+            });
+        });
+    
 
     jQuery(function($) {
         $('[data-numeric]').payment('restrictNumeric');
