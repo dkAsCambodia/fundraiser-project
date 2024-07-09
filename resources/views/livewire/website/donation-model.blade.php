@@ -1232,7 +1232,7 @@
             var lname = $('.lnameInput').val();
             var email = $('.emailInput').val();
             
-            setTimeout(function () {
+           // setTimeout(function () {
 
                 if (fname=='' || lname=='' || email=='') {
                 $('.personalInput').addClass("inputerror");
@@ -1250,7 +1250,7 @@
                     }, 2000)
                 }
                     
-            }, 2000)
+           // }, 2000)
 
 
 
