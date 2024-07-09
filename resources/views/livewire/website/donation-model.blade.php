@@ -324,7 +324,7 @@
                                 </svg>
                             </div>
 
-                            <button type="button" class="continue2 oulineButton" tabindex="5">
+                            <button type="button" class="whiteButton continue2 oulineButton" tabindex="5">
                                 <span class="btn__text">Keep my <span
                                         class="planShortNameonce">{{ $causeDetails->default_frequency == 'once' ? 'one-time' : 'monthly' }}</span>
                                     <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
