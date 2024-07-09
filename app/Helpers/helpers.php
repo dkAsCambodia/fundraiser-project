@@ -74,13 +74,14 @@ if(!function_exists('currency')) {
     function currency($amount)
     {
         $currency = Session::get('sessLocation') ? Session::get('sessLocation') : 'USD';
-        $response = Http::get('https://api.exchangerate-api.com/v4/latest/'.'USD');
-        $rates = $response->json()['rates'];
-        if(Session::get('sessLocation'))
-        $result = floor($amount * $rates[$currency->curency_code]);
-        else
-        $result = floor($amount * $rates['USD']);
-        return $result;
+        //$response = Http::get('https://api.exchangerate-api.com/v4/latest/'.'USD');
+        //$rates = $response->json()['rates'];
+        //if(Session::get('sessLocation'))
+       // $result = floor($amount * $rates[$currency->curency_code]);
+        //else
+        //$result = floor($amount * $rates['USD']);
+        //return $result;
+        return $amount;
     }
 
 }

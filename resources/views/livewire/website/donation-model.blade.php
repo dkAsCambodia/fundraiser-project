@@ -47,8 +47,8 @@
             <div class="holder">
                 <div class="donation_left">
                     <div class="main_img">
-                        <figure><img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
-                            alt="image" /></figure>
+                        <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
+                            alt="image" />
                     </div>
                     <div class="detail"> <img class="adminLogo"
                             src="{{ !empty($causeDetails->logo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->logo : 'https://ucarecdn.com/bf291e65-c36b-4f7e-a66e-37b1018b3ace/-/resize/x50/-/format/auto/' }}"
@@ -120,6 +120,9 @@
                             <input type="text" class="textbox Final_amount"
                                 value="{{ currency($causeDetails->default_amount) }} {{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
                             <select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)">
+                                <option value="USD" data-symbol="&#36;" {{ Session::get('sessLocation')?->curency_code == 'USD' ? 'selected' : '' }}>USD · United States Dollars</option>
+                                <option value="{{ Session::get('sessLocation')->curency_code}}" data-symbol="{{ Session::get('sessLocation')->currency_symbol}}" {{ Session::get('sessLocation')?->curency_code == 'USD' ? 'selected' : '' }}>{{ Session::get('sessLocation')->curency_code}} . {{ Session::get('sessLocation')->currency_name}}</option>
+                                <option value="" data-symbol="&#36;" ></option>
                                 @forelse ($currencies as $row)
                                 <option value="{{$row->curency_code ?? ''}}" data-symbol="{{$row->currency_symbol ?? ''}}" {{ Session::get('sessLocation')?->curency_code == $row->curency_code ? 'selected' : '' }} >{{$row->curency_code ?? ''}} · {{$row->currency_name ?? ''}}</option>
                                 @empty
@@ -997,6 +1000,12 @@
 <!-- partial -->
 <script>
     $("#mobile-number").intlTelInput();
+
+    $(document).ready(function() {
+        $('.continue7').dblclick(false);
+        $('.oulineButtonskip').dblclick(false);
+    });
+
 </script>
 <script>
     // checking card details valid or not START
@@ -1054,12 +1063,15 @@
     $(document).ready(function() {
         var $form = $(".StripePayment-form");
         $form.on('submit', function(e) {
-
+            e.preventDefault();
+            $('.continue7').dblclick(false);
+            $('.oulineButtonskip').dblclick(false);
+            $(".continue7").prop("disabled", true);
+            $(".oulineButtonskip").prop("disabled", true);
             var expirationValue = $('.card-expiry-month-year').val();
             var card_month = expirationValue.substr(0, 2); // Extract the first two digits as month
             var card_year = expirationValue.substr(3, 2);
-
-            e.preventDefault();
+            
             Stripe.setPublishableKey($form.data('stripe-publishable-key'));
             Stripe.createToken({
                 number: $('.card_number').val(),
@@ -1095,6 +1107,8 @@
                         toastr.success('Thank for your donation');
                         setTimeout(function () {
                             window.location.href = response;
+                            $(".continue7").prop("disabled", false);
+                            $(".oulineButtonskip").prop("disabled", false);
                         }, 3000)
                         
                     }
