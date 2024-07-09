@@ -38,11 +38,27 @@
         //   document.body.appendChild(cloneDiv);
         document.getElementById('tutpoint').parentElement.appendChild(cloneDiv).fadeOut(300);
     }
+    $(document).ready(function() {
+    $('.donation__close__popup').on('click', function() {
+        alert("test");
+       // $('.step6').hide();
+        //$('.stepclose').show();
+        $(".step6").removeClass("slidepopup");
+    $(".stepclose").addClass("slidepopup");
+        // Your code to handle the click event
+       // console.log('Close button clicked');
+        
+        // Example: Hide the popup
+        //$(this).closest('.popup').hide();
+        
+        // You can add any additional logic you need here
+    });
+});
 </script>
 <!-- popupBox Row -->
 <div class="center-block">
     <div class="outer">
-        <a href="javascript:void();" wire:click="closeModal" class="close__popup"><i class="bi bi-x"></i></a>
+        <a href="javascript:void();" wire:click="closeModal" class="close__popup donation__close__popup"><i class="bi bi-x"></i></a>
         <div class="donationBox">
             <div class="holder">
                 <div class="donation_left">
@@ -891,6 +907,51 @@
                             </div>
                         </div>
                         <!-- Step6-->
+
+                        <!-- Step close-->
+                        <div class="stepclose Double_impact">
+                            <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
+                                        class="bi bi-chevron-left"></i></a> MayBe next time? </div>
+                            <div class="stepclosecontent">
+                                <div class="impactBlock"> <img
+                                        src="{{ URL::to('website/image/popupImages/icon1.svg') }}" alt="icon">
+                                    <span><i class="bi bi-plus"></i></span> <img
+                                        src="{{ URL::to('website/image/popupImages/icon2.svg') }}" alt="icon">
+                                </div>
+                                <p class="text-center"> Please leave your email address below and we'll send you a gentle reminder later. <br />
+                                     <input type="text" placeholder="Email Address"
+                                            class="textbox clickinput" name="closeemail_name"
+                                            value=""/>
+                                    <!--<strong>Just enter the name of your employer, and we'll see if your impact can be
+                                        amplified!</strong>-->
+                                </p>
+
+                                <div class="form-group">
+
+                                    <div class="inputbox relative" style="">
+
+                                        <input type="text" placeholder="Your company (optional)"
+                                            class="textbox clickinput" name="company_name"
+                                            value="{{ auth()->user() ? userInfor()?->company_name ?? '' : '' }}" />
+                                        <div class="tooltip-detail help_tooltip1 tooltipopen1"
+                                            style="display: block;">
+                                            <p>Once you've donated, you'll be able to write a personalized message and
+                                                send a card.</p>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="bottom_price">
+                                <button type="button" class="nextButton continue6">Continue</button>
+                                <button type="button" class="continue6 oulineButtonskip">Skip to the next
+                                    step</button>
+                                <!-- <a href="javascript:void(0);" class="continue6">Skip to the next step</a> -->
+                            </div>
+                        </div>
+                        <!-- Step close-->
 
                         <!-- Step7-->
                         <div class="step7 postal_address">

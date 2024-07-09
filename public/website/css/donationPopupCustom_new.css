@@ -287,8 +287,22 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
 	.faqlinks {align-items: center;  flex-direction: column; }
     .scrollable-upsellDiv{ height: 150px;}
 }
-
-
+/* New Changes for Donation detail page blur*/
+.donation_left{
+    opacity: 0.8 !important;
+    background-color: #000 !important
+}
+.donation_left:hover{
+    opacity: 100 !important;
+    background-color: #fff !important;
+}
+.donation_left .detail{
+    background-color: #bababa !important;
+}
+.donation_left:hover .detail{
+    opacity: 100 !important;
+    background-color: #fff !important;
+}
 
 
 
