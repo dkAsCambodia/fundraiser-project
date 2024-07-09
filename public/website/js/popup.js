@@ -97,11 +97,11 @@ $(".backslide").click(function(){
 	$(this).parent().parent().removeClass("slidepopup");
 });
 
-$(".planShortNameonce").click(function(){
+$(".whiteButton").click(function(){
 	$(".planShortName").text('');
 });
 
-$(".planShortNamemonth").click(function(){
+$(".redButton").click(function(){
 	$(".planShortName").text('/month');
 });
 
