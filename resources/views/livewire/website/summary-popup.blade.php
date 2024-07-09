@@ -74,13 +74,18 @@
                                 <!-- Animation-->
                                 <h6>Help spread the word!</h6>
                                 <p>1 out of 5 people you share this with will also donate.</p>
-                                <ul>
+                                <!--<ul>
                                     <li><a href="#" wire:click="shareToFacebook"><i class="bi bi-facebook"></i> Share on Facebook</a></li>
                                     <li><a href="#" wire:click="shareToTwitter"><i class="bi bi-twitter-x"></i> Share on Twitter</a></li>
                                     <li><a href="#" wire:click="shareToTelegram"><i class="bi bi-telegram"></i> Share on Telegram</a></li>
                                     <li><a href="#" wire:click="shareViaEmail"><i class="bi bi-envelope-fill"></i> Share via email</a></li>
                                     <li><a href="#" wire:click="shareToYouTube"><i class="bi bi-youtube"></i> Share via YouTube</a></li>
-                                </ul>
+                                </ul> -->
+                                    <a href="#" wire:click="shareToFacebook"><i class="bi bi-facebook"></i> </a>
+                                    <a href="#" wire:click="shareToTwitter"><i class="bi bi-twitter-x"></i> </a>
+                                    <a href="#" wire:click="shareToTelegram"><i class="bi bi-telegram"></i> </a>
+                                    <a href="#" wire:click="shareViaEmail"><i class="bi bi-envelope-fill"></i> </a>
+                                    <a href="#" wire:click="shareToYouTube"><i class="bi bi-youtube"></i> </a>
                             </div>
                             <div class="bottom_price">
                                 <a href="/cause" wire:navigate><button type="button" wire:click="closeModal" class="oulineButton closepopup">Close</button></a>
