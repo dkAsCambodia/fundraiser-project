@@ -39,12 +39,21 @@
         document.getElementById('tutpoint').parentElement.appendChild(cloneDiv).fadeOut(300);
     }
     $(document).ready(function() {
-    $('.donation__close__popup').on('click', function() {
-        alert("test");
+    $('.stepCloseBtns').on('click', function() {
+       // alert("check");
+        //$(".step6").removeClass("slidepopup");
+       // $(".stepcloseEs").addClass("slidepopup");
+       // $('.stepclose').show();
+       // alert("test");
        // $('.step6').hide();
         //$('.stepclose').show();
-        $(".step6").removeClass("slidepopup");
-    $(".stepclose").addClass("slidepopup");
+        //$(".step1").removeClass("slidepopup");
+        //$(".step2").removeClass("slidepopup");
+       // $(".step3").removeClass("slidepopup");
+       // $(".step4").removeClass("slidepopup");
+       // $(".step6").removeClass("slidepopup");
+       // $(".step7").removeClass("slidepopup");
+      
         // Your code to handle the click event
        // console.log('Close button clicked');
         
@@ -174,6 +183,7 @@
                                     <option>{{ $causeDetails->designations }}</option>
                                 </select>
                             </div>
+                           
                             <button type="button" class="nextButton continue1">Donate</button>
                         </div>
                     </div>
@@ -909,7 +919,42 @@
                         <!-- Step6-->
 
                         <!-- Step close-->
-                        <div class="stepclose Double_impact">
+                       <!--  <div class="step66 stepcloseEs"> 
+                            <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i class="bi bi-chevron-left"></i></a>teeeee </div>
+                            <div class="step66content">
+                                <div class="impactBlock"> <img src="http://127.0.0.1:8000/website/image/popupImages/icon1.svg" alt="icon">
+                                    <span><i class="bi bi-plus"></i></span> <img src="http://127.0.0.1:8000/website/image/popupImages/icon2.svg" alt="icon">
+                                </div>
+                                <p class="text-center"> Many employers have a donation matching program that will
+                                    double or triple the value of your donation! <br>
+                                    <strong>Just enter the name of your employer, and we'll see if your impact can be
+                                        amplified!</strong>
+                                </p>
+
+                                <div class="form-group">
+
+                                    <div class="inputbox relative" style="">
+
+                                        <input type="text" placeholder="Your company (optional)" class="textbox clickinput" name="company_name" value="">
+                                        <div class="tooltip-detail help_tooltip1 tooltipopen1" style="display: none;">
+                                            <p>Once you've donated, you'll be able to write a personalized message and
+                                                send a card.</p>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="bottom_price">
+                                <button type="button" class="nextButton continue6">Continue</button>
+                                <button type="button" class="continue6 oulineButtonskip">Skip to the next
+                                    step</button>
+                                    <button type="button" class="stepCloseBtns">close check</button>
+                                
+                            </div>
+                        </div>
+                        <div class="stepcloseEs2">
                             <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
                                         class="bi bi-chevron-left"></i></a> MayBe next time? </div>
                             <div class="stepclosecontent">
@@ -922,8 +967,7 @@
                                      <input type="text" placeholder="Email Address"
                                             class="textbox clickinput" name="closeemail_name"
                                             value=""/>
-                                    <!--<strong>Just enter the name of your employer, and we'll see if your impact can be
-                                        amplified!</strong>-->
+                                    
                                 </p>
 
                                 <div class="form-group">
@@ -948,9 +992,9 @@
                                 <button type="button" class="nextButton continue6">Continue</button>
                                 <button type="button" class="continue6 oulineButtonskip">Skip to the next
                                     step</button>
-                                <!-- <a href="javascript:void(0);" class="continue6">Skip to the next step</a> -->
+                                
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Step close-->
 
                         <!-- Step7-->
