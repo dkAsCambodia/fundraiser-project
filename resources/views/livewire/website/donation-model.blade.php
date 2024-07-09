@@ -38,17 +38,42 @@
         //   document.body.appendChild(cloneDiv);
         document.getElementById('tutpoint').parentElement.appendChild(cloneDiv).fadeOut(300);
     }
+    $(document).ready(function() {
+    $('.stepCloseBtns').on('click', function() {
+       // alert("check");
+        //$(".step6").removeClass("slidepopup");
+       // $(".stepcloseEs").addClass("slidepopup");
+       // $('.stepclose').show();
+       // alert("test");
+       // $('.step6').hide();
+        //$('.stepclose').show();
+        //$(".step1").removeClass("slidepopup");
+        //$(".step2").removeClass("slidepopup");
+       // $(".step3").removeClass("slidepopup");
+       // $(".step4").removeClass("slidepopup");
+       // $(".step6").removeClass("slidepopup");
+       // $(".step7").removeClass("slidepopup");
+      
+        // Your code to handle the click event
+       // console.log('Close button clicked');
+        
+        // Example: Hide the popup
+        //$(this).closest('.popup').hide();
+        
+        // You can add any additional logic you need here
+    });
+});
 </script>
 <!-- popupBox Row -->
 <div class="center-block">
     <div class="outer">
-        <a href="javascript:void();" wire:click="closeModal" class="close__popup"><i class="bi bi-x"></i></a>
+        <a href="javascript:void();" wire:click="closeModal" class="close__popup donation__close__popup"><i class="bi bi-x"></i></a>
         <div class="donationBox">
             <div class="holder">
                 <div class="donation_left">
                     <div class="main_img">
-                        <figure><img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
-                            alt="image" /></figure>
+                        <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
+                            alt="image" />
                     </div>
                     <div class="detail"> <img class="adminLogo"
                             src="{{ !empty($causeDetails->logo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->logo : 'https://ucarecdn.com/bf291e65-c36b-4f7e-a66e-37b1018b3ace/-/resize/x50/-/format/auto/' }}"
@@ -120,6 +145,9 @@
                             <input type="text" class="textbox Final_amount"
                                 value="{{ currency($causeDetails->default_amount) }} {{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
                             <select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)">
+                                <option value="USD" data-symbol="&#36;" {{ Session::get('sessLocation')?->curency_code == 'USD' ? 'selected' : '' }}>USD · United States Dollars</option>
+                                <option value="{{ Session::get('sessLocation')->curency_code}}" data-symbol="{{ Session::get('sessLocation')->currency_symbol}}" {{ Session::get('sessLocation')?->curency_code == 'USD' ? 'selected' : '' }}>{{ Session::get('sessLocation')->curency_code}} . {{ Session::get('sessLocation')->currency_name}}</option>
+                                <option value="" data-symbol="&#36;" ></option>
                                 @forelse ($currencies as $row)
                                 <option value="{{$row->curency_code ?? ''}}" data-symbol="{{$row->currency_symbol ?? ''}}" {{ Session::get('sessLocation')?->curency_code == $row->curency_code ? 'selected' : '' }} >{{$row->curency_code ?? ''}} · {{$row->currency_name ?? ''}}</option>
                                 @empty
@@ -155,6 +183,7 @@
                                     <option>{{ $causeDetails->designations }}</option>
                                 </select>
                             </div>
+                           
                             <button type="button" class="nextButton continue1">Donate</button>
                         </div>
                     </div>
@@ -889,6 +918,85 @@
                         </div>
                         <!-- Step6-->
 
+                        <!-- Step close-->
+                       <!--  <div class="step66 stepcloseEs"> 
+                            <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i class="bi bi-chevron-left"></i></a>teeeee </div>
+                            <div class="step66content">
+                                <div class="impactBlock"> <img src="http://127.0.0.1:8000/website/image/popupImages/icon1.svg" alt="icon">
+                                    <span><i class="bi bi-plus"></i></span> <img src="http://127.0.0.1:8000/website/image/popupImages/icon2.svg" alt="icon">
+                                </div>
+                                <p class="text-center"> Many employers have a donation matching program that will
+                                    double or triple the value of your donation! <br>
+                                    <strong>Just enter the name of your employer, and we'll see if your impact can be
+                                        amplified!</strong>
+                                </p>
+
+                                <div class="form-group">
+
+                                    <div class="inputbox relative" style="">
+
+                                        <input type="text" placeholder="Your company (optional)" class="textbox clickinput" name="company_name" value="">
+                                        <div class="tooltip-detail help_tooltip1 tooltipopen1" style="display: none;">
+                                            <p>Once you've donated, you'll be able to write a personalized message and
+                                                send a card.</p>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="bottom_price">
+                                <button type="button" class="nextButton continue6">Continue</button>
+                                <button type="button" class="continue6 oulineButtonskip">Skip to the next
+                                    step</button>
+                                    <button type="button" class="stepCloseBtns">close check</button>
+                                
+                            </div>
+                        </div>
+                        <div class="stepcloseEs2">
+                            <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
+                                        class="bi bi-chevron-left"></i></a> MayBe next time? </div>
+                            <div class="stepclosecontent">
+                                <div class="impactBlock"> <img
+                                        src="{{ URL::to('website/image/popupImages/icon1.svg') }}" alt="icon">
+                                    <span><i class="bi bi-plus"></i></span> <img
+                                        src="{{ URL::to('website/image/popupImages/icon2.svg') }}" alt="icon">
+                                </div>
+                                <p class="text-center"> Please leave your email address below and we'll send you a gentle reminder later. <br />
+                                     <input type="text" placeholder="Email Address"
+                                            class="textbox clickinput" name="closeemail_name"
+                                            value=""/>
+                                    
+                                </p>
+
+                                <div class="form-group">
+
+                                    <div class="inputbox relative" style="">
+
+                                        <input type="text" placeholder="Your company (optional)"
+                                            class="textbox clickinput" name="company_name"
+                                            value="{{ auth()->user() ? userInfor()?->company_name ?? '' : '' }}" />
+                                        <div class="tooltip-detail help_tooltip1 tooltipopen1"
+                                            style="display: block;">
+                                            <p>Once you've donated, you'll be able to write a personalized message and
+                                                send a card.</p>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="bottom_price">
+                                <button type="button" class="nextButton continue6">Continue</button>
+                                <button type="button" class="continue6 oulineButtonskip">Skip to the next
+                                    step</button>
+                                
+                            </div>
+                        </div> -->
+                        <!-- Step close-->
+
                         <!-- Step7-->
                         <div class="step7 postal_address">
                             <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
@@ -997,6 +1105,12 @@
 <!-- partial -->
 <script>
     $("#mobile-number").intlTelInput();
+
+    $(document).ready(function() {
+        $('.continue7').dblclick(false);
+        $('.oulineButtonskip').dblclick(false);
+    });
+
 </script>
 <script>
     // checking card details valid or not START
@@ -1054,12 +1168,15 @@
     $(document).ready(function() {
         var $form = $(".StripePayment-form");
         $form.on('submit', function(e) {
-
+            e.preventDefault();
+            $('.continue7').dblclick(false);
+            $('.oulineButtonskip').dblclick(false);
+            $(".continue7").prop("disabled", true);
+            $(".oulineButtonskip").prop("disabled", true);
             var expirationValue = $('.card-expiry-month-year').val();
             var card_month = expirationValue.substr(0, 2); // Extract the first two digits as month
             var card_year = expirationValue.substr(3, 2);
-
-            e.preventDefault();
+            
             Stripe.setPublishableKey($form.data('stripe-publishable-key'));
             Stripe.createToken({
                 number: $('.card_number').val(),
@@ -1095,6 +1212,8 @@
                         toastr.success('Thank for your donation');
                         setTimeout(function () {
                             window.location.href = response;
+                            $(".continue7").prop("disabled", false);
+                            $(".oulineButtonskip").prop("disabled", false);
                         }, 3000)
                         
                     }

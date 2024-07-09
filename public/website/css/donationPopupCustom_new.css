@@ -28,7 +28,7 @@ body{ font-family: "IBM Plex Sans", sans-serif;}
 .donationBox .donation_left .detail .adminLogo { max-height: 50px;}
 .donationBox .donation_left .detail h2 { margin: 10px 0 20px 0; font-size: 20px; font-weight: 600; color: #222832;}
 .donationBox .donation_left .detail p { padding-bottom: 20px; font-size: 14px; line-height: 22px; color: #222832;}
-.donationBox .donation_left :hover { background: #7c7a7a;} 
+/*.donationBox .donation_left :hover { background: #e2e1e1;} */
 
 .donationBox .donation_right {position: relative;
     overflow: hidden; width:360px; box-sizing: border-box; border-radius: 15px; display: flex; flex-grow: 1; flex-direction: column; background:#fff;  }
@@ -287,8 +287,22 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
 	.faqlinks {align-items: center;  flex-direction: column; }
     .scrollable-upsellDiv{ height: 150px;}
 }
-
-
+/* New Changes for Donation detail page blur*/
+.donation_left{
+    opacity: 0.8 !important;
+    background-color: #000 !important
+}
+.donation_left:hover{
+    opacity: 100 !important;
+    background-color: #fff !important;
+}
+.donation_left .detail{
+    background-color: #bababa !important;
+}
+.donation_left:hover .detail{
+    opacity: 100 !important;
+    background-color: #fff !important;
+}
 
 
 

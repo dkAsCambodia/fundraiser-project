@@ -7,7 +7,15 @@
 <script>
     $(document).ready(function() {
         $('[data-toggle="popover"]').popover();
+       
     });
+
+    $(".nextButton").click(function(e) {
+    e.preventDefault(); // Prevent the page from submitting on click.
+    $(this).attr('disabled', true); // Disable this input.
+    $(this).parent("form").submit(); // Submit the form it is in.
+});
+
     jQuery(function($) {
         $('[data-numeric]').payment('restrictNumeric');
         $('.cc-number').payment('formatCardNumber');
@@ -105,7 +113,10 @@
                                     <!--<select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)" readonly>
                                             <option value="{{ base64_decode($donatedCurrency) }}">{{ base64_decode($donatedCurrency) }}</option>
                                     </select> -->
-                                    <select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)">
+                            <select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)">
+                                <option value="USD" data-symbol="&#36;" {{ Session::get('sessLocation')?->curency_code == 'USD' ? 'selected' : '' }}>USD · United States Dollars</option>
+                                <option value="{{ Session::get('sessLocation')->curency_code}}" data-symbol="{{ Session::get('sessLocation')->currency_symbol}}" {{ Session::get('sessLocation')?->curency_code == 'USD' ? 'selected' : '' }}>{{ Session::get('sessLocation')->curency_code}} . {{ Session::get('sessLocation')->currency_name}}</option>
+                                <option value="" data-symbol="&#36;" ></option>
                                 @forelse ($currencies as $row)
                                 <option value="{{$row->curency_code ?? ''}}" data-symbol="{{$row->currency_symbol ?? ''}}" {{ Session::get('sessLocation')?->curency_code == $row->curency_code ? 'selected' : '' }} >{{$row->curency_code ?? ''}} · {{$row->currency_name ?? ''}}</option>
                                 @empty
@@ -119,7 +130,7 @@
                                 </div>
                             </div>
                             <div class="bottom_price">
-                                <form action="{{route(base64_decode($donatedGatewayName))}}" method="post">
+                                <form action="{{route(base64_decode($donatedGatewayName))}}" method="post" class="submit-form">
                                     @csrf
                                     <input type="hidden" class="Final_amount" name="amount" value="{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
                                     <input type="hidden" class="Final_currency" name="currency" value="{{ base64_decode($donatedCurrency) }}" />
@@ -127,7 +138,7 @@
                                     <input type="hidden" name="account_id" value="{{ $causeDetails->account_id }}" />
                                     <input type="hidden" name="cause_detail_id" value="{{ $causeDetails->id }}" />
                                     <input type="hidden" class="frequency" name="frequency" value="{{ !empty($causeDetails->default_frequency) ? $causeDetails->default_frequency : 'once' }}" />
-                                    <button type="submit" class="nextButton">Pay Now &nbsp;<span class="currency-symbol">{{ $donatedCurrencySymbol }}</span><span class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span></button>
+                                    <button type="submit" class="nextButton">Pay Now &nbsp;<span class="progress-animation"></span><span class="currency-symbol">{{ $donatedCurrencySymbol }}</span><span class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span></button>
                                 </form>
                                 <form action="{{route('declineOffer')}}" method="post">
                                     @csrf
