@@ -38,8 +38,9 @@
         //   document.body.appendChild(cloneDiv);
         document.getElementById('tutpoint').parentElement.appendChild(cloneDiv).fadeOut(300);
     }
-    $(document).ready(function() {
-    $('.stepCloseBtns').on('click', function() {
+
+    //$(document).ready(function() {
+    //$('.stepCloseBtns').on('click', function() {
        // alert("check");
         //$(".step6").removeClass("slidepopup");
        // $(".stepcloseEs").addClass("slidepopup");
@@ -61,12 +62,50 @@
         //$(this).closest('.popup').hide();
         
         // You can add any additional logic you need here
-    });
-});
+   // });
+//});
 </script>
+<!--<style>
+    .modallPopup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-contentlPopup {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .closelPopup {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .closelPopup:hover,
+        .closelPopup:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style> -->
 <!-- popupBox Row -->
 <div class="center-block">
     <div class="outer">
+       <!-- <a href="javascript:void();" class="donation__close__popup">X Close</a>-->
         <a href="javascript:void();" wire:click="closeModal" class="close__popup donation__close__popup"><i class="bi bi-x"></i></a>
         <div class="donationBox">
             <div class="holder">
@@ -911,8 +950,8 @@
                             </div>
                             <div class="bottom_price">
                                 <button type="button" class="nextButton continue6">Continue</button>
-                                <button type="button" class="continue6 oulineButtonskip">Skip to the next
-                                    step</button>
+                                <button type="button" class="continue6 oulineButtonskip"><u>Skip to the next
+                                    step</u></button>
                                 <!-- <a href="javascript:void(0);" class="continue6">Skip to the next step</a> -->
                             </div>
                         </div>
@@ -1055,6 +1094,68 @@
                                  <!-- <a href="javascript:void(0);" class="continue7">Skip to the next step</a> -->
                             </div>
                         </div>
+
+
+
+                       <!-- <div class="step7 stepcancel">
+                            <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
+                                        class="bi bi-chevron-left"></i></a> Enter your address </div>
+                            <div class="step5content">
+                                <div class="form-group">
+                                    <input type="text" name="address" placeholder="Street address"
+                                        value="{{ auth()->user() ? userInfor()?->address ?? '' : '' }}"
+                                        class="textbox" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="appartment_flour"
+                                        placeholder="Apartment / suite / floor"
+                                        value="{{ auth()->user() ? userInfor()?->appartment_flour ?? '' : '' }}"
+                                        class="textbox" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="city"s placeholder="Town or city"
+                                        value="{{ auth()->user() ? userInfor()?->city ?? '' : '' }}"
+                                        class="textbox" />
+                                </div>
+                                <div class="postal_row">
+                                    <div class="postal_col">
+                                        <div class="form-group">
+                                            <input type="text" name="state" placeholder="State"
+                                                value="{{ auth()->user() ? userInfor()?->state ?? '' : '' }}"
+                                                class="textbox" />
+                                        </div>
+                                    </div>
+                                    <div class="postal_col">
+                                        <div class="form-group">
+                                            <input type="text" name="zip" placeholder="Zip code"
+                                                value="{{ auth()->user() ? userInfor()?->zip ?? '' : '' }}"
+                                                class="textbox" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-select selectbox2 select2full" name="country">
+                                         @forelse ($countries as $row)
+                                        <option value="{{$row->country_code ?? ''}}" @auth {{ userInfor()?->country == $row->country_code ? 'selected' : '' }} @endauth {{ Session::get('sessLocation')?->country_code == $row->country_code ? 'selected' : '' }}>{{ucfirst($row->country_name) ?? ''}}</option>
+                                        @empty
+                                        <option value="" >Country not found!</option>
+                                        @endforelse
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="bottom_price">
+                                <button type="submit" class="nextButton continue7">
+                                    <span class="progress-animation"></span>
+                                        <span class="btntext">Continue</span>
+                                        <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
+                                        <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
+                                    </button>
+                                 <button type="submit" class="oulineButtonskip"><u>Skip to the next step</u></button>
+                                 
+                            </div>
+                        </div> -->
+
+
                         <!-- Step7-->
                     </form>
 
@@ -1103,6 +1204,16 @@
 </div>
 <!-- popupBox Row -->
 <!-- partial -->
+
+<!--<div id="firstModal" class="modalpopup">
+  <div class="modal-contentpopup">
+    <span class="close">&times;</span>
+    <p>Some text in the First Modal..</p>
+  </div>
+</div> -->
+
+
+
 <script>
     $("#mobile-number").intlTelInput();
 
