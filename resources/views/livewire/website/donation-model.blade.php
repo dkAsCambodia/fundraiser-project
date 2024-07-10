@@ -65,7 +65,7 @@
    // });
 //});
 </script>
-<!--<style>
+<style>
     .modallPopup {
             display: none;
             position: fixed;
@@ -101,7 +101,7 @@
             text-decoration: none;
             cursor: pointer;
         }
-</style> -->
+</style>
 <!-- popupBox Row -->
 <div class="center-block">
     <div class="outer">
@@ -1094,74 +1094,7 @@
                                  <!-- <a href="javascript:void(0);" class="continue7">Skip to the next step</a> -->
                             </div>
                         </div>
-
-
-
-                       <!-- <div class="step7 stepcancel">
-                            <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
-                                        class="bi bi-chevron-left"></i></a> Enter your address </div>
-                            <div class="step5content">
-                                <div class="form-group">
-                                    <input type="text" name="address" placeholder="Street address"
-                                        value="{{ auth()->user() ? userInfor()?->address ?? '' : '' }}"
-                                        class="textbox" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="appartment_flour"
-                                        placeholder="Apartment / suite / floor"
-                                        value="{{ auth()->user() ? userInfor()?->appartment_flour ?? '' : '' }}"
-                                        class="textbox" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="city"s placeholder="Town or city"
-                                        value="{{ auth()->user() ? userInfor()?->city ?? '' : '' }}"
-                                        class="textbox" />
-                                </div>
-                                <div class="postal_row">
-                                    <div class="postal_col">
-                                        <div class="form-group">
-                                            <input type="text" name="state" placeholder="State"
-                                                value="{{ auth()->user() ? userInfor()?->state ?? '' : '' }}"
-                                                class="textbox" />
-                                        </div>
-                                    </div>
-                                    <div class="postal_col">
-                                        <div class="form-group">
-                                            <input type="text" name="zip" placeholder="Zip code"
-                                                value="{{ auth()->user() ? userInfor()?->zip ?? '' : '' }}"
-                                                class="textbox" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-select selectbox2 select2full" name="country">
-                                         @forelse ($countries as $row)
-                                        <option value="{{$row->country_code ?? ''}}" @auth {{ userInfor()?->country == $row->country_code ? 'selected' : '' }} @endauth {{ Session::get('sessLocation')?->country_code == $row->country_code ? 'selected' : '' }}>{{ucfirst($row->country_name) ?? ''}}</option>
-                                        @empty
-                                        <option value="" >Country not found!</option>
-                                        @endforelse
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="bottom_price">
-                                <button type="submit" class="nextButton continue7">
-                                    <span class="progress-animation"></span>
-                                        <span class="btntext">Continue</span>
-                                        <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
-                                        <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
-                                    </button>
-                                 <button type="submit" class="oulineButtonskip"><u>Skip to the next step</u></button>
-                                 
-                            </div>
-                        </div> -->
-
-
-                        <!-- Step7-->
                     </form>
-
-
-
-
                 </div>
             </div>
         </div>
