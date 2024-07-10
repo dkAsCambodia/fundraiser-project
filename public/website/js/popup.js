@@ -105,6 +105,30 @@ $(".redButton").click(function(){
 	$(".planShortName").text('/month');
 });
 
+// $(".donation__close__popup").click(function(){
+// 	$(".postal_address").hide();
+// 	$(".postal_address").show();
+// });
+
+
+// $(".donation__close__popup").click(function() {
+// 	$(".popup_Box").hide();
+// 	$(".donationBox").hide();
+// 	$("#firstModal").show();
+// });
+
+// When the user clicks on <span> (x) in the first modal, close it and open the second modal
+// $("#firstModal .close").click(function() {
+// 	$("#firstModal").hide();
+// });
+
+// function closeAllModals() {
+// 	$("#firstModal").hide();
+// }
+
+
+
+
 });
 
 

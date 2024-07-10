@@ -19,7 +19,7 @@
         <a href="javascript:void();" wire:click="closeModal" class="close__popup"><i class="bi bi-x"></i></a>
         <div class="donationBox">
             <div class="holder">
-                <div class="donation_left">
+                <!-- <div class="donation_left">
                     <div class="main_img">
                         <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
                             alt="image" />
@@ -32,8 +32,8 @@
                         <p><strong>Give confidently. 100% of your donation goes directly to aid and relief
                                 programs.</strong></p>
                     </div>
-                </div>
-                <div class="donation_right">
+                </div> -->
+                <div class="donation_right" style="min-height:800px !important;">
                     <div class="step1">
                         <div class="header_inner">Your Donation Summary!</div>
                             <div class="step8content">
