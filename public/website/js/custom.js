@@ -10,9 +10,9 @@
             $(this).find('input[type=radio]').prop('checked', true);
             var radioValue = $(this).find('input[name="triptype"]').val();
             //New changes
-            var rate=$('#currSelCurRate').val();
+            //var rate=$('#currSelCurRate').val();
             //alert(rate);
-            radioValue = Math.floor(radioValue * rate);
+           // radioValue = Math.floor(radioValue * rate);
             //New changes end
             $('.Final_amount').val(radioValue);
             $(".Final_amount").text(radioValue);
