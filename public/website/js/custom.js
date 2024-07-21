@@ -1,13 +1,19 @@
+
 // For radio amount selection START
     $(document).ready(function() {
         $('.paymentsmethod').click(function(event) {
+            //alert("clicked");
             event.stopPropagation(); // Stop event propagation
             $('.paymentsmethod').removeClass('active');
-            alert($('input[type=radio]').val());
+            //alert($('input[type=radio]').val());
             $(this).addClass('active');
             $(this).find('input[type=radio]').prop('checked', true);
             var radioValue = $(this).find('input[name="triptype"]').val();
-            // alert("Selected value: " + radioValue);
+            //New changes
+            //var rate=$('#currSelCurRate').val();
+            //alert(rate);
+           // radioValue = Math.floor(radioValue * rate);
+            //New changes end
             $('.Final_amount').val(radioValue);
             $(".Final_amount").text(radioValue);
             $('.StripeFinal_amount').val(radioValue+'00');
@@ -29,7 +35,8 @@
             "src": "https://checkout.stripe.com/checkout.js?xx="+Math.random()
         });
     });
-// For radio amount selection START
+// For radio amount selection END
+
 // For Currency change Fun START
 function currencyselectorFun(currencyValue) {
     var selected = $(".currency-selector option:selected");
@@ -42,8 +49,83 @@ function currencyselectorFun(currencyValue) {
             "data-currency": currencyValue,
             "src": "https://checkout.stripe.com/checkout.js?xx="+Math.random()
         });
+    // new changes START
+    if(currencyValue!=''){
+        //alert("if");
+        currConversionNow(0,100,currencyValue);
+    }
+    else
+    {
+        //alert("else");
+        rate=currConversionNow(0,1,'USD'); 
+    }
+    //new changes END
+
+    // Locate the active paymentsmethod container
+   // var activeContainer = $('.paymentsmethod.active');
+    // Find the checked radio button within the active container
+   // var selectedRadio = activeContainer.find('input[name="triptype"]:checked');
+    // Get the value of the checked radio button
+    //var selectedValue = selectedRadio.val();
+    
+    //New changes
+    var selectedValue = $(".paymentsmethod.active .currency-val-Go").text();
+    if(selectedValue=='' || selectedValue==0){
+        var selectedValue = $(".currency-val-Go-hidden0").text();
+    }
+    //alert("selected value"+selectedValue);
+    var rate=$('#currSelCurRate').val();
+    radioValue = Math.floor(selectedValue * rate);
+    $('.Final_amount').val(radioValue);
+    $(".Final_amount").text(radioValue);
+    $('.StripeFinal_amount').val(radioValue+'00');
+    $(".stripe-button").attr({"data-amount": radioValue+'00', });
+    //New changes end
+    }
+    // For Currency change Fun END
+
+function currConversionNow(index,spanValue,currencyValue)
+{
+    var csrfToken = $('meta[name="csrf-token"]').attr('content'); 
+    $.ajax({
+        type: "POST",
+        url:"/stripe/checkout2",
+        data: {
+            currencyValue: currencyValue,
+            amount: spanValue
+        },
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+        success: function(response) 
+        {
+            // Assuming response is already a JSON object
+            console.log(response);
+            // Access the specific value using the key
+            var rate = response[currencyValue];
+            $('#currSelCurRate').val(rate);
+            // Iterate over each span element with class "currency-val-Go"
+                
+            $('.currency-val-Go').each(function(index, element) {
+                // Get the current value displayed in currency-val-Go
+                var currentAmount = parseFloat($(element).text());
+                var originalAmount = parseFloat($('.currency-val-Go-hidden.currency-val-Go-hidden'+index).text().trim());
+                var preAmt=$('.currency-val-Go-hidden'+index).text();
+                if (!isNaN(originalAmount) && !isNaN(currentAmount)) {
+                // var updatedAmount = Math.floor(currentAmount * rate);
+                var updatedAmount = Math.floor(originalAmount * rate);
+            
+                    // Update the text content of the current element with the updated amount
+                    $(element).text(updatedAmount);
+                } else {
+                    console.error("Invalid original or current amount:", originalAmount, currentAmount);
+                }
+            });
+        }
+    });
+    
 }
-// For Currency change Fun END
+
 
  // On keyUp validate Expiry Moth and Year START
  $(document).ready(function(){

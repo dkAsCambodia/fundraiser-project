@@ -18,8 +18,16 @@ $(".clickinput").click(function(){
 $(".clickcheck").click(function() {
     if($(this).is(":checked")) {
         $(".inputbox").show();
+		$(".clickanony").prop("checked", false);
     } else {
         $(".inputbox").hide();
+    }
+});
+
+$(".clickanony").click(function() {
+    if($(this).is(":checked")) {
+		$(".clickcheck").prop("checked", false);
+		$(".inputbox").hide();
     }
 });
 

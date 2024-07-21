@@ -12,11 +12,44 @@ use App\Models\UserInformation;
 use Stripe;
 use Session;
 use URL;
+use Http;
 
 class StripePaymentController extends Controller
 {
     public $totalAmount = 0;
     public $totalCampaign = 0;
+
+    public function stripeCheckoutProcess2(Request $request)
+    {
+          $response = Http::get('https://api.exchangerate-api.com/v4/latest/'.'USD');
+            $rates = $response->json()['rates'];
+            return $rates;
+    }
+
+    public function stripeCheckoutProcess22(Request $request)
+    {
+
+        //return 'test';
+        if(!empty($request->currencyValue)){
+            $response = Http::get('https://api.exchangerate-api.com/v4/latest/'.'USD');
+            $rates = $response->json()['rates'];
+            $amount= $request->amount;
+        $result = floor($amount * $rates[$request->currencyValue]);
+        }
+        else{
+        $result = floor($amount * $rates['USD']);
+        }
+        return $result;
+       /* $currency = Session::get('sessLocation') ? Session::get('sessLocation') : 'USD';
+        $response = Http::get('https://api.exchangerate-api.com/v4/latest/'.'USD');
+        $rates = $response->json()['rates'];
+        if(Session::get('sessLocation'))
+        $result = floor($amount * $rates[$currency->curency_code]);
+        else
+        $result = floor($amount * $rates['USD']);*/
+       
+
+    }
 
      public function stripeCheckoutProcess(Request $request)
     {
