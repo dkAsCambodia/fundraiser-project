@@ -171,6 +171,7 @@
                                                             for="pay{{ $key }}">{{Session::get('sessLocation')?->currency_symbol ?? '$'}} {{ currency($suggestedAmounts) }}</label>
                                                     </div>
                                                 @endforeach
+                                               
                                             </div>
 
                                         </div>

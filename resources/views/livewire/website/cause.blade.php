@@ -148,7 +148,7 @@
                                             $goal_amount = currency($item->goal);
                                             $raised_amount = currency($raisedValue);
                                         @endphp
-                                        {{--  @if($raisedValue != $item->goal) --}}
+                                          @if($raisedValue <= $item->goal)
                                         <div class="col-lg-4 col-sm-6 mb-35">
                                             <div class="featureBlock">
                                                 <div class="featureBlock__wrap">
@@ -206,7 +206,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- @endif --}}
+                                         @endif
                                     @empty
                                         <img src="{{ URL::to('website/image/data-not-found.jpg') }}" />
                                     @endforelse

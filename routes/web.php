@@ -91,6 +91,7 @@ Route::get('payin_response_url', [CauseDetail::class, 'payinResponseUrl']);
 
 
 Route::post('/stripe/checkout', [StripePaymentController::class, 'stripeCheckoutProcess'])->name('stripe.checkout');
+Route::post('/stripe/checkout2', [StripePaymentController::class, 'stripeCheckoutProcess2'])->name('stripe.checkout2');
 Route::post('/stripe/checkEmail', [StripePaymentController::class, 'checkEmail'])->name('stripe.checkEmail');
 Route::post('/stripe/oneclickPayment', [StripePaymentController::class, 'oneclickPayment'])->name('stripe.oneclickPayment');
 Route::post('/declineOffer', [StripePaymentController::class, 'declineOffer'])->name('declineOffer');
@@ -108,7 +109,7 @@ Route::get('/upsellPaypal/upsellSuccess', [PaypalPaymentController::class, 'upse
 
 Route::get('/location', function (Request $request) {
     $ip= request()->ip()=='127.0.0.1' ? '103.246.195.106' : request()->ip();
-    // India IP Address : 103.246.195.106  for testing 103.146.44.34
+    // India IP Address : 103.246.195.106  for testing 103.146.44.34, US 130.58.218.30
     $position = Location::get($ip);
     echo "<pre>";
     echo "ip=".$ip;

@@ -65,6 +65,7 @@
    // });
 //});
 </script>
+
 <style>
     .modallPopup {
             display: none;
@@ -147,18 +148,41 @@
                         <div class="tab1Content"
                             style="display:{{ $causeDetails->default_frequency == 'once' ? 'block' : 'none' }};">
                             <div class="radioholder inputSet_custom">
-
-                                @foreach ($suggestedAmountKey as $keyVal)
+                             
+                                @foreach ($suggestedAmountKey as $key=> $keyVal)
+                               
                                     <div class="paymentsmethod">
                                         <label class="payments_label">
                                             <input type="radio" name="triptype"
                                                 value="{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
-                                            <span class="check1"><span
-                                                    class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>
-                                        </label>
+                                            <span class="check1">
+                                            <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>
+                                                <span class="currency-val-Go currency-val-Go{{$key}}">{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                                  </span>
+                                                   <!-- <span class="check1"><span
+                                                    class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>-->
+                                                </label>
                                     </div>
                                 @endforeach
-
+                                <input type="hidden" id="currSelCurRate" value="1"/>
+                                </div>
+                                <!-- hidden original amount given once - start-->
+                                <div class="radioholder inputSet_custom d-none">
+                                @foreach ($suggestedAmountKey as $key=> $keyVal)
+                               
+                               <div class="paymentsmethod">
+                                   <label class="payments_label">
+                                       <input type="radio" name="triptype"
+                                           value="{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                       <span class="check1">
+                                       <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>
+                                           <span class="currency-val-Go-hidden currency-val-Go-hidden{{$key}}">{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                             </span>
+                                             </label>
+                               </div>
+                               @endforeach
+                                <!-- hidden original price given once -end -->
+                    
                             </div>
                         </div>
                         <!-- Tabl Content here-->
@@ -852,7 +876,7 @@
                                 <div class="inputSet">
                                     <div class="mt-3">
                                         <label>
-                                            <input type="checkbox" value="Donate anonymously" name="donate_anonymously"
+                                            <input class="clickanony" type="checkbox" value="Donate anonymously" name="donate_anonymously"
                                                 @auth {{ !empty(userInfor()->donate_anonymously) ? 'checked' : '' }} @endauth>
                                             <span class="check1">Donate anonymously</span> </label>&nbsp;
                                         <div class="tooltip-custom">
@@ -891,6 +915,8 @@
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
                                 </button> -->
                                 <!--<button type="submit" class="card-btn nextButton1">-->
+                                <span id="error1" style="display:none;color:red;">Is this the right email address? We couldn't verify that this email address is able to receive mail.</span><br />
+                                <span id="error2" style="display:none;">Try again or enter a different email address to continue.</span>
                                    <button type="button" class="personal-btn nextButton1">
                                         <span class="progress-animation"></span>
                                         <span class="btntext"><span class="flex-shrink-0 me-2"
@@ -1266,6 +1292,16 @@
         }
     })
     // Generate StripeToken and call ajax to hit stripe payment gateway END
+        $('.emailInput').on('keypress', function() {
+        var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{2,4}/.test(this.value);
+        if(!re) {
+            $('#error1').show();
+            $('#error2').show();
+        } else {
+            $('#error1').hide();
+            $('#error2').hide();
+        }
+      })
     // onclick personal information btn validate donation field START
     $(document).ready(function(){
         $('.personal-btn').click( function(){
