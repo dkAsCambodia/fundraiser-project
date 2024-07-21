@@ -7,7 +7,7 @@
 <script>
     $(document).ready(function() {
         $('[data-toggle="popover"]').popover();
-        $('.clicktab1').trigger('click');//$('.qololbl').trigger('click'); 
+        $('.clicktab1').trigger('click');//$('.qololbl').trigger('click');
     });
     jQuery(function($) {
         $('[data-numeric]').payment('restrictNumeric');
@@ -54,13 +54,13 @@
        // $(".step4").removeClass("slidepopup");
        // $(".step6").removeClass("slidepopup");
        // $(".step7").removeClass("slidepopup");
-      
+
         // Your code to handle the click event
        // console.log('Close button clicked');
-        
+
         // Example: Hide the popup
         //$(this).closest('.popup').hide();
-        
+
         // You can add any additional logic you need here
    // });
 //});
@@ -102,35 +102,95 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        /* Default styles */
+        .mobile-only {
+            display: none;
+        }
+
+        .desktop-only {
+            display: block;
+        }
+
+        /* Media query for mobile devices */
+        @media (max-width: 768px) {
+            .mobile-only {
+                display: block;
+            }
+
+            .desktop-only {
+                display: none;
+            }
+            .popup_Box .outer {
+                display: table-cell;
+                vertical-align: middle;
+                width: 100%;
+                height: 100%;
+                padding: 0 0;
+            }
+            .donationBox .holder {
+                border-radius: 0;
+            }
+        }
+
 </style>
 <!-- popupBox Row -->
 <div class="center-block">
     <div class="outer">
        <!-- <a href="javascript:void();" class="donation__close__popup">X Close</a>-->
-        <a href="javascript:void();" wire:click="closeModal" class="close__popup donation__close__popup"><i class="bi bi-x"></i></a>
+       {{-- close__popup donation__close__popup --}}
+       <div class="row" style="width: 95%;background: #fff;margin: 0 auto;">
+            <div class="col-4"></div>
+           <div class="col-4 mobile-only">
+               <div class="">
+                    <img class="adminLogo"
+                    src="{{ !empty($causeDetails->logo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->logo : 'https://ucarecdn.com/bf291e65-c36b-4f7e-a66e-37b1018b3ace/-/resize/x50/-/format/auto/' }}"
+                    alt="admin-logo">
+               </div>
+           </div>
+           <div class="col-4">
+               <a href="javascript:void();" wire:click="closeModal" class="close__popup donation__close__popup">
+                   <i class="bi bi-x"></i>
+               </a>
+           </div>
+       </div>
         <div class="donationBox">
             <div class="holder">
                 <div class="donation_left">
-                    <div class="main_img">
-                        <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
-                            alt="image" />
+                    <div class="desktop-only">
+                        <div class="main_img">
+                            <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
+                                alt="image" />
+                        </div>
+                        <div class="detail"> <img class="adminLogo"
+                                src="{{ !empty($causeDetails->logo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->logo : 'https://ucarecdn.com/bf291e65-c36b-4f7e-a66e-37b1018b3ace/-/resize/x50/-/format/auto/' }}"
+                                alt="admin-logo">
+                            <h2>{{ $causeDetails->title }}</h2>
+                            <p><strong>{{ $causeDetails->short_details }}</strong></p>
+                            <p><strong>Give confidently. 100% of your donation goes directly to aid and relief
+                                    programs.</strong></p>
+                        </div>
                     </div>
-                    <div class="detail"> <img class="adminLogo"
-                            src="{{ !empty($causeDetails->logo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->logo : 'https://ucarecdn.com/bf291e65-c36b-4f7e-a66e-37b1018b3ace/-/resize/x50/-/format/auto/' }}"
-                            alt="admin-logo">
-                        <h2>{{ $causeDetails->title }}</h2>
-                        <p><strong>{{ $causeDetails->short_details }}</strong></p>
-                        <p><strong>Give confidently. 100% of your donation goes directly to aid and relief
-                                programs.</strong></p>
+                    <div class="mobile-only">
+                        <div class="main_img">
+                            <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
+                                alt="image" />
+                        </div>
+                        <div class="detail">
+                            <h2>{{ $causeDetails->title }}</h2>
+                        </div>
                     </div>
                 </div>
                 <div class="donation_right">
                     <div class="step1">
                         <div class="header">
-                            <h2><i class="bi bi-shield-lock"></i>Secure donation</h2>
+                            <h2>
+                                <i class="bi bi-shield-lock"></i>
+                                Secure donation
+                            </h2>
                         </div>
 
-                        <!-- slide TAb--> 
+                        <!-- slide TAb-->
                         <div class="slidetabs">
                             <input type="radio" id="radio-1" name="tabs"
                                 {{ $causeDetails->default_frequency == 'once' ? 'checked' : '' }} />
@@ -148,9 +208,9 @@
                         <div class="tab1Content"
                             style="display:{{ $causeDetails->default_frequency == 'once' ? 'block' : 'none' }};">
                             <div class="radioholder inputSet_custom">
-                             
+
                                 @foreach ($suggestedAmountKey as $key=> $keyVal)
-                               
+
                                     <div class="paymentsmethod">
                                         <label class="payments_label">
                                             <input type="radio" name="triptype"
@@ -169,7 +229,7 @@
                                 <!-- hidden original amount given once - start-->
                                 <div class="radioholder inputSet_custom d-none">
                                 @foreach ($suggestedAmountKey as $key=> $keyVal)
-                               
+
                                <div class="paymentsmethod">
                                    <label class="payments_label">
                                        <input type="radio" name="triptype"
@@ -182,7 +242,7 @@
                                </div>
                                @endforeach
                                 <!-- hidden original price given once -end -->
-                    
+
                             </div>
                         </div>
                         <!-- Tabl Content here-->
@@ -246,7 +306,7 @@
                                     <option>{{ $causeDetails->designations }}</option>
                                 </select>
                             </div>
-                           
+
                             <button type="button" class="nextButton continue1">Donate</button>
                         </div>
                     </div>
@@ -984,7 +1044,7 @@
                         <!-- Step6-->
 
                         <!-- Step close-->
-                       <!--  <div class="step66 stepcloseEs"> 
+                       <!--  <div class="step66 stepcloseEs">
                             <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i class="bi bi-chevron-left"></i></a>teeeee </div>
                             <div class="step66content">
                                 <div class="impactBlock"> <img src="http://127.0.0.1:8000/website/image/popupImages/icon1.svg" alt="icon">
@@ -1016,7 +1076,7 @@
                                 <button type="button" class="continue6 oulineButtonskip">Skip to the next
                                     step</button>
                                     <button type="button" class="stepCloseBtns">close check</button>
-                                
+
                             </div>
                         </div>
                         <div class="stepcloseEs2">
@@ -1032,7 +1092,7 @@
                                      <input type="text" placeholder="Email Address"
                                             class="textbox clickinput" name="closeemail_name"
                                             value=""/>
-                                    
+
                                 </p>
 
                                 <div class="form-group">
@@ -1057,7 +1117,7 @@
                                 <button type="button" class="nextButton continue6">Continue</button>
                                 <button type="button" class="continue6 oulineButtonskip">Skip to the next
                                     step</button>
-                                
+
                             </div>
                         </div> -->
                         <!-- Step close-->
@@ -1228,7 +1288,7 @@
                     $('.error-span').css("display", "none");
                     $(".progress-animation").css("width","0%");
                 }, 4000)
-                
+
 
             }
         }
@@ -1246,7 +1306,7 @@
             var expirationValue = $('.card-expiry-month-year').val();
             var card_month = expirationValue.substr(0, 2); // Extract the first two digits as month
             var card_year = expirationValue.substr(3, 2);
-            
+
             Stripe.setPublishableKey($form.data('stripe-publishable-key'));
             Stripe.createToken({
                 number: $('.card_number').val(),
@@ -1285,7 +1345,7 @@
                             $(".continue7").prop("disabled", false);
                             $(".oulineButtonskip").prop("disabled", false);
                         }, 3000)
-                        
+
                     }
                 });
             }
@@ -1311,7 +1371,7 @@
             var fname = $('.FnameInput').val();
             var lname = $('.lnameInput').val();
             var email = $('.emailInput').val();
-            
+
            // setTimeout(function () {
 
                 if (fname=='' || lname=='' || email=='') {
@@ -1329,12 +1389,12 @@
                         $(".progress-animation").css("width","0%");
                     }, 2000)
                 }
-                    
+
            // }, 2000)
 
 
 
-            
+
         });
     });
     // onclick personal information btn validate donation field END

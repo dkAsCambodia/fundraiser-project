@@ -23,7 +23,7 @@ body{ font-family: "IBM Plex Sans", sans-serif;}
 
 .donationBox .donation_left{ width:calc(100% - 380px); margin-right:20px; overflow: hidden; height:100%; border-radius: 15px; background:#fff; }
 /*.donationBox .donation_left .main_img { height: 280px; background: url(images/img.jpg) center center no-repeat; background-size: cover;}*/
- .donationBox .donation_left .main_img img  {width: 100%;} 
+ .donationBox .donation_left .main_img img  {width: 100%; height: 350px;}
 .donationBox .donation_left .detail { padding: 30px; height: calc(100% - 280px);}
 .donationBox .donation_left .detail .adminLogo { max-height: 50px;}
 .donationBox .donation_left .detail h2 { margin: 10px 0 20px 0; font-size: 20px; font-weight: 600; color: #222832;}
@@ -34,8 +34,8 @@ body{ font-family: "IBM Plex Sans", sans-serif;}
     overflow: hidden; width:360px; box-sizing: border-box; border-radius: 15px; display: flex; flex-grow: 1; flex-direction: column; background:#fff;  }
 .donationBox .donation_right .header {padding: 0 0px 20px 0px; display: flex; align-items: center; justify-content: center; position: static;}
 .donationBox .donation_right .header h2{ margin: 0px; font-size: 20px; color: #222832; font-weight: 600; }
-.donationBox .donation_right .header i{ margin-right: 5px; color: #081410;}
-	
+.donationBox .donation_right .header i{ margin-right: 5px; font-weight: bold; color: #00c07b; font-size: 25px; }
+
 /*Slide Tabing*/
 .slidetabs { position: relative; display: inline-flex; border: 1px solid #c7cdd6;  border-radius: 8px;  padding: 0px;
 margin-bottom: 10px; z-index:2 }
@@ -129,8 +129,8 @@ border-radius: 8px;  transition: 0.25s ease-out; margin:-1px 0; }
 
 
 .designselect2 {text-decoration: underline; border:none; }
-	
-	
+
+
 
 .header_inner{ font-size:16px; color: #222832;  font-weight: 600; border-bottom: 1px solid #ccc;
 padding-bottom: 15px; margin: -10px -25px 20px -25px; text-align: center; }
@@ -190,10 +190,10 @@ font-size: 18px;  color: #000; border-radius:5px; line-height:28px; }
 .faqlinks li a { font-size:12px; color: #fff; text-decoration:none;  opacity: .8; }
 
 /* step7 */
-.postal_row { display: flex; justify-content: space-between; align-items: center;} 
+.postal_row { display: flex; justify-content: space-between; align-items: center;}
 .postal_col { width: 48%;}
 
-.step1, .step2, .step3, .step4, .step5, .step6, .step7, .slidediv, .step8, .step9 {padding: 25px;  display: flex;  flex-direction: column;  
+.step1, .step2, .step3, .step4, .step5, .step6, .step7, .slidediv, .step8, .step9 {padding: 25px;  display: flex;  flex-direction: column;
 height: 100%;  position: absolute; right: 0px; width: 0; background:#fff; transition: all 0.2s; }
 .step1 {z-index: 5; width:100%; }
 .slidepopup {z-index: 6; width:100%; transition: all 0.2s; }
@@ -222,7 +222,7 @@ input.cc-number.mastercard { background: url(../image/popupImages/master.png) 99
 
 .step9content { text-align:center; }
 .step9content ul{     z-index: 2;  position: relative;   list-style: none;    margin: 0 -5px 10px -5px;    padding: 0px;    display: flex;    flex-wrap: wrap;}
-.step9content li { text-align:left; padding-bottom:10px;  
+.step9content li { text-align:left; padding-bottom:10px;
     width: 50%;}
 .step9content li a { border:1px solid #ccc; padding:5px 7px; text-decoration:none; color:#000; display: block;     font-size: 13px;
     margin-right: 6px; }
@@ -268,7 +268,7 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
             width: 105%;
             margin-left: -15px;
          }
-        
+
 /*Media*/
 @media(max-width: 1024px){
 	.donationBox{ width: 900px; }
@@ -276,7 +276,7 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
 
 @media(max-width: 980px){
 	.donationBox{ width: 95%; }
-	
+
 }
 @media(max-width: 767px){
 	.donationBox{ width: 95%; }
@@ -289,7 +289,7 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
 }
 /* New Changes for Donation detail page blur*/
 .donation_left{
-    opacity: 0.8 !important;
+    /* opacity: 0.8 !important; */
     background-color: #222832 !important
 }
 .donation_left:hover{
@@ -297,7 +297,7 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
     background-color: #fff !important;
 }
 .donation_left .detail{
-    background-color: #bababa !important;
+    background-color: #fff !important;
 }
 .donation_left:hover .detail{
     opacity: 100 !important;
