@@ -297,7 +297,7 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
     background-color: #fff !important;
 }
 .donation_left .detail{
-    background-color: #fff !important;
+    background-color: #bababa !important;
 }
 .donation_left:hover .detail{
     opacity: 100 !important;
