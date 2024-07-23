@@ -18,8 +18,16 @@ $(".clickinput").click(function(){
 $(".clickcheck").click(function() {
     if($(this).is(":checked")) {
         $(".inputbox").show();
+		$(".clickanony").prop("checked", false);
     } else {
         $(".inputbox").hide();
+    }
+});
+
+$(".clickanony").click(function() {
+    if($(this).is(":checked")) {
+		$(".clickcheck").prop("checked", false);
+		$(".inputbox").hide();
     }
 });
 
@@ -43,22 +51,31 @@ $(".clickcheckdedicate").click(function() {
 
 //
 $(".continue1").click(function(){
+	if($(".continue1").text() == "Donate monthly")
+		$(".step5").addClass("slidepopup");
+	else
 	$(".step2").addClass("slidepopup");
 });
 
 $(".continue2").click(function(){
-	$(".step3").addClass("slidepopup");
+	$(".step5").addClass("slidepopup");
 });
+
+//$(".continue2").click(function(){
+	//$(".step3").addClass("slidepopup");
+//});
 
 $(".continue3").click(function(){
 	$(".step4").addClass("slidepopup");
 });
 
 $(".continue4").click(function(){
-	$(".step5").addClass("slidepopup");
-});
-$(".continue5").click(function(){
 	$(".step6").addClass("slidepopup");
+});
+
+$(".continue5").click(function(){
+	$(".step5").removeClass("slidepopup");
+	$(".step3").addClass("slidepopup");
 });
 
 $(".continue6").click(function(){
@@ -87,6 +104,38 @@ $(".other_payment").click(function(){
 $(".backslide").click(function(){
 	$(this).parent().parent().removeClass("slidepopup");
 });
+
+$(".whiteButton").click(function(){
+	$(".planShortName").text('');
+});
+
+$(".redButton").click(function(){
+	$(".planShortName").text('/month');
+});
+
+// $(".donation__close__popup").click(function(){
+// 	$(".postal_address").hide();
+// 	$(".postal_address").show();
+// });
+
+
+// $(".donation__close__popup").click(function() {
+// 	$(".popup_Box").hide();
+// 	$(".donationBox").hide();
+// 	$("#firstModal").show();
+// });
+
+// When the user clicks on <span> (x) in the first modal, close it and open the second modal
+// $("#firstModal .close").click(function() {
+// 	$("#firstModal").hide();
+// });
+
+// function closeAllModals() {
+// 	$("#firstModal").hide();
+// }
+
+
+
 
 });
 

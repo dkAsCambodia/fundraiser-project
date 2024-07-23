@@ -65,7 +65,7 @@
                             <i class="fa-solid fa-heart btn__icon"></i>
                             Donation listing
                         </span>
-                        <h2 class="sectionTitle__big">Introduse Our Campains</h2>
+                        <h2 class="sectionTitle__big">Introduce  Our Campains</h2>
                     </div>
                     <!-- Section Heading/Title End -->
                 </div>
@@ -144,7 +144,11 @@
                                         @php
                                             $raisedValue = raisedValue($item->id);
                                             $getFillPercentage = getFillPercentage($item->goal, $raisedValue);
+                                            $currency = Session::get('sessLocation');
+                                            $goal_amount = currency($item->goal);
+                                            $raised_amount = currency($raisedValue);
                                         @endphp
+                                          @if($raisedValue <= $item->goal)
                                         <div class="col-lg-4 col-sm-6 mb-35">
                                             <div class="featureBlock">
                                                 <div class="featureBlock__wrap">
@@ -186,22 +190,23 @@
                                                         <div class="featureBlock__eqn__block">
                                                             <span class="featureBlock__eqn__title">our goal</span>
                                                             <span
-                                                                class="featureBlock__eqn__price">${{ $item->goal }}</span>
+                                                                class="featureBlock__eqn__price">{{Session::get('sessLocation')?->currency_symbol ?? '$'}} {{ $goal_amount }}</span>
                                                         </div>
                                                         <div class="featureBlock__eqn__block">
                                                             <span class="featureBlock__eqn__title">Raised</span>
                                                             <span
-                                                                class="featureBlock__eqn__price">${{ $raisedValue }}</span>
+                                                                class="featureBlock__eqn__price">{{Session::get('sessLocation')?->currency_symbol ?? '$'}} {{ floor($raised_amount) }}</span>
                                                         </div>
                                                         <div class="featureBlock__eqn__block">
                                                             <span class="featureBlock__eqn__title">to go</span>
                                                             <span
-                                                                class="featureBlock__eqn__price">${{ $item->goal - $raisedValue }}</span>
+                                                                class="featureBlock__eqn__price">{{Session::get('sessLocation')?->currency_symbol ?? '$'}} {{ floor($goal_amount) - floor($raised_amount) }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                         @endif
                                     @empty
                                         <img src="{{ URL::to('website/image/data-not-found.jpg') }}" />
                                     @endforelse

@@ -7,6 +7,7 @@
 <script>
     $(document).ready(function() {
         $('[data-toggle="popover"]').popover();
+        $('.clicktab1').trigger('click');//$('.qololbl').trigger('click'); 
     });
     jQuery(function($) {
         $('[data-numeric]').payment('restrictNumeric');
@@ -18,12 +19,18 @@
         // alert(tabval);
         if (tabval == '1') {
             $(".planName").text('once');
-            $(".planShortName").text('one time');
+            //$(".planShortName").text('month');
+            //$(".planShortNameonce").text('one-time');
+            $(".planShortNamemonth").text('month');
             $(".frequency").val('once');
+            $(".continue1").text('Donate');
         } else {
-            $(".planShortName").text('month');
+            //$(".planShortNamemonth").text('one-time');
+            $(".planShortNameonce").text('one-time');
             $(".planName").text('monthly');
             $(".frequency").val('monthly');
+            $(".continue1").text('Donate monthly');
+            $(".planShortName").text('/month');
         }
         const div = document.getElementById('tutpoint')
         const cloneDiv = div.cloneNode(true);
@@ -31,11 +38,76 @@
         //   document.body.appendChild(cloneDiv);
         document.getElementById('tutpoint').parentElement.appendChild(cloneDiv).fadeOut(300);
     }
+
+    //$(document).ready(function() {
+    //$('.stepCloseBtns').on('click', function() {
+       // alert("check");
+        //$(".step6").removeClass("slidepopup");
+       // $(".stepcloseEs").addClass("slidepopup");
+       // $('.stepclose').show();
+       // alert("test");
+       // $('.step6').hide();
+        //$('.stepclose').show();
+        //$(".step1").removeClass("slidepopup");
+        //$(".step2").removeClass("slidepopup");
+       // $(".step3").removeClass("slidepopup");
+       // $(".step4").removeClass("slidepopup");
+       // $(".step6").removeClass("slidepopup");
+       // $(".step7").removeClass("slidepopup");
+      
+        // Your code to handle the click event
+       // console.log('Close button clicked');
+        
+        // Example: Hide the popup
+        //$(this).closest('.popup').hide();
+        
+        // You can add any additional logic you need here
+   // });
+//});
 </script>
+
+<style>
+    .modallPopup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-contentlPopup {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .closelPopup {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .closelPopup:hover,
+        .closelPopup:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style>
 <!-- popupBox Row -->
 <div class="center-block">
     <div class="outer">
-        <a href="javascript:void();" wire:click="closeModal" class="close__popup"><i class="bi bi-x"></i></a>
+       <!-- <a href="javascript:void();" class="donation__close__popup">X Close</a>-->
+        <a href="javascript:void();" wire:click="closeModal" class="close__popup donation__close__popup"><i class="bi bi-x"></i></a>
         <div class="donationBox">
             <div class="holder">
                 <div class="donation_left">
@@ -58,7 +130,7 @@
                             <h2><i class="bi bi-shield-lock"></i>Secure donation</h2>
                         </div>
 
-                        <!-- slide TAb-->
+                        <!-- slide TAb--> 
                         <div class="slidetabs">
                             <input type="radio" id="radio-1" name="tabs"
                                 {{ $causeDetails->default_frequency == 'once' ? 'checked' : '' }} />
@@ -76,18 +148,41 @@
                         <div class="tab1Content"
                             style="display:{{ $causeDetails->default_frequency == 'once' ? 'block' : 'none' }};">
                             <div class="radioholder inputSet_custom">
-
-                                @foreach ($suggestedAmountKey as $keyVal)
+                             
+                                @foreach ($suggestedAmountKey as $key=> $keyVal)
+                               
                                     <div class="paymentsmethod">
                                         <label class="payments_label">
                                             <input type="radio" name="triptype"
-                                                value="{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
-                                            <span class="check1"><span
-                                                    class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>
-                                        </label>
+                                                value="{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                            <span class="check1">
+                                            <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>
+                                                <span class="currency-val-Go currency-val-Go{{$key}}">{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                                  </span>
+                                                   <!-- <span class="check1"><span
+                                                    class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>-->
+                                                </label>
                                     </div>
                                 @endforeach
-
+                                <input type="hidden" id="currSelCurRate" value="1"/>
+                                </div>
+                                <!-- hidden original amount given once - start-->
+                                <div class="radioholder inputSet_custom d-none">
+                                @foreach ($suggestedAmountKey as $key=> $keyVal)
+                               
+                               <div class="paymentsmethod">
+                                   <label class="payments_label">
+                                       <input type="radio" name="triptype"
+                                           value="{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                       <span class="check1">
+                                       <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>
+                                           <span class="currency-val-Go-hidden currency-val-Go-hidden{{$key}}">{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                             </span>
+                                             </label>
+                               </div>
+                               @endforeach
+                                <!-- hidden original price given once -end -->
+                    
                             </div>
                         </div>
                         <!-- Tabl Content here-->
@@ -100,9 +195,9 @@
                                     <div class="paymentsmethod">
                                         <label class="payments_label">
                                             <input type="radio" name="triptype"
-                                                value="{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                                value="{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="check1"><span
-                                                    class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>
+                                                    class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>
                                         </label>
                                     </div>
                                 @endforeach
@@ -111,8 +206,11 @@
                         <!-- Tabl Content here-->
                         <div class="group-price-control">
                             <input type="text" class="textbox Final_amount"
-                                value="{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
+                                value="{{ currency($causeDetails->default_amount) }} {{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
                             <select class="selectbox currency-selector" onchange="currencyselectorFun(this.value)">
+                                <option value="USD" data-symbol="&#36;" {{ Session::get('sessLocation')?->curency_code == 'USD' ? 'selected' : '' }}>USD · United States Dollars</option>
+                                <option value="{{ Session::get('sessLocation')->curency_code}}" data-symbol="{{ Session::get('sessLocation')->currency_symbol}}" {{ Session::get('sessLocation')?->curency_code == 'USD' ? 'selected' : '' }}>{{ Session::get('sessLocation')->curency_code}} . {{ Session::get('sessLocation')->currency_name}}</option>
+                                <option value="" data-symbol="&#36;" ></option>
                                 @forelse ($currencies as $row)
                                 <option value="{{$row->curency_code ?? ''}}" data-symbol="{{$row->currency_symbol ?? ''}}" {{ Session::get('sessLocation')?->curency_code == $row->curency_code ? 'selected' : '' }} >{{$row->curency_code ?? ''}} · {{$row->currency_name ?? ''}}</option>
                                 @empty
@@ -135,19 +233,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-5" style="text-align:right;">
+                        <!-- <div class="row mt-5" style="text-align:right;">
                             <p><b>Total Amount: </b><span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                    class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
-                            </p>
+                                    class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                            </p> -->
                             <!-- <p><b>Total Campaigns: </b>1</p> -->
-                        </div>
+                        <!-- </div> -->
                         <div class="bottom_section">
                             <div class="design">Designate to
                                 <select class="designselect2">
                                     <option>where needed most</option>
-                                    <option>Yemen</option>
+                                    <option>{{ $causeDetails->designations }}</option>
                                 </select>
                             </div>
+                           
                             <button type="button" class="nextButton continue1">Donate</button>
                         </div>
                     </div>
@@ -163,7 +262,7 @@
                                     class="planName">{{ $causeDetails->default_frequency == 'once' ? 'once' : 'monthly' }}</span>
                                 supporters by converting your
                                 <strong><span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span></strong>
+                                        class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span></strong>
                                 contribution
                                 into a <span
                                     class="planName">{{ $causeDetails->default_frequency == 'once' ? 'once' : 'monthly' }}</span>
@@ -178,8 +277,8 @@
                             <div class="gift-div">
                                 <button type="button" class="redButton nextButton continue2"
                                     tabindex="5">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
-                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once time' : 'month' }}</span></button>
+                                        class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
+                                        class="planShortNamemonth">{{ $causeDetails->default_frequency == 'once' ? 'one time' : 'month' }}</span></button>
                                 <svg class="gift-icon" aria-hidden="true" fill="none" height="73"
                                     viewBox="0 0 72 73" width="72" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" data-qa="gift-box-icon">
@@ -288,12 +387,12 @@
                                 </svg>
                             </div>
 
-                            <button type="button" class="continue2 oulineButton" tabindex="5">
+                            <button type="button" class="whiteButton continue2 oulineButton" tabindex="5">
                                 <span class="btn__text">Keep my <span
-                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once-time' : 'monthly' }}</span>
+                                        class="planShortNameonce">{{ $causeDetails->default_frequency == 'once' ? 'one-time' : 'monthly' }}</span>
                                     <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span> gift</span> <i
-                                    class="fa-solid fa-heart btn__icon"></i> </button>
+                                        class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span> gift</span> <!--<i
+                                    class="fa-solid fa-heart btn__icon"></i>--></button>
                         </div>
                     </div>
                     <!-- Step2-->
@@ -301,12 +400,12 @@
                     <!-- Step3-->
                     <div class="step3 payment_option">
                         <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
-                                    class="bi bi-chevron-left"></i></a> Payment option </div>
+                                    class="bi bi-chevron-left"></i></a> You donate </div>
                         <div class="step3content">
                             <p><span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                    class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span> <small><span
-                                        class="Final_currency">{{Session::get('sessLocation')?->curency_code ?? 'USD'}}</span>/<span
-                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once-time' : 'monthly' }}</small>
+                                    class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span> <small><span
+                                        class="Final_currency">{{Session::get('sessLocation')?->curency_code ?? 'USD'}}</span><span
+                                        class="planShortName"></small>
                             </p>
                         </div>
                         <div class="fee-checkbox fee-checkbox-checked"> <span class="fee-checkbox-bg"></span>
@@ -601,7 +700,7 @@
                             </svg>
                             <p>We can only accept USD when using paypal. Your <strong><span
                                         class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span></strong> <span
+                                        class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span></strong> <span
                                     class="Final_currency">{{Session::get('sessLocation')?->curency_code ?? 'USD'}}</span> Donation Converts to
                                 USD United State Doller</p>
                         </div>
@@ -609,7 +708,7 @@
                             <form action="{{ route('paypal.checkout') }}" method="post"> 
                                 @csrf
                                 <input type="hidden" class="Final_amount" name="amount"
-                                    value="{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
+                                    value="{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
                                 <input type="hidden" class="Final_currency" name="currency" value="{{Session::get('sessLocation')?->curency_code ?? 'USD'}}" />
                                 <input type="hidden" class="Final_currencySymbol" name="currencySymbol"
                                     value="{{Session::get('sessLocation')?->currency_symbol ?? '$'}}" />
@@ -696,7 +795,7 @@
                                 <p class="card-warning text text-danger" style="display:none">Invalid card details!
                                 </p>
                                 <input type="hidden" class="Final_amount" name="amount"
-                                    value="{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
+                                    value="{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
                                 <input type="hidden" class="Final_currency" name="currency" value="{{Session::get('sessLocation')?->curency_code ?? 'USD'}}" />
                                 <input type="hidden" class="Final_currencySymbol" name="currencySymbol"
                                     value="{{Session::get('sessLocation')?->currency_symbol ?? '$'}}" />
@@ -708,7 +807,7 @@
 
                             </div>
                             <div class="bottom_price">
-                                <button type="submit" class="card-btn nextButton1">
+                                <!--<button type="submit" class="card-btn nextButton1">
                                         <span class="progress-animation"></span>
                                         <span class="btntext"><span class="flex-shrink-0 me-2"
                                             aria-hidden="true"><svg fill="none" height="24" viewBox="0 0 18 18"
@@ -723,7 +822,16 @@
                                             </svg></span>Continue</span>
                                         <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
-                                    </button>
+                                    </button> -->
+                                    <!--<button type="button" class="personal-btn nextButton1">-->
+                                <button type="submit" class="card-btn nextButton1">
+                                    <span class="progress-animation"></span>
+                                        <span class="btntext">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
+                                        class="Final_amount">{{ floor(currency($causeDetails->default_amount)) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span><span
+                                        class="planShortName"></span></span>
+                                        <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
+                                        <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
+                                </button>
                                 <button type="button" class="card-success-btn nextButton continue4"
                                     style="display: none"><i class="fa fa-check" aria-hidden="true"></i>
                                     Next</button>
@@ -768,7 +876,7 @@
                                 <div class="inputSet">
                                     <div class="mt-3">
                                         <label>
-                                            <input type="checkbox" value="Donate anonymously" name="donate_anonymously"
+                                            <input class="clickanony" type="checkbox" value="Donate anonymously" name="donate_anonymously"
                                                 @auth {{ !empty(userInfor()->donate_anonymously) ? 'checked' : '' }} @endauth>
                                             <span class="check1">Donate anonymously</span> </label>&nbsp;
                                         <div class="tooltip-custom">
@@ -798,14 +906,33 @@
                                 </div>
                             </div>
                             <div class="bottom_price">
-                                <button type="button" class="personal-btn nextButton1">
+                               <!-- <button type="button" class="personal-btn nextButton1">
                                     <span class="progress-animation"></span>
                                         <span class="btntext">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
-                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'once time' : 'month' }}</span></span>
+                                        class="Final_amount">{{ floor(currency($causeDetails->default_amount)) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
+                                        class="planShortName">{{ $causeDetails->default_frequency == 'once' ? 'one-time' : 'month' }}</span></span>
                                         <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
-                                </button>
+                                </button> -->
+                                <!--<button type="submit" class="card-btn nextButton1">-->
+                                <span id="error1" style="display:none;color:red;">Is this the right email address? We couldn't verify that this email address is able to receive mail.</span><br />
+                                <span id="error2" style="display:none;">Try again or enter a different email address to continue.</span>
+                                   <button type="button" class="personal-btn nextButton1">
+                                        <span class="progress-animation"></span>
+                                        <span class="btntext"><span class="flex-shrink-0 me-2"
+                                            aria-hidden="true"><svg fill="none" height="24" viewBox="0 0 18 18"
+                                                width="24" xmlns="http://www.w3.org/2000/svg" class="d-block">
+                                               <!-- <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="1.5">
+                                                    <path
+                                                        d="m15.75 3h-13.5c-.82843 0-1.5.67157-1.5 1.5v9c0 .8284.67157 1.5 1.5 1.5h13.5c.8284 0 1.5-.6716 1.5-1.5v-9c0-.82843-.6716-1.5-1.5-1.5z">
+                                                    </path>
+                                                    <path d="m.75 7.5h16.5"></path>
+                                                </g> -->
+                                            </svg></span>Continue</span>
+                                        <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
+                                        <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
+                                    </button>
                                 <button type="button" class="personal-success-btn nextButton continue5"
                                     style="display: none"><i class="fa fa-check" aria-hidden="true"></i>
                                     Continue</button>
@@ -849,16 +976,96 @@
                             </div>
                             <div class="bottom_price">
                                 <button type="button" class="nextButton continue6">Continue</button>
-                                <button type="button" class="continue6 oulineButton">Skip to the next
-                                    step</button>
+                                <button type="button" class="continue6 oulineButtonskip"><u>Skip to the next
+                                    step</u></button>
+                                <!-- <a href="javascript:void(0);" class="continue6">Skip to the next step</a> -->
                             </div>
                         </div>
                         <!-- Step6-->
 
+                        <!-- Step close-->
+                       <!--  <div class="step66 stepcloseEs"> 
+                            <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i class="bi bi-chevron-left"></i></a>teeeee </div>
+                            <div class="step66content">
+                                <div class="impactBlock"> <img src="http://127.0.0.1:8000/website/image/popupImages/icon1.svg" alt="icon">
+                                    <span><i class="bi bi-plus"></i></span> <img src="http://127.0.0.1:8000/website/image/popupImages/icon2.svg" alt="icon">
+                                </div>
+                                <p class="text-center"> Many employers have a donation matching program that will
+                                    double or triple the value of your donation! <br>
+                                    <strong>Just enter the name of your employer, and we'll see if your impact can be
+                                        amplified!</strong>
+                                </p>
+
+                                <div class="form-group">
+
+                                    <div class="inputbox relative" style="">
+
+                                        <input type="text" placeholder="Your company (optional)" class="textbox clickinput" name="company_name" value="">
+                                        <div class="tooltip-detail help_tooltip1 tooltipopen1" style="display: none;">
+                                            <p>Once you've donated, you'll be able to write a personalized message and
+                                                send a card.</p>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="bottom_price">
+                                <button type="button" class="nextButton continue6">Continue</button>
+                                <button type="button" class="continue6 oulineButtonskip">Skip to the next
+                                    step</button>
+                                    <button type="button" class="stepCloseBtns">close check</button>
+                                
+                            </div>
+                        </div>
+                        <div class="stepcloseEs2">
+                            <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
+                                        class="bi bi-chevron-left"></i></a> MayBe next time? </div>
+                            <div class="stepclosecontent">
+                                <div class="impactBlock"> <img
+                                        src="{{ URL::to('website/image/popupImages/icon1.svg') }}" alt="icon">
+                                    <span><i class="bi bi-plus"></i></span> <img
+                                        src="{{ URL::to('website/image/popupImages/icon2.svg') }}" alt="icon">
+                                </div>
+                                <p class="text-center"> Please leave your email address below and we'll send you a gentle reminder later. <br />
+                                     <input type="text" placeholder="Email Address"
+                                            class="textbox clickinput" name="closeemail_name"
+                                            value=""/>
+                                    
+                                </p>
+
+                                <div class="form-group">
+
+                                    <div class="inputbox relative" style="">
+
+                                        <input type="text" placeholder="Your company (optional)"
+                                            class="textbox clickinput" name="company_name"
+                                            value="{{ auth()->user() ? userInfor()?->company_name ?? '' : '' }}" />
+                                        <div class="tooltip-detail help_tooltip1 tooltipopen1"
+                                            style="display: block;">
+                                            <p>Once you've donated, you'll be able to write a personalized message and
+                                                send a card.</p>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="bottom_price">
+                                <button type="button" class="nextButton continue6">Continue</button>
+                                <button type="button" class="continue6 oulineButtonskip">Skip to the next
+                                    step</button>
+                                
+                            </div>
+                        </div> -->
+                        <!-- Step close-->
+
                         <!-- Step7-->
                         <div class="step7 postal_address">
                             <div class="header_inner"> <a href="javascript:void(0);" class="btn-back backslide"><i
-                                        class="bi bi-chevron-left"></i></a> Postal Address </div>
+                                        class="bi bi-chevron-left"></i></a> Enter your address </div>
                             <div class="step5content">
                                 <div class="form-group">
                                     <input type="text" name="address" placeholder="Street address"
@@ -909,15 +1116,11 @@
                                         <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
                                     </button>
-                                <button type="submit" class="oulineButton">Skip to the next step</button>
+                                 <button type="submit" class="oulineButtonskip">Skip to the next step</button>
+                                 <!-- <a href="javascript:void(0);" class="continue7">Skip to the next step</a> -->
                             </div>
                         </div>
-                        <!-- Step7-->
                     </form>
-
-
-
-
                 </div>
             </div>
         </div>
@@ -960,8 +1163,24 @@
 </div>
 <!-- popupBox Row -->
 <!-- partial -->
+
+<!--<div id="firstModal" class="modalpopup">
+  <div class="modal-contentpopup">
+    <span class="close">&times;</span>
+    <p>Some text in the First Modal..</p>
+  </div>
+</div> -->
+
+
+
 <script>
     $("#mobile-number").intlTelInput();
+
+    $(document).ready(function() {
+        $('.continue7').dblclick(false);
+        $('.oulineButtonskip').dblclick(false);
+    });
+
 </script>
 <script>
     // checking card details valid or not START
@@ -1019,12 +1238,15 @@
     $(document).ready(function() {
         var $form = $(".StripePayment-form");
         $form.on('submit', function(e) {
-
+            e.preventDefault();
+            $('.continue7').dblclick(false);
+            $('.oulineButtonskip').dblclick(false);
+            $(".continue7").prop("disabled", true);
+            $(".oulineButtonskip").prop("disabled", true);
             var expirationValue = $('.card-expiry-month-year').val();
             var card_month = expirationValue.substr(0, 2); // Extract the first two digits as month
             var card_year = expirationValue.substr(3, 2);
-
-            e.preventDefault();
+            
             Stripe.setPublishableKey($form.data('stripe-publishable-key'));
             Stripe.createToken({
                 number: $('.card_number').val(),
@@ -1060,6 +1282,8 @@
                         toastr.success('Thank for your donation');
                         setTimeout(function () {
                             window.location.href = response;
+                            $(".continue7").prop("disabled", false);
+                            $(".oulineButtonskip").prop("disabled", false);
                         }, 3000)
                         
                     }
@@ -1068,6 +1292,16 @@
         }
     })
     // Generate StripeToken and call ajax to hit stripe payment gateway END
+        $('.emailInput').on('keypress', function() {
+        var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{2,4}/.test(this.value);
+        if(!re) {
+            $('#error1').show();
+            $('#error2').show();
+        } else {
+            $('#error1').hide();
+            $('#error2').hide();
+        }
+      })
     // onclick personal information btn validate donation field START
     $(document).ready(function(){
         $('.personal-btn').click( function(){
@@ -1078,7 +1312,7 @@
             var lname = $('.lnameInput').val();
             var email = $('.emailInput').val();
             
-            setTimeout(function () {
+           // setTimeout(function () {
 
                 if (fname=='' || lname=='' || email=='') {
                 $('.personalInput').addClass("inputerror");
@@ -1096,7 +1330,7 @@
                     }, 2000)
                 }
                     
-            }, 2000)
+           // }, 2000)
 
 
 

@@ -19,7 +19,7 @@
         <a href="javascript:void();" wire:click="closeModal" class="close__popup"><i class="bi bi-x"></i></a>
         <div class="donationBox">
             <div class="holder">
-                <div class="donation_left">
+                <!-- <div class="donation_left">
                     <div class="main_img">
                         <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
                             alt="image" />
@@ -32,8 +32,8 @@
                         <p><strong>Give confidently. 100% of your donation goes directly to aid and relief
                                 programs.</strong></p>
                     </div>
-                </div>
-                <div class="donation_right">
+                </div> -->
+                <div class="donation_right" style="min-height:800px !important;">
                     <div class="step1">
                         <div class="header_inner">Your Donation Summary!</div>
                             <div class="step8content">
@@ -74,13 +74,18 @@
                                 <!-- Animation-->
                                 <h6>Help spread the word!</h6>
                                 <p>1 out of 5 people you share this with will also donate.</p>
-                                <ul>
+                                <!--<ul>
                                     <li><a href="#" wire:click="shareToFacebook"><i class="bi bi-facebook"></i> Share on Facebook</a></li>
                                     <li><a href="#" wire:click="shareToTwitter"><i class="bi bi-twitter-x"></i> Share on Twitter</a></li>
                                     <li><a href="#" wire:click="shareToTelegram"><i class="bi bi-telegram"></i> Share on Telegram</a></li>
                                     <li><a href="#" wire:click="shareViaEmail"><i class="bi bi-envelope-fill"></i> Share via email</a></li>
                                     <li><a href="#" wire:click="shareToYouTube"><i class="bi bi-youtube"></i> Share via YouTube</a></li>
-                                </ul>
+                                </ul> -->
+                                    <a href="#" wire:click="shareToFacebook"><i class="bi bi-facebook"></i> </a>
+                                    <a href="#" wire:click="shareToTwitter"><i class="bi bi-twitter-x"></i> </a>
+                                    <a href="#" wire:click="shareToTelegram"><i class="bi bi-telegram"></i> </a>
+                                    <a href="#" wire:click="shareViaEmail"><i class="bi bi-envelope-fill"></i> </a>
+                                    <a href="#" wire:click="shareToYouTube"><i class="bi bi-youtube"></i> </a>
                             </div>
                             <div class="bottom_price">
                                 <a href="/cause" wire:navigate><button type="button" wire:click="closeModal" class="oulineButton closepopup">Close</button></a>

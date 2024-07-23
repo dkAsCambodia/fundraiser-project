@@ -98,6 +98,7 @@ class CauseDetail extends Component
         $this->getSimilarRecord = $getSimilarRecordData->toArray();
         
         $this->currencies = Country::where( 'status', '1')->orderBy('curency_code', 'ASC')->get();
+        //$this->currencies = Country::where( 'status', '1')->get();
         $this->countries = Country::where( 'status', '1')->orderBy('country_name', 'ASC')->get();
     }
     public function checkountNow()
@@ -146,7 +147,7 @@ class CauseDetail extends Component
             echo "No Data Available or Invalid Request";
         }
 
-        dd($_GET);
+        //dd($_GET);
     }
 
     public function openCam($selectedData, $id)

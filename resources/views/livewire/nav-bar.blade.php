@@ -1,6 +1,7 @@
 <!-- header -->
 <div>
 <header class="header header--styleOne header--styleFive sticky-on">
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <div id="sticky-placeholder"></div>
     <div class="container">
         <div class="row">

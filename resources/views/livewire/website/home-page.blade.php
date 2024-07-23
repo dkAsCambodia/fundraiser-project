@@ -263,7 +263,7 @@
                                 </h3>
                                 <a class="btn btn--styleOne btn--black it-btn wow animate__fadeInUp"
                                     data-wow-duration="1200ms" data-wow-delay="400ms" href="#">
-                                    <span class="btn__text">dECAME A VOLEENTEER</span>
+                                    <span class="btn__text">BECAME A VOLEENTEER</span>
                                     <i class="fa-solid fa-heart btn__icon"></i>
                                     <span class="it-btn__inner">
                                         <span class="it-btn__blobs">
@@ -361,6 +361,8 @@
                                         @php
                                             $raisedValue = raisedValue($item->id);
                                             $getFillPercentage = getFillPercentage($item->goal, $raisedValue);
+                                            $goal_amount = currency($item->goal);
+                                            $raised_amount = currency($raisedValue);
                                         @endphp
                                         <div class="featureBlock__donation">
                                             <div class="featureBlock__donation__progress">
@@ -378,16 +380,16 @@
                                             <div class="featureBlock__eqn">
                                                 <div class="featureBlock__eqn__block">
                                                     <span class="featureBlock__eqn__title">our goal</span>
-                                                    <span class="featureBlock__eqn__price">${{ $item->goal }}</span>
+                                                    <span class="featureBlock__eqn__price">{{Session::get('sessLocation')?->currency_symbol ?? '$'}} {{ $goal_amount }}</span>
                                                 </div>
                                                 <div class="featureBlock__eqn__block">
                                                     <span class="featureBlock__eqn__title">Raised</span>
-                                                    <span class="featureBlock__eqn__price">${{ $raisedValue }}</span>
+                                                    <span class="featureBlock__eqn__price">{{Session::get('sessLocation')?->currency_symbol ?? '$'}} {{ floor($raised_amount) }}</span>
                                                 </div>
                                                 <div class="featureBlock__eqn__block">
                                                     <span class="featureBlock__eqn__title">to go</span>
                                                     <span
-                                                        class="featureBlock__eqn__price">${{ $item->goal - $raisedValue }}</span>
+                                                        class="featureBlock__eqn__price">{{Session::get('sessLocation')?->currency_symbol ?? '$'}} {{ floor($goal_amount) - floor($raised_amount) }}</span>
                                                 </div>
                                             </div>
                                         </div>
