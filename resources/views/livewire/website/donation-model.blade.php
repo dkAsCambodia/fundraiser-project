@@ -606,7 +606,7 @@
                                 USD United State Doller</p>
                         </div>
                         <div class="bottom_price">
-                            <form action="{{ route('paypal.checkout') }}" method="post">
+                            <form action="{{ route('paypal.checkout') }}" method="post"> 
                                 @csrf
                                 <input type="hidden" class="Final_amount" name="amount"
                                     value="{{ $causeDetails->default_amount }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
