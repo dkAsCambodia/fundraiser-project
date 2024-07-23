@@ -131,6 +131,10 @@
             .donationBox .holder {
                 border-radius: 0;
             }
+            .donationBox .donation_right {
+                width: 100%;
+                height: 500px !important;
+            }
         }
 
 </style>
@@ -765,7 +769,7 @@
                                 USD United State Doller</p>
                         </div>
                         <div class="bottom_price">
-                            <form action="{{ route('paypal.checkout') }}" method="post"> 
+                            <form action="{{ route('paypal.checkout') }}" method="post">
                                 @csrf
                                 <input type="hidden" class="Final_amount" name="amount"
                                     value="{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
