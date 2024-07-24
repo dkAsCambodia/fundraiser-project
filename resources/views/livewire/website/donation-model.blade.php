@@ -131,10 +131,10 @@
             .donationBox .holder {
                 border-radius: 0;
             }
-            .donationBox .donation_right {
+            /* .donationBox .donation_right {
                 width: 100%;
                 height: 500px !important;
-            }
+            } */
         }
 
 </style>
