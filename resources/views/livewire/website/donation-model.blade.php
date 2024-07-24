@@ -136,7 +136,12 @@
                 height: 500px !important;
             }
         }
-
+        .highlight-image {
+            transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition for effects */
+        }
+        .highlight-image:hover {
+            filter: brightness(1.2); /* Brighten the image on hover */
+        }
 </style>
 <!-- popupBox Row -->
 <div class="center-block">
@@ -162,7 +167,7 @@
             <div class="holder">
                 <div class="donation_left">
                     <div class="desktop-only">
-                        <div class="main_img">
+                        <div class="highlight-image main_img">
                             <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
                                 alt="image" />
                         </div>
