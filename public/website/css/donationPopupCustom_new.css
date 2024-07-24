@@ -289,11 +289,11 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
 }
 /* New Changes for Donation detail page blur*/
 .donation_left{
-    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: brightness(.5);
     background-color: #222832 !important
 }
 .donation_left:hover{
-    filter: brightness(1.2);
+    filter: brightness(1);
     background-color: #fff !important;
 }
 .donation_left .detail{
