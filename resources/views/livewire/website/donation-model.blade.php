@@ -243,7 +243,7 @@
                             <div class="design">Designate to
                                 <select class="designselect2">
                                     <option>where needed most</option>
-                                    <option>{{ $causeDetails->designations }}</option>
+                                    <option>{{ $causeDetails->selected_designation }}</option>
                                 </select>
                             </div>
                            
