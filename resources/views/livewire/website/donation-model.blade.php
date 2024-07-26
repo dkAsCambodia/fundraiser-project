@@ -4,10 +4,201 @@
 <script src="{{ URL::to('website/js/popup.js') }}"></script>
 <link href="{{ URL::to('website/css/countryflags.css') }}" rel="stylesheet" />
 <link href="{{ URL::to('website/css/donationPopupCustom_new.css') }}" rel="stylesheet" type="text/css" />
+<style>
+    .modallPopup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-contentlPopup {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .closelPopup {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .closelPopup:hover,
+        .closelPopup:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+/* for impect section design radio selection */
+        :root {
+  --card-line-height: 1.2em;
+  --card-padding: 0.5em;
+  --card-radius: 0.5em;
+  --color-green: #2e66cf;
+  --color-gray: #e2ebf6;
+  --color-dark-gray: #c4d1e1;
+  --radio-border-width: 2px;
+  --radio-size: 1.5em;
+}
+.grid {
+  display: inline;
+  grid-gap: var(--card-padding);
+  margin: 0 auto;
+  max-width: 60em;
+  padding: 0;
+
+  @media (min-width: 42em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background-color: #fff;
+  border-radius: var(--card-radius);
+  position: relative;
+  width: 310px;
+
+  &:hover {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.radio {
+  font-size: inherit;
+  margin: 0;
+  position: absolute;
+  right: calc(var(--card-padding) + var(--radio-border-width));
+  top: calc(var(--card-padding) + var(--radio-border-width));
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  .radio {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #fff;
+    border: var(--radio-border-width) solid var(--color-gray);
+    border-radius: 50%;
+    cursor: pointer;
+    height: var(--radio-size);
+    outline: none;
+    transition: background 0.2s ease-out, border-color 0.2s ease-out;
+    width: var(--radio-size);
+
+    &::after {
+      border: var(--radio-border-width) solid #fff;
+      border-top: 0;
+      border-left: 0;
+      content: "";
+      display: block;
+      height: 0.75rem;
+      left: 25%;
+      position: absolute;
+      top: 50%;
+      transform: rotate(45deg) translate(-50%, -50%);
+      width: 0.375rem;
+    }
+
+    &:checked {
+      background: var(--color-green);
+      border-color: var(--color-green);
+    }
+  }
+
+  .card:hover .radio {
+    border-color: var(--color-dark-gray);
+
+    &:checked {
+      border-color: var(--color-green);
+    }
+  }
+}
+
+.plan-details {
+  border: var(--radio-border-width) solid var(--color-gray);
+  border-radius: var(--card-radius);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: var(--card-padding);
+  transition: border-color 0.2s ease-out;
+}
+
+.card:hover .plan-details {
+  border-color: var(--color-dark-gray);
+}
+
+.radio:checked ~ .plan-details {
+  border-color: var(--color-green);
+}
+
+.radio:focus ~ .plan-details {
+  box-shadow: 0 0 0 2px var(--color-dark-gray);
+}
+
+.radio:disabled ~ .plan-details {
+  color: var(--color-dark-gray);
+  cursor: default;
+}
+
+.radio:disabled ~ .plan-details .plan-type {
+  color: var(--color-dark-gray);
+}
+
+.card:hover .radio:disabled ~ .plan-details {
+  border-color: var(--color-gray);
+  box-shadow: none;
+}
+
+.card:hover .radio:disabled {
+  border-color: var(--color-gray);
+}
+
+.plan-type {
+  color: var(--color-green);
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1em;
+}
+.slash {
+  font-weight: normal;
+}
+
+.plan-cycle {
+  font-size: 2rem;
+  font-variant: none;
+  border-bottom: none;
+  cursor: inherit;
+  text-decoration: none;
+}
+
+.hidden-visually {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+</style>
 <script>
     $(document).ready(function() {
         $('[data-toggle="popover"]').popover();
-        $('.clicktab1').trigger('click');//$('.qololbl').trigger('click'); 
+        // $('.clicktab1').trigger('click');//$('.qololbl').trigger('click'); 
     });
     jQuery(function($) {
         $('[data-numeric]').payment('restrictNumeric');
@@ -66,43 +257,7 @@
 //});
 </script>
 
-<style>
-    .modallPopup {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
 
-        .modal-contentlPopup {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-
-        .closelPopup {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .closelPopup:hover,
-        .closelPopup:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-</style>
 <!-- popupBox Row -->
 <div class="center-block">
     <div class="outer">
@@ -127,7 +282,7 @@
                 <div class="donation_right">
                     <div class="step1">
                         <div class="header">
-                            <h2><i class="bi bi-shield-lock"></i>Secure donation</h2>
+                            <h2><i class="bi bi-shield-lock"></i>Secure donation {{ $causeDetails->default_frequency }}</h2>
                         </div>
 
                         <!-- slide TAb--> 
@@ -145,27 +300,57 @@
                         </div>
 
                         <!-- Tabl Content here-->
-                        <div class="tab1Content"
-                            style="display:{{ $causeDetails->default_frequency == 'once' ? 'block' : 'none' }};">
-                            <div class="radioholder inputSet_custom">
-                             
-                                @foreach ($suggestedAmountKey as $key=> $keyVal)
-                               
-                                    <div class="paymentsmethod">
-                                        <label class="payments_label">
-                                            <input type="radio" name="triptype"
-                                                value="{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
-                                            <span class="check1">
-                                            <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>
-                                                <span class="currency-val-Go currency-val-Go{{$key}}">{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
-                                                  </span>
-                                                   <!-- <span class="check1"><span
-                                                    class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>-->
-                                                </label>
-                                    </div>
-                                @endforeach
-                                <input type="hidden" id="currSelCurRate" value="1"/>
+                        <div class="tab1Content" style="display:{{ $causeDetails->default_frequency == 'once' ? 'block' : 'none' }};">
+                            
+                                {{-- <div class="radioholder inputSet_custom"> --}}
+                                @if(!empty($causeDetails->impactAmount1) && !empty($causeDetails->impactAmount2) && !empty($causeDetails->impactAmount3))
+                                <div class="radioholder">
+                                        <div class="grid">
+                                            <label class="card">
+                                            <input name="plan" class="radio" type="radio"
+                                            value="{{ currency($causeDetails->impactAmount1) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                            <span class="plan-details">
+                                                <span class="plan-type">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}{{$causeDetails->impactAmount1 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                                <span>{{ $causeDetails->impactDesc1 ?? ''}}</span>
+                                            </span>
+                                            </label>
+                                            <label class="card">
+                                            <input name="plan" class="radio" type="radio" value="{{ currency($causeDetails->impactAmount2) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                            <span class="plan-details" aria-hidden="true">
+                                                <span class="plan-type">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}{{$causeDetails->impactAmount2 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                                <span>{{ $causeDetails->impactDesc2 ?? ''}}</span>
+                                            </span>
+                                            </label>
+                                            <label class="card">
+                                            <input name="plan" class="radio" type="radio" value="{{ currency($causeDetails->impactAmount3) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                            <span class="plan-details" aria-hidden="true">
+                                                <span class="plan-type">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}{{$causeDetails->impactAmount3 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                                <span>{{ $causeDetails->impactDesc3 ?? ''}}</span>
+                                            </span>
+                                            </label>
+                                        </div>
+                                </div><br/>
+                                @else
+                                <div class="radioholder inputSet_custom">
+                                    @foreach ($suggestedAmountKey as $key=> $keyVal)
+
+                                        <div class="paymentsmethod">
+                                            <label class="payments_label">
+                                                <input type="radio" name="triptype"
+                                                    value="{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                                <span class="check1">
+                                                <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>
+                                                    <span class="currency-val-Go currency-val-Go{{$key}}">{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                                    </span>
+                                                    <!-- <span class="check1"><span
+                                                        class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>-->
+                                                    </label>
+                                        </div>
+                                    @endforeach
+                                    <input type="hidden" id="currSelCurRate" value="1"/>
                                 </div>
+                                @endif
+                                
                                 <!-- hidden original amount given once - start-->
                                 <div class="radioholder inputSet_custom d-none">
                                 @foreach ($suggestedAmountKey as $key=> $keyVal)
@@ -189,7 +374,7 @@
 
                         <!-- Tabl Content here-->
                         <div class="tab2Content"
-                            style="display:{{ $causeDetails->default_frequency == 'monthly' ? 'block' : 'none' }};">
+                            style="display:{{ $causeDetails->default_frequency == 'once' ? 'none' : 'block' }};">
                             <div class="radioholder inputSet_custom">
                                 @foreach ($suggestedAmountKey as $keyVal)
                                     <div class="paymentsmethod">
