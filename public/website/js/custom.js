@@ -2,7 +2,7 @@
 // For radio amount selection START
     $(document).ready(function() {
         $('.paymentsmethod').click(function(event) {
-            alert("clicked");
+            // alert("clicked");
             event.stopPropagation(); // Stop event propagation
             $('.paymentsmethod').removeClass('active');
             //alert($('input[type=radio]').val());
@@ -27,7 +27,7 @@
     $(document).ready(function() {
         $('.card').on('click', function() {
             var radioValue = $(this).find('input[name="plan"]').val();
-            alert(radioValue);
+            // alert(radioValue);
             $('.Final_amount').val(radioValue);
             $(".Final_amount").text(radioValue);
             $('.StripeFinal_amount').val(radioValue+'00');
