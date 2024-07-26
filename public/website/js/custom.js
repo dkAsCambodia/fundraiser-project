@@ -89,6 +89,7 @@ function currencyselectorFun(currencyValue) {
     }
     //alert("selected value"+selectedValue);
     var rate=$('#currSelCurRate').val();
+    // alert(rate);
     radioValue = Math.floor(selectedValue * rate);
     $('.Final_amount').val(radioValue);
     $(".Final_amount").text(radioValue);

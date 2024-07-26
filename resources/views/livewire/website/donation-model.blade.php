@@ -310,21 +310,21 @@
                                             <input name="plan" class="radio" type="radio"
                                             value="{{ currency($causeDetails->impactAmount1) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="plan-details">
-                                                <span class="plan-type">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}{{$causeDetails->impactAmount1 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                                <span class="plan-type"> <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{$causeDetails->impactAmount1 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
                                                 <span>{{ $causeDetails->impactDesc1 ?? ''}}</span>
                                             </span>
                                             </label>
                                             <label class="card">
                                             <input name="plan" class="radio" type="radio" value="{{ currency($causeDetails->impactAmount2) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="plan-details" aria-hidden="true">
-                                                <span class="plan-type">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}{{$causeDetails->impactAmount2 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                                <span class="plan-type"> <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{$causeDetails->impactAmount2 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
                                                 <span>{{ $causeDetails->impactDesc2 ?? ''}}</span>
                                             </span>
                                             </label>
                                             <label class="card">
                                             <input name="plan" class="radio" type="radio" value="{{ currency($causeDetails->impactAmount3) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="plan-details" aria-hidden="true">
-                                                <span class="plan-type">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}{{$causeDetails->impactAmount3 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                                <span class="plan-type"> <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{$causeDetails->impactAmount3 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
                                                 <span>{{ $causeDetails->impactDesc3 ?? ''}}</span>
                                             </span>
                                             </label>
@@ -347,10 +347,10 @@
                                                     </label>
                                         </div>
                                     @endforeach
-                                    <input type="hidden" id="currSelCurRate" value="1"/>
+                                    
                                 </div>
                                 @endif
-                                
+                                <input type="hidden" id="currSelCurRate" value="1"/>
                                 <!-- hidden original amount given once - start-->
                                 <div class="radioholder inputSet_custom d-none">
                                 @foreach ($suggestedAmountKey as $key=> $keyVal)
