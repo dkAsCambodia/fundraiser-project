@@ -333,20 +333,17 @@
                                 @else
                                 <div class="radioholder inputSet_custom">
                                     @foreach ($suggestedAmountKey as $key=> $keyVal)
-
-                                        <div class="paymentsmethod">
-                                            <label class="payments_label">
-                                                <input type="radio" name="triptype"
-                                                    value="{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
-                                                <span class="check1">
-                                                <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>
-                                                    <span class="currency-val-Go currency-val-Go{{$key}}">{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
-                                                    </span>
-                                                    <!-- <span class="check1"><span
-                                                        class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{ currency($causeDetails->suggested_amounts[$keyVal]) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}<span>-->
-                                                    </label>
-                                        </div>
-                                    @endforeach
+                               
+                               <div class="paymentsmethod">
+                                   <label class="payments_label">
+                                       <input type="radio" name="triptype"
+                                           value="{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                       <span class="check1">
+                                       <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span class="currency-val-Go-hidden currency-val-Go-hidden{{$key}}">{{ $causeDetails->suggested_amounts[$keyVal] }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                             </span>
+                                             </label>
+                               </div>
+                               @endforeach
                                     
                                 </div>
                                 @endif
