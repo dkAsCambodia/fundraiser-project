@@ -282,7 +282,7 @@
                 <div class="donation_right">
                     <div class="step1">
                         <div class="header">
-                            <h2><i class="bi bi-shield-lock"></i>Secure donation {{ $causeDetails->default_frequency }}</h2>
+                            <h2><i class="bi bi-shield-lock"></i>Secure donation</h2>
                         </div>
 
                         <!-- slide TAb--> 
