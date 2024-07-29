@@ -282,11 +282,25 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
 	.donationBox{ width: 95%; }
 	.donationBox .holder {flex-direction: column; background: #fff;  border-radius: 15px;}
 	.donationBox .donation_left { width: 100%; margin: 0px; border-radius: 15px 15px 0 0px; border-bottom: 1px solid #ccc; }
-	.donationBox .donation_right { width: 100%; height:640px; }
+	.donationBox .donation_right { width: 100%; height:500px; }
 	.faqlinks li a {white-space: nowrap; font-size: 11px; }
 	.faqlinks {align-items: center;  flex-direction: column; }
     .scrollable-upsellDiv{ height: 150px;}
+
+
+    /* CSS Written by DK START */
+    .hide-on-mobile {display: none;}
+    .hide-on-desktop {display: block !important;}
+    /* CSS Written by DK END */
 }
+
+ /* CSS Written by DK START */
+    .hide-on-desktop {
+        display: none; 
+    }
+ /* CSS Written by DK END */
+
+
 /* New Changes for Donation detail page blur*/
 .donation_left{
     opacity: 0.8 !important;

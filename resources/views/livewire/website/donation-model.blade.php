@@ -43,9 +43,9 @@
 
 /* for impect section design radio selection */
         :root {
-  --card-line-height: 1.2em;
-  --card-padding: 0.5em;
-  --card-radius: 0.5em;
+  --cardRadioAmount-line-height: 1.2em;
+  --cardRadioAmount-padding: 0.5em;
+  --cardRadioAmount-radius: 0.5em;
   --color-green: #2e66cf;
   --color-gray: #e2ebf6;
   --color-dark-gray: #c4d1e1;
@@ -54,7 +54,7 @@
 }
 .grid {
   display: inline;
-  grid-gap: var(--card-padding);
+  grid-gap: var(--cardRadioAmount-padding);
   margin: 0 auto;
   max-width: 60em;
   padding: 0;
@@ -64,9 +64,9 @@
   }
 }
 
-.card {
+.cardRadioAmount {
   background-color: #fff;
-  border-radius: var(--card-radius);
+  border-radius: var(--cardRadioAmount-radius);
   position: relative;
   width: 310px;
 
@@ -79,8 +79,8 @@
   font-size: inherit;
   margin: 0;
   position: absolute;
-  right: calc(var(--card-padding) + var(--radio-border-width));
-  top: calc(var(--card-padding) + var(--radio-border-width));
+  right: calc(var(--cardRadioAmount-padding) + var(--radio-border-width));
+  top: calc(var(--cardRadioAmount-padding) + var(--radio-border-width));
 }
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
@@ -116,7 +116,7 @@
     }
   }
 
-  .card:hover .radio {
+  .cardRadioAmount:hover .radio {
     border-color: var(--color-dark-gray);
 
     &:checked {
@@ -127,15 +127,15 @@
 
 .plan-details {
   border: var(--radio-border-width) solid var(--color-gray);
-  border-radius: var(--card-radius);
+  border-radius: var(--cardRadioAmount-radius);
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  padding: var(--card-padding);
+  padding: var(--cardRadioAmount-padding);
   transition: border-color 0.2s ease-out;
 }
 
-.card:hover .plan-details {
+.cardRadioAmount:hover .plan-details {
   border-color: var(--color-dark-gray);
 }
 
@@ -156,12 +156,12 @@
   color: var(--color-dark-gray);
 }
 
-.card:hover .radio:disabled ~ .plan-details {
+.cardRadioAmount:hover .radio:disabled ~ .plan-details {
   border-color: var(--color-gray);
   box-shadow: none;
 }
 
-.card:hover .radio:disabled {
+.cardRadioAmount:hover .radio:disabled {
   border-color: var(--color-gray);
 }
 
@@ -266,16 +266,20 @@
         <div class="donationBox">
             <div class="holder">
                 <div class="donation_left">
+                    <div class="hide-on-desktop detail"> <img class="adminLogo"
+                        src="{{ !empty($causeDetails->logo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->logo : 'https://ucarecdn.com/bf291e65-c36b-4f7e-a66e-37b1018b3ace/-/resize/x50/-/format/auto/' }}"
+                        alt="admin-logo">
+                    </div>
                     <div class="main_img">
                         <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
                             alt="image" />
                     </div>
-                    <div class="detail"> <img class="adminLogo"
+                    <div class="hide-on-mobile detail"> <img class="adminLogo"
                             src="{{ !empty($causeDetails->logo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->logo : 'https://ucarecdn.com/bf291e65-c36b-4f7e-a66e-37b1018b3ace/-/resize/x50/-/format/auto/' }}"
                             alt="admin-logo">
                         <h2>{{ $causeDetails->title }}</h2>
-                        <p><strong>{{ $causeDetails->short_details }}</strong></p>
-                        <p><strong>Give confidently. 100% of your donation goes directly to aid and relief
+                        <p class="hide-on-mobile"><strong>{{ $causeDetails->short_details }}</strong></p>
+                        <p class="hide-on-mobile"><strong>Give confidently. 100% of your donation goes directly to aid and relief
                                 programs.</strong></p>
                     </div>
                 </div>
@@ -306,7 +310,7 @@
                                 @if(!empty($causeDetails->impactAmount1) && !empty($causeDetails->impactAmount2) && !empty($causeDetails->impactAmount3))
                                 <div class="radioholder">
                                         <div class="grid">
-                                            <label class="card">
+                                            <label class="cardRadioAmount">
                                             <input name="plan" class="radio" type="radio"
                                             value="{{ currency($causeDetails->impactAmount1) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="plan-details">
@@ -314,14 +318,14 @@
                                                 <span>{{ $causeDetails->impactDesc1 ?? ''}}</span>
                                             </span>
                                             </label>
-                                            <label class="card">
+                                            <label class="cardRadioAmount">
                                             <input name="plan" class="radio" type="radio" value="{{ currency($causeDetails->impactAmount2) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="plan-details" aria-hidden="true">
                                                 <span class="plan-type"> <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{$causeDetails->impactAmount2 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
                                                 <span>{{ $causeDetails->impactDesc2 ?? ''}}</span>
                                             </span>
                                             </label>
-                                            <label class="card">
+                                            <label class="cardRadioAmount">
                                             <input name="plan" class="radio" type="radio" value="{{ currency($causeDetails->impactAmount3) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="plan-details" aria-hidden="true">
                                                 <span class="plan-type"> <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{$causeDetails->impactAmount3 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
@@ -684,7 +688,8 @@
                                         </g>
                                     </svg></div>
                             </div>
-                        </div>
+                        </div><br/>
+                        <p>Would you like to cover the transaction costs so that we receive 100% of your gift?</p>
                         <div class="bottom_price">
                             <button type="submit" class="nextButton continue3"><span class="flex-shrink-0 me-2"
                                     aria-hidden="true"><svg fill="none" height="24" viewBox="0 0 18 18"
