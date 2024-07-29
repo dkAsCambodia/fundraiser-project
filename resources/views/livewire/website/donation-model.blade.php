@@ -266,9 +266,9 @@
         <div class="donationBox">
             <div class="holder">
                 <div class="donation_left">
-                    <div class="hide-on-desktop detail"> <img class="adminLogo"
+                    <div class="hide-on-desktop detail"><center> <img class="adminLogo"
                         src="{{ !empty($causeDetails->logo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->logo : 'https://ucarecdn.com/bf291e65-c36b-4f7e-a66e-37b1018b3ace/-/resize/x50/-/format/auto/' }}"
-                        alt="admin-logo">
+                        alt="admin-logo"></center>
                     </div>
                     <div class="main_img">
                         <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
