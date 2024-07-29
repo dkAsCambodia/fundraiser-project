@@ -282,6 +282,11 @@
                         <p class="hide-on-mobile"><strong>Give confidently. 100% of your donation goes directly to aid and relief
                                 programs.</strong></p>
                     </div>
+                    <div class="hide-on-desktop detail"> 
+                        <h2><center>{{ $causeDetails->title ?? 'Donation this campaign'}}</center></h2>
+                    </div>
+
+                  
                 </div>
                 <div class="donation_right">
                     <div class="step1">
