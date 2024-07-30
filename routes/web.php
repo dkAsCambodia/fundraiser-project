@@ -99,6 +99,7 @@ Route::post('/declineOffer', [StripePaymentController::class, 'declineOffer'])->
 
 // Route::get('/demoPayemtn', PayPalPayment::class);
 
+Route::get('/paypal/form/{Final_amount}/{Final_currency}/{Final_currencySymbol}/{account_id}/{cause_detail_id}/{frequency}', [PaypalPaymentController::class, 'paypalForm'])->name('paypal.form');
 Route::post('/paypal/checkout', [PaypalPaymentController::class, 'paypalCheckout'])->name('paypal.checkout');
 Route::get('/paypalCheckout/success', [PaypalPaymentController::class, 'paypalSuccess'])->name('paypalCheckout.success');
 Route::get('/paypalCheckout/cancel', [PaypalPaymentController::class, 'paypalCancel'])->name('paypalCheckout.cancel');
