@@ -897,18 +897,18 @@
                                 USD United State Doller</p>
                         </div>
                         <div class="bottom_price">
-                            <form action="{{ route('paypal.checkout') }}" method="post"> 
-                                @csrf
+                            {{-- <form action="{{ route('paypal.checkout') }}" method="post"> 
+                                @csrf --}}
                                 <input type="hidden" class="Final_amount" name="amount"
                                     value="{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
                                 <input type="hidden" class="Final_currency" name="currency" value="{{Session::get('sessLocation')?->curency_code ?? 'USD'}}" />
                                 <input type="hidden" class="Final_currencySymbol" name="currencySymbol"
                                     value="{{Session::get('sessLocation')?->currency_symbol ?? '$'}}" />
-                                <input type="hidden" name="account_id" value="{{ $causeDetails->account_id }}" />
-                                <input type="hidden" name="cause_detail_id" value="{{ $causeDetails->id }}" />
+                                <input type="hidden" class="account_id" name="account_id" value="{{ $causeDetails->account_id }}" />
+                                <input type="hidden" class="cause_detail_id" name="cause_detail_id" value="{{ $causeDetails->id }}" />
                                 <input type="hidden" class="frequency" name="frequency"
                                     value="{{ !empty($causeDetails->default_frequency) ? $causeDetails->default_frequency : 'once' }}" />
-                                <button type="submit" tabindex="5" class="oulineButton btn-paypal">
+                                <button type="button" tabindex="5" class="oulineButton btn-paypal paypal-submit-btn">
                                     <div class="d-flex align-items-center justify-content-center"><svg height="22"
                                             preserveAspectRatio="xMinYMin meet" viewBox="0 0 101 32" width="69"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -936,7 +936,7 @@
                                             </g>
                                         </svg></div>
                                 </button>
-                            </form>
+                            {{-- </form> --}}
                             <button type="button" tabindex="5" class="oulineButton other_payment"> <span
                                     class="btn__text">Other payment option</span> </button>
                         </div>
@@ -1530,4 +1530,18 @@
         });
     });
     // onclick personal information btn validate donation field END
+
+    $(document).ready(function() {
+        $('.paypal-submit-btn').on('click', function() {
+            var Final_amount = $('.Final_amount').val();
+            var Final_currency = $('.Final_currency').val();
+            var Final_currencySymbol = $(".Final_currencySymbol").val();
+            var account_id = $(".account_id").val();
+            var cause_detail_id = $(".cause_detail_id").val();
+            var frequency = $(".frequency").val();
+            var redirectURL = `/paypal/form/${Final_amount}/${Final_currency}/${Final_currencySymbol}/${account_id}/${cause_detail_id}/${frequency}`;
+            // alert(redirectURL);
+            window.open(redirectURL, '_blank');  
+        });
+    });
 </script>

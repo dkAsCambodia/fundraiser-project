@@ -19,6 +19,13 @@ class PaypalPaymentController extends Controller
     	$this->gateway->setTestMode(true);
     }
 
+    public function paypalForm($Final_amount, $Final_currency, $Final_currencySymbol, $account_id, $cause_detail_id, $frequency)
+    {
+        // echo "<pre>";  print_r($Final_amount); die;
+        return view('paypal.paypal-form',compact('Final_amount', 'Final_currency', 'Final_currencySymbol', 'account_id', 'cause_detail_id', 'frequency')
+        );
+    }
+
     public function paypalCheckout(Request $request)
     {
     	try {
