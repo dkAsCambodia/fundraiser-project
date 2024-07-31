@@ -882,8 +882,7 @@
                                         <div class="tooltip-custom">
                                             <i class="bi bi-question-circle"></i>
                                             <div class="tooltip-detail help_tooltip1">
-                                                <p>Select if you're donating on behalf of an organization. The donation
-                                                    receipt will be issued to that organization.</p>
+                                                <p>We won't display your information in any public feeds.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -894,7 +893,7 @@
                                             <span class="check1">Donate as an organization</span> </label> &nbsp;
                                         <div class="tooltip-custom"><i class="bi bi-question-circle"></i>
                                             <div class="tooltip-detail help_tooltip">
-                                                <p>We won't display your information in any public feeds.</p>
+                                                <p>Select if you're donating on behalf of an organization. The donation receipt will be issued to that organization.</p>
                                             </div>
                                         </div>
                                         <div class="inputbox" style="display: @auth {{ !empty(userInfor()->organization_name) ? 'block' : 'none' }} @else none @endauth ;">
@@ -976,8 +975,7 @@
                             </div>
                             <div class="bottom_price">
                                 <button type="button" class="nextButton continue6">Continue</button>
-                                <button type="button" class="continue6 oulineButtonskip"><u>Skip to the next
-                                    step</u></button>
+                                <button type="button" class="oulineButtonskip continue6"><u>Skip to the next step</u></button>
                                 <!-- <a href="javascript:void(0);" class="continue6">Skip to the next step</a> -->
                             </div>
                         </div>
@@ -1116,7 +1114,7 @@
                                         <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
                                     </button>
-                                 <button type="submit" class="oulineButtonskip">Skip to the next step</button>
+                                 <button type="submit" class="oulineButtonskip"><u>Skip to the next step</u></button>
                                  <!-- <a href="javascript:void(0);" class="continue7">Skip to the next step</a> -->
                             </div>
                         </div>
