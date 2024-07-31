@@ -2,7 +2,7 @@
 // For radio amount selection START
     $(document).ready(function() {
         $('.paymentsmethod').click(function(event) {
-            //alert("clicked");
+            // alert("clicked");
             event.stopPropagation(); // Stop event propagation
             $('.paymentsmethod').removeClass('active');
             //alert($('input[type=radio]').val());
@@ -14,6 +14,20 @@
             //alert(rate);
            // radioValue = Math.floor(radioValue * rate);
             //New changes end
+            $('.Final_amount').val(radioValue);
+            $(".Final_amount").text(radioValue);
+            $('.StripeFinal_amount').val(radioValue+'00');
+            $(".stripe-button")
+            .attr({
+                "data-amount": radioValue+'00',
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('.cardRadioAmount').on('click', function() {
+            var radioValue = $(this).find('input[name="plan"]').val();
+            // alert(radioValue);
             $('.Final_amount').val(radioValue);
             $(".Final_amount").text(radioValue);
             $('.StripeFinal_amount').val(radioValue+'00');
@@ -75,6 +89,7 @@ function currencyselectorFun(currencyValue) {
     }
     //alert("selected value"+selectedValue);
     var rate=$('#currSelCurRate').val();
+    // alert(rate);
     radioValue = Math.floor(selectedValue * rate);
     $('.Final_amount').val(radioValue);
     $(".Final_amount").text(radioValue);
