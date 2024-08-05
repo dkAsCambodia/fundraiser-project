@@ -312,17 +312,20 @@
                         <div class="tab1Content" style="display:{{ $causeDetails->default_frequency == 'once' ? 'block' : 'none' }};">
                             
                                 {{-- <div class="radioholder inputSet_custom"> --}}
-                                @if(!empty($causeDetails->impactAmount1) && !empty($causeDetails->impactAmount2) && !empty($causeDetails->impactAmount3))
+                                @if(!empty($causeDetails->bundle_status))
                                 <div class="radioholder">
                                         <div class="grid">
-                                            <label class="cardRadioAmount">
-                                            <input name="plan" class="radio" type="radio"
-                                            value="{{ currency($causeDetails->impactAmount1) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
-                                            <span class="plan-details">
-                                                <span class="plan-type"> <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{$causeDetails->impactAmount1 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
-                                                <span>{{ $causeDetails->impactDesc1 ?? ''}}</span>
-                                            </span>
-                                            </label>
+                                            @if(!empty($causeDetails->impactAmount1) && !empty($causeDetails->impactDesc1) )
+                                                <label class="cardRadioAmount">
+                                                <input name="plan" class="radio" type="radio"
+                                                value="{{ currency($causeDetails->impactAmount1) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
+                                                <span class="plan-details">
+                                                    <span class="plan-type"> <span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span>{{$causeDetails->impactAmount1 ?? ''}}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>
+                                                    <span>{{ $causeDetails->impactDesc1 ?? ''}}</span>
+                                                </span>
+                                                </label>
+                                            @endif
+                                            @if(!empty($causeDetails->impactAmount2) && !empty($causeDetails->impactDesc2) )
                                             <label class="cardRadioAmount">
                                             <input name="plan" class="radio" type="radio" value="{{ currency($causeDetails->impactAmount2) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="plan-details" aria-hidden="true">
@@ -330,6 +333,8 @@
                                                 <span>{{ $causeDetails->impactDesc2 ?? ''}}</span>
                                             </span>
                                             </label>
+                                            @endif
+                                            @if(!empty($causeDetails->impactAmount3) && !empty($causeDetails->impactDesc3) )
                                             <label class="cardRadioAmount">
                                             <input name="plan" class="radio" type="radio" value="{{ currency($causeDetails->impactAmount3) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}">
                                             <span class="plan-details" aria-hidden="true">
@@ -337,6 +342,7 @@
                                                 <span>{{ $causeDetails->impactDesc3 ?? ''}}</span>
                                             </span>
                                             </label>
+                                            @endif
                                         </div>
                                 </div><br/>
                                 @else
