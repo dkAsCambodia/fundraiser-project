@@ -1447,38 +1447,47 @@
         });
 
         function stripeResponseHandler(status, response) {
-            $(".progress-animation").css("width","100%");
-            $(".done-mark").css("top","0");
-            if (response.error) {
-                $('.error-span').css("display", "block");
-                $('.success-span').css("display", "none");
-                alert(response.error.message);
-            } else {
-                // token contains id, last4, and card type
-                var token = response['id'];
-                // insert the token into the form so it gets submitted to the server
-                $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                // $form.get(0).submit();
-                var str = $(".StripePayment-form").serializeArray();
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('stripe.checkout') }}",
-                    data: str,
-                    success: function(response) {
-                        $('.error-span').css("display", "none");
-                        $('.success-span').css("display", "block");
-                        // console.log("responsedk "+response);
-                        toastr.options.timeOut = 10000;
-                        toastr.success('Thank for your donation');
-                        setTimeout(function () {
-                            window.location.href = response;
-                            $(".continue7").prop("disabled", false);
-                            $(".oulineButtonskip").prop("disabled", false);
-                        }, 3000)
-                        
-                    }
-                });
+            if($(".clickanony").is(":checked"))
+            {
+                $(".progress-animation").css("width","100%");
+                $(".done-mark").css("top","0");
+                if (response.error) {
+                    $('.error-span').css("display", "block");
+                    $('.success-span').css("display", "none");
+                    alert(response.error.message);
+                } else {
+                    // token contains id, last4, and card type
+                    var token = response['id'];
+                    // insert the token into the form so it gets submitted to the server
+                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                    // $form.get(0).submit();
+                    var str = $(".StripePayment-form").serializeArray();
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('stripe.checkout') }}",
+                        data: str,
+                        success: function(response) {
+                            $('.error-span').css("display", "none");
+                            $('.success-span').css("display", "block");
+                            // console.log("responsedk "+response);
+                            toastr.options.timeOut = 10000;
+                            toastr.success('Thank for your donation');
+                            setTimeout(function () {
+                                window.location.href = response;
+                                $(".continue7").prop("disabled", false);
+                                $(".oulineButtonskip").prop("disabled", false);
+                            }, 3000)
+                            
+                        }
+                    });
+                }
             }
+            else
+            {
+                alert("Address is not mandatory for anonymous donation only");
+            }
+
+            
         }
     })
     // Generate StripeToken and call ajax to hit stripe payment gateway END
@@ -1539,7 +1548,8 @@
             var frequency = $(".frequency").val();
             var redirectURL = `/paypal/form/${Final_amount}/${Final_currency}/${Final_currencySymbol}/${account_id}/${cause_detail_id}/${frequency}`;
             // alert(redirectURL);
-            window.open(redirectURL, '_blank');  
+            //window.open(redirectURL, '_self');
+            window.open(redirectURL,'width=100,height=200', '_self');  
         });
     });
 </script>
