@@ -475,7 +475,7 @@
                                 <button type="button" class="redButton nextButton continue2"
                                     tabindex="5">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
                                         class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
-                                        class="planShortNamemonth">{{ $causeDetails->default_frequency == 'once' ? 'one time' : 'month' }}</span></button>
+                                        class="planShortNamemonth">{{ $causeDetails->default_frequency == 'once' ? 'month' : 'month' }}</span></button>
                                 <svg class="gift-icon" aria-hidden="true" fill="none" height="73"
                                     viewBox="0 0 72 73" width="72" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" data-qa="gift-box-icon">

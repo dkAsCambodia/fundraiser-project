@@ -18,7 +18,7 @@ $(".clickinput").click(function(){
 $(".clickcheck").click(function() {
     if($(this).is(":checked")) {
         $(".inputbox").show();
-		$(".clickanony").prop("checked", false);
+		//$(".clickanony").prop("checked", false);
     } else {
         $(".inputbox").hide();
     }
@@ -26,8 +26,8 @@ $(".clickcheck").click(function() {
 
 $(".clickanony").click(function() {
     if($(this).is(":checked")) {
-		$(".clickcheck").prop("checked", false);
-		$(".inputbox").hide();
+		//$(".clickcheck").prop("checked", false);
+		//$(".inputbox").hide();
     }
 });
 
