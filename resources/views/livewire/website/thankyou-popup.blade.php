@@ -60,7 +60,7 @@
                         <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
                             alt="image" />
                         @else    
-                        <iframe width="100%" height="100%" src="{{$causeDetails->videoUrl.'?autoplay=1&mute=1&allow=autoplay'}}" frameborder="10"></iframe>
+                        <iframe mute allow="autoplay" allowfullscreen="" frameborder="10" width="100%" height="100%" src="{{$causeDetails->videoUrl.'?autoplay=1&mute=1&allow=autoplay'}}"></iframe>
                          @endif                                       
                     </div>
                     <div class="detail"> <img class="adminLogo"

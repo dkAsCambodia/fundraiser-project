@@ -51,6 +51,9 @@ $(".clickcheckdedicate").click(function() {
 
 //
 $(".continue1").click(function(){
+	var new_button_val = $('.Final_amount').val() / 2;
+	//alert(new_button_val);
+	$(".Final_amount_new").text(new_button_val);
 	if($(".continue1").text() == "Donate monthly")
 		$(".step5").addClass("slidepopup");
 	else

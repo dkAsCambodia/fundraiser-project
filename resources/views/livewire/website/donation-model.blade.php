@@ -584,6 +584,17 @@
                                 </svg>
                             </div>
 
+                           <!-- New button start -->
+                           @if(!empty($causeDetails->bundle_status))
+                            <div class="gift-div">
+                                <button type="button" class="nextButton continue2"
+                                    tabindex="5">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
+                                        class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
+                                        class="planShortNamemonth">{{ $causeDetails->default_frequency == 'once' ? 'month' : 'month' }}</span></button>
+                            </div>
+                            <!-- New button end -->
+                            @endif
+
                             <button type="button" class="whiteButton continue2 oulineButton" tabindex="5">
                                 <span class="btn__text">Keep my <span
                                         class="planShortNameonce">{{ $causeDetails->default_frequency == 'once' ? 'one-time' : 'monthly' }}</span>
@@ -907,7 +918,8 @@
                                 @csrf --}}
                                 <input type="hidden" class="Final_amount" name="amount"
                                     value="{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}" />
-                                <input type="hidden" class="Final_currency" name="currency" value="{{Session::get('sessLocation')?->curency_code ?? 'USD'}}" />
+                                <input type="hidden" class="Final_currency" name="currency"
+                                    value="{{Session::get('sessLocation')?->curency_code ?? 'USD'}}" />
                                 <input type="hidden" class="Final_currencySymbol" name="currencySymbol"
                                     value="{{Session::get('sessLocation')?->currency_symbol ?? '$'}}" />
                                 <input type="hidden" class="account_id" name="account_id" value="{{ $causeDetails->account_id }}" />
@@ -1058,7 +1070,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="email" placeholder="Email address"
-                                        class="textbox form-control personalInput emailInput" name="email"
+                                        class="textbox form-control personalInput emailInput" name="email" autocomplete="off"
                                         value="{{ auth()->user()->email ?? '' }}" />
                                 </div>
                                 <div class="form-group">
@@ -1537,7 +1549,8 @@
         if(!re) {
             $('#error1').show();
             $('#error2').show();
-        } else {
+        } 
+        else {
             $('#error1').hide();
             $('#error2').hide();
         }
@@ -1551,14 +1564,17 @@
             var fname = $('.FnameInput').val();
             var lname = $('.lnameInput').val();
             var email = $('.emailInput').val();
-            
+            var anonym = $(".clickanony").is(":checked");
+           
+            if(anonym == false){
            // setTimeout(function () {
 
                 if (fname=='' || lname=='' || email=='') {
                 $('.personalInput').addClass("inputerror");
                 $('.error-span').css("display", "block");
                 $('.success-span').css("display", "none");
-                } else {
+                } 
+                else {
                     $('.error-span').css("display", "none");
                     $('.success-span').css("display", "block");
                     $('.personalInput').removeClass("inputerror");
@@ -1571,8 +1587,18 @@
                 }
                     
            // }, 2000)
-
-
+            }
+            else{
+                    $('.error-span').css("display", "none");
+                    $('.success-span').css("display", "block");
+                    $('.personalInput').removeClass("inputerror");
+                setTimeout(function () {
+                    $('button.personal-success-btn').click();
+                    $('.success-span').css("display", "none");
+                    $('.error-span').css("display", "none");
+                    $(".progress-animation").css("width","0%");
+                    }, 2000)
+               }
 
             
         });
@@ -1582,7 +1608,8 @@
     $(document).ready(function() {
         $('.paypal-submit-btn').on('click', function() {
             var Final_amount = $('.Final_amount').val();
-            var Final_currency = $('.Final_currency').val();
+            //var Final_currency = $('.Final_currency').val();
+            var Final_currency = $('.currency-selector').val();
             var Final_currencySymbol = $(".Final_currencySymbol").val();
             var account_id = $(".account_id").val();
             var cause_detail_id = $(".cause_detail_id").val();
