@@ -587,9 +587,9 @@
                            <!-- New button start -->
                            @if(!empty($causeDetails->bundle_status))
                             <div class="gift-div">
-                                <button type="button" class="nextButton continue2"
+                                <button type="button" class="nextButton continue2" id="bundle_button"
                                     tabindex="5">Donate&nbsp;<span class="currency-symbol">{{Session::get('sessLocation')?->currency_symbol ?? '$'}}</span><span
-                                        class="Final_amount">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
+                                        class="Final_amount_new">{{ currency($causeDetails->default_amount) }}{{Session::get('sessLocation')?->curency_code=='KHR' ? '00' : ''}}</span>/<span
                                         class="planShortNamemonth">{{ $causeDetails->default_frequency == 'once' ? 'month' : 'month' }}</span></button>
                             </div>
                             <!-- New button end -->
