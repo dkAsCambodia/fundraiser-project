@@ -29,7 +29,8 @@
         "spatie/laravel-permission": "^5.11",
         "stevebauman/location": "^7.2",
         "stripe/stripe-php": "^13.13",
-        "z3d0x/filament-logger": "^0.6.1"
+        "z3d0x/filament-logger": "^0.6.1",
+        "jenssegers/agent": ".*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
