@@ -1557,6 +1557,10 @@
       })
     // onclick personal information btn validate donation field START
     $(document).ready(function(){
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        function isValidEmail(email) {
+                return emailPattern.test(email);
+            }
         $('.personal-btn').click( function(){
             $(".progress-animation").css("width","100%");
             $(".done-mark").css("top","0");
@@ -1574,6 +1578,12 @@
                 $('.error-span').css("display", "block");
                 $('.success-span').css("display", "none");
                 } 
+                if(!isValidEmail(email))
+                {
+                    $('.personalInput').addClass("inputerror");
+                    $('.error-span').css("display", "block");
+                    $('.success-span').css("display", "none");
+                }
                 else {
                     $('.error-span').css("display", "none");
                     $('.success-span').css("display", "block");
