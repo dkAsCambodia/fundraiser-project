@@ -4,32 +4,19 @@
 <script src="{{ URL::to('website/js/popup.js') }}"></script>
 <link href="{{ URL::to('website/css/countryflags.css') }}" rel="stylesheet" />
 <link href="{{ URL::to('website/css/donationPopupCustom_new.css') }}" rel="stylesheet" type="text/css" />
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-    var iframe = document.querySelector("iframe");
-    iframe.src = iframe.src;  // Reload the iframe to enforce the autoplay
-});
-</script>
+
 <script>
     $(document).ready(function() {
         $('[data-toggle="popover"]').popover();
        
     });
 
-    //$(".nextButton").click(function(e) {
-    //e.preventDefault(); // Prevent the page from submitting on click.
-    //$(this).attr('disabled', true); // Disable this input.
-    //$(this).parent("form").submit(); // Submit the form it is in.
-//});
-
-
-        $(document).ready(function(){
-            $('.submit-form').on('submit', function() {
-                $('.nextButton').prop('disabled', true);
-            });
+    $(document).ready(function(){
+        $('.submit-form').on('submit', function() {
+            $('.nextButton').prop('disabled', true);
         });
+    });
     
-
     jQuery(function($) {
         $('[data-numeric]').payment('restrictNumeric');
         $('.cc-number').payment('formatCardNumber');
@@ -65,7 +52,7 @@
                         @if($causeDetails->upsell_card_type == 'photo')
                         <img src="{{ !empty($causeDetails->photo) ? env('ADMIN_URL') . 'storage/' . $causeDetails->photo : 'https://ucarecdn.com/ef2e85d9-cab0-4b53-bbaf-74db14adf71b/-/resize/516x/-/format/auto/' }}"
                             alt="image" />
-                        @else    
+                        @else
                         <iframe allow="autoplay; fullscreen" frameborder="0" src="{{$causeDetails->videoUrl.'?autoplay=1&mute=1'}}"></iframe>
                          @endif                                       
                     </div>
