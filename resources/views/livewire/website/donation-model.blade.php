@@ -207,7 +207,6 @@
 </script>
 <script>
     function popuptabfuc(tabval) {
-        // alert(tabval);
         if (tabval == '1') {
             $(".planName").text('once');
             //$(".planShortName").text('month');
@@ -232,11 +231,9 @@
 
     //$(document).ready(function() {
     //$('.stepCloseBtns').on('click', function() {
-       // alert("check");
         //$(".step6").removeClass("slidepopup");
        // $(".stepcloseEs").addClass("slidepopup");
        // $('.stepclose').show();
-       // alert("test");
        // $('.step6').hide();
         //$('.stepclose').show();
         //$(".step1").removeClass("slidepopup");
@@ -1324,7 +1321,8 @@
                                         <span class="done-mark success-span"><i class="bi bi-check-circle"></i></span>
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
                                     </button>
-                                 <button type="submit" class="oulineButtonskip"><u>Skip to the next step</u></button>
+                                 <button type="submit" class="oulineButtonskip continue8"><u>Skip to the next step</u></button>
+                                 <input type="hidden" id="clicked" value=""/>
                                  <!-- <a href="javascript:void(0);" class="continue7">Skip to the next step</a> -->
                             </div>
                         </div>
@@ -1500,7 +1498,42 @@
                     });
                 }
             }
-            else if(!$(".clickanony").is(":checked") && $('#address').val() != "")
+            else if(!$(".clickanony").is(":checked") && $('#address').val() != "" && $("#clicked").val() == 'no') 
+            {
+                $(".progress-animation").css("width","100%");
+                $(".done-mark").css("top","0");
+                if (response.error) {
+                    $('.error-span').css("display", "block");
+                    $('.success-span').css("display", "none");
+                    alert(response.error.message);
+                } else {
+                    // token contains id, last4, and card type
+                    var token = response['id'];
+                    // insert the token into the form so it gets submitted to the server
+                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                    // $form.get(0).submit();
+                    var str = $(".StripePayment-form").serializeArray();
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('stripe.checkout') }}",
+                        data: str,
+                        success: function(response) {
+                            $('.error-span').css("display", "none");
+                            $('.success-span').css("display", "block");
+                            // console.log("responsedk "+response);
+                            toastr.options.timeOut = 10000;
+                            toastr.success('Thank for your donation');
+                            setTimeout(function () {
+                                window.location.href = response;
+                                $(".continue7").prop("disabled", false);
+                                $(".oulineButtonskip").prop("disabled", false);
+                            }, 3000)
+                            
+                        }
+                    });
+                }
+            }
+            else if(!$(".clickanony").is(":checked") && $("#clicked").val() == 'yes')
             {
                 $(".progress-animation").css("width","100%");
                 $(".done-mark").css("top","0");
@@ -1564,7 +1597,6 @@
         $('.personal-btn').click( function(){
             $(".progress-animation").css("width","100%");
             $(".done-mark").css("top","0");
-            // alert('dddd');
             var fname = $('.FnameInput').val();
             var lname = $('.lnameInput').val();
             var email = $('.emailInput').val();
@@ -1625,9 +1657,23 @@
             var cause_detail_id = $(".cause_detail_id").val();
             var frequency = $(".frequency").val();
             var redirectURL = `/paypal/form/${Final_amount}/${Final_currency}/${Final_currencySymbol}/${account_id}/${cause_detail_id}/${frequency}`;
-            // alert(redirectURL);
             //window.open(redirectURL, '_self');
             window.open(redirectURL,'width=100,height=200', '_self');  
+        });
+    });
+
+    $(document).ready(function() {
+        var hasBeenClicked = '';
+        $('.continue7').on('click', function() {
+            hasBeenClicked = 'no';
+            $("#clicked").val(hasBeenClicked);
+            
+        });
+
+        $('.continue8').on('click', function() {
+            hasBeenClicked = 'yes';
+            $("#clicked").val(hasBeenClicked);
+            
         });
     });
 </script>

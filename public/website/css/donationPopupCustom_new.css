@@ -282,8 +282,9 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
 @media(max-width: 767px){
 	.donationBox{ width: 95%; }
 	.donationBox .holder {flex-direction: column; background: #fff;  border-radius: 15px;}
-	.donationBox .donation_left { width: 100%; height:237px; margin: 0px; border-radius: 15px 15px 0 0px; border-bottom: 1px solid #ccc; }
+	.donationBox .donation_left { width: 100%; margin: 0px; border-radius: 15px 15px 0 0px; border-bottom: 1px solid #ccc; }
     .donationBox .donation_left .detail .adminLogo { max-height: 30px;}
+    .donationBox .donation_left .main_img img  {width: 100%; height: 237px;}
     .donationBox .donation_left .main_img iframe  {width:100%; height: 237px;} 
 	.donationBox .donation_right { width: 100%; height:530px; }
 	.faqlinks li a {white-space: nowrap; font-size: 11px; }
