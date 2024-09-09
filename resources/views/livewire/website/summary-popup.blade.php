@@ -33,7 +33,7 @@
                                 programs.</strong></p>
                     </div>
                 </div> -->
-                <div class="donation_right" style="min-height:800px !important;">
+                <div class="donation_right" style="min-height:650px !important;">
                     <div class="step1">
                         <div class="header_inner">Your Donation Summary!</div>
                             <div class="step8content">

@@ -290,6 +290,7 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
 	.faqlinks li a {white-space: nowrap; font-size: 11px; }
 	.faqlinks {align-items: center;  flex-direction: column; }
     .scrollable-upsellDiv{ height: 150px;}
+    .inputbox { padding: 0px; }
     
 }
 
