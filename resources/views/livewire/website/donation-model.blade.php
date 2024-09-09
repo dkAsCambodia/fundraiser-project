@@ -1121,8 +1121,9 @@
                                         <span class="done-mark done-mark-error error-span"><i class="bi bi-x-lg"></i></span>
                                 </button> -->
                                 <!--<button type="submit" class="card-btn nextButton1">-->
-                                <span id="error1" style="display:none;color:red;">Is this the right email address? We couldn't verify that this email address is able to receive mail.</span><br />
-                                <span id="error2" style="display:none;">Try again or enter a different email address to continue.</span>
+                                <span id="error1" style="display:none;color:red;">Please enter valid email address</span>
+                                <!-- <span id="error1" style="display:none;color:red;">Is this the right email address? We couldn't verify that this email address is able to receive mail.</span><br /> -->
+                                <!-- <span id="error2" style="display:none;">Try again or enter a different email address to continue.</span> -->
                                    <button type="button" class="personal-btn nextButton1">
                                         <span class="progress-animation"></span>
                                         <span class="btntext"><span class="flex-shrink-0 me-2"
