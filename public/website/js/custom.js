@@ -56,7 +56,7 @@ function currencyselectorFun(currencyValue) {
     var selected = $(".currency-selector option:selected");
     $(".currency-symbol").text(selected.data("symbol"));
     $(".Final_currencySymbol").val(selected.data("symbol"));
-    $('.Final_currency').val(currencyValue);
+    //$('.Final_currency').val(currencyValue);
     $('.Final_currency').text(currencyValue);
     $(".stripe-button")
         .attr({
@@ -91,7 +91,7 @@ function currencyselectorFun(currencyValue) {
     var rate=$('#currSelCurRate').val();
     // alert(rate);
     radioValue = Math.floor(selectedValue * rate);
-    $('.Final_amount').val(radioValue);
+    //$('.Final_amount').val(radioValue);
     $(".Final_amount").text(radioValue);
     $('.StripeFinal_amount').val(radioValue+'00');
     $(".stripe-button").attr({"data-amount": radioValue+'00', });
