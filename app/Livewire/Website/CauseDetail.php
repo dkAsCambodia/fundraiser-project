@@ -9,6 +9,8 @@ use App\Models\Country;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Stevebauman\Location\Facades\Location;
+use Session;
 
 class CauseDetail extends Component
 {
@@ -100,6 +102,15 @@ class CauseDetail extends Component
         $this->currencies = Country::where( 'status', '1')->orderBy('curency_code', 'ASC')->get();
         //$this->currencies = Country::where( 'status', '1')->get();
         $this->countries = Country::where( 'status', '1')->orderBy('country_name', 'ASC')->get();
+
+        $SESSLOCAATION= Session::get('sessLocation');
+        if(empty($SESSLOCAATION)){
+                $ip= request()->ip()=='127.0.0.1' ? '103.246.195.106' : request()->ip();
+                // dd($ip);   India IP Address : 103.246.195.106 for testing 103.146.44.34, US 130.58.218.30
+                $IpLocation = Location::get($ip);
+                $Query = Country::where(['curency_code' => $IpLocation->currencyCode, 'status'=> '1'])->first();
+                Session::put('sessLocation', $Query);
+        }
     }
     public function checkountNow()
     {
