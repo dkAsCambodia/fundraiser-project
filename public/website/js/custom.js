@@ -2,7 +2,7 @@
 // For radio amount selection START
     $(document).ready(function() {
         $('.paymentsmethod').click(function(event) {
-            // alert("clicked");
+            //alert("clicked");
             event.stopPropagation(); // Stop event propagation
             $('.paymentsmethod').removeClass('active');
             //alert($('input[type=radio]').val());
@@ -92,7 +92,7 @@ function currencyselectorFun(currencyValue) {
     // alert(rate);
     radioValue = Math.floor(selectedValue * rate);
     //$('.Final_amount').val(radioValue);
-    $(".Final_amount").text(radioValue);
+    //$(".Final_amount").text(radioValue);
     $('.StripeFinal_amount').val(radioValue+'00');
     $(".stripe-button").attr({"data-amount": radioValue+'00', });
     //New changes end
@@ -129,7 +129,7 @@ function currConversionNow(index,spanValue,currencyValue)
                 if (!isNaN(originalAmount) && !isNaN(currentAmount)) {
                 // var updatedAmount = Math.floor(currentAmount * rate);
                 var updatedAmount = Math.floor(originalAmount * rate);
-            
+                
                     // Update the text content of the current element with the updated amount
                     $(element).text(updatedAmount);
                 } else {
