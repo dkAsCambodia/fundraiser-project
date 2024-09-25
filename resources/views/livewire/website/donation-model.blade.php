@@ -412,6 +412,10 @@
                                 @endforelse
                             </select>
                         </div>
+
+                        <span id="error-min" style="display:none;color:red;">Minimum Donation amount is 10</span>
+                        <span id="error-max" style="display:none;color:red;">Maximum Donation amount is 999999</span>
+                        
                         <div class="inputSet">
                             <div class="paymentscheck">
                                 <label>

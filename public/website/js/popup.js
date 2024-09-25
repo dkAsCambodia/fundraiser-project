@@ -50,12 +50,27 @@ $(".clickcheckdedicate").click(function() {
 
 //
 $(".continue1").click(function(){
-	var new_button_val = $('.Final_amount').val() / 2;
-	$(".Final_amount_new").text(Math.trunc(new_button_val));
-	if($(".continue1").text() == "Donate monthly")
-		$(".step5").addClass("slidepopup");
+	if($('.Final_amount').val() < 10)
+	{
+		$('#error-min').css("display", "block");
+		$('#error-max').css("display", "none");
+	}
+	else if($('.Final_amount').val() > 999999)
+	{
+		$('#error-max').css("display", "block");
+		$('#error-min').css("display", "none");
+	}
 	else
-	$(".step2").addClass("slidepopup");
+	{
+		$('#error-min').css("display", "none");
+		$('#error-max').css("display", "none");
+		var new_button_val = $('.Final_amount').val() / 2;
+		$(".Final_amount_new").text(Math.trunc(new_button_val));
+		if($(".continue1").text() == "Donate monthly")
+			$(".step5").addClass("slidepopup");
+		else
+		$(".step2").addClass("slidepopup");
+    }
 });
 
 $("#bundle_button").click(function(){
