@@ -26,7 +26,7 @@ body{ font-family: "IBM Plex Sans", sans-serif;}
  .donationBox .donation_left .main_img iframe  {width:100%; aspect-ratio: 16 / 9;} 
  .donationBox .donation_left .main_img img  {width: 100%; height: 350px;}
 .donationBox .donation_left .detail { padding: 30px; height: calc(100% - 280px);}
-.donationBox .donation_left .detail .adminLogo { max-height: 50px;}
+.donationBox .donation_left .detail .adminLogo { max-height: 75px;}
 .donationBox .donation_left .detail h2 { margin: 10px 0 20px 0; font-size: 20px; font-weight: 600; color: #222832;}
 .donationBox .donation_left .detail p { padding-bottom: 20px; font-size: 14px; line-height: 22px; color: #222832;}
 /*.donationBox .donation_left :hover { background: #e2e1e1;} */
@@ -283,7 +283,7 @@ border-right: 10px solid transparent; bottom: -9px; left: 50%; border-top: 10px 
 	.donationBox{ width: 95%; }
 	.donationBox .holder {flex-direction: column; background: #fff;  border-radius: 15px;}
 	.donationBox .donation_left { width: 100%; margin: 0px; border-radius: 15px 15px 0 0px; border-bottom: 1px solid #ccc; }
-    .donationBox .donation_left .detail .adminLogo { max-height: 50px;}
+    .donationBox .donation_left .detail .adminLogo { max-height: 65px;}
     .donationBox .donation_left .main_img img  {width: 100%; height: 237px;}
     .donationBox .donation_left .main_img iframe  {width:100%; height: 237px;} 
 	.donationBox .donation_right { width: 100%; height:530px; }
